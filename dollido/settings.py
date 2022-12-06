@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+    'lost112',
 ]
 
 # User model 다른 것을 쓰기 위함
