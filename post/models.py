@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 class Category(models.Model):
   category_id = models.AutoField(primary_key=True)
@@ -8,7 +9,10 @@ class Category(models.Model):
   color = models.CharField(max_length=10)
 
 class ApiListId(models.Model):
+  # API list primary key
   api_lst_id = models.AutoField(primary_key=True)
+  # 물품명
+  lstPrdtNm = models.CharField(max_length=200, null=True, default = '')
   # 분실물 이미지 명
   lstFilePathImg = models.CharField(max_length=300)
   # 분실물 상태명
@@ -25,9 +29,14 @@ class ApiListId(models.Model):
   lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False)
   # 카테고리 (외래키)
   category = models.ForeignKey(Category, on_delete=models.CASCADE)
+  
+  
   
 class DollidoLstId(models.Model):
+  # 
   dollido_lst_id = models.AutoField(primary_key=True)
+  # 물품명
+  lstPrdtNm = models.CharField(max_length=200, null=True, default='')
   # 분실물 이미지 명
   lstFilePathImg = models.CharField(max_length=300)
   # 분실물 상태명
@@ -44,12 +53,4 @@ class DollidoLstId(models.Model):
   lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False)
   # 카테고리 (외래키)
   category = models.ForeignKey(Category, on_delete=models.CASCADE)
-  
-# class User(models.Model):
-#   user_id = models.AutoField(primary_key=True)
-#   user_name = models.CharField(max_length=20)
-#   tel = models.IntegerField(max_length=10)
-#   email = models.CharField(max_length=100)
-#   address = models.CharField(max_length=100)
-#   password = models.CharField(max_length=30)
   
