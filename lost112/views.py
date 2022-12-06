@@ -13,7 +13,7 @@ def get_lost112():
     url = 'http://apis.data.go.kr/1320000/LostGoodsInfoInqireService/getLostGoodsInfoAccToClAreaPd'
     params ={'serviceKey' : 'QKItEKc++kSGuac4NXrc3ukFyI5co7vZL8RJs+zQTLNGLbpF8Ye4FyPMljEXst017F0idpn3lKcCJjbT0XsxsA==', 
             'START_YMD' : '20221201',
-            'END_YMD' : '20221205',
+            'END_YMD' : '20221206',
             'PRDT_CL_CD_01' : 'PRA000',
             'PRDT_CL_CD_02' : 'PRA300', 
             'LST_LCT_CD' : 'LCA000', 
@@ -21,8 +21,8 @@ def get_lost112():
             'numOfRows' : '10' }
 
     response = requests.get(url, params=params).content
-    xmlObject = xmltodict.parse(response)
-    return xmlObject
+    jsonObject = xmltodict.parse(response)
+    return jsonObject
 
 def job():
     print(f'scheduler testing : {time.strftime("%H:%M:%S")}')
