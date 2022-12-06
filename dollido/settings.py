@@ -175,3 +175,10 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
+
+MEDIA_URL = '/media/' # 업로드 할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, '.static')
