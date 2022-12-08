@@ -1,1 +1,1 @@
-default_app_config = 'lost112.broker.MyAppConfig'
+# default_app_config = 'lost112.broker.MyAppConfig'

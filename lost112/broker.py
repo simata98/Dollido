@@ -49,6 +49,30 @@ def get_lost112_3():
     jsonObject = xmltodict.parse(response)
     return jsonObject
 
+    # for j in jsonObject['response']['body']['items']['item']:
+    #     api = ApiListId()
+        
+    #     # API list primary key
+    #     api.atcId = j['api']
+    #     # 물품명
+    #     api.fdPrdtNm = j['fdPrdtNm']
+    #     # 분실물 이미지 명
+    #     api.fdFilePathImg = j['fdFilePathImg']
+    #     # 게시제목
+    #     api.fdSbjt = ['fdSbjt']
+    #     # 보관 장소
+    #     api.depPlace = ['depPlace']
+    #     # 습득일자
+    #     api.fdYmd = ['fdYmd']
+    #     # 카테고리 (외래키)
+    #     api.category = ['category']
+    #     # 색상명
+    #     api.clrNm  = ['clrNm']
+        
+    #     api.save()
+        
+    #     print('2 completed')
+
 def job():
     print(f'scheduler testing : {time.strftime("%H:%M:%S")}')
     print(get_lost112_1())
@@ -78,4 +102,4 @@ class MyAppConfig(AppConfig):
         if not os.environ.get('APP'):
             os.environ['APP'] = 'True'
             sched_lost()
-            
+                
