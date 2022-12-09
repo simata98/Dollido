@@ -1,16 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
+from .models import User
+from django.views.generic import View
+from django.contrib import messages
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.response import Response
+from django.contrib.auth import authenticate
+from django.shortcuts import render, get_object_or_404
+from .serializers import UserCreateSerializer, UserLoginSerializer
 
+# 회원가입 기능
 @api_view(['POST']) 
-@permission_classes([AllowAny]) # 인증 필요없다
+# @permission_classes([AllowAny]) # 인증 필요없다
 def signup(request):
     serializer = UserCreateSerializer(data=request.data) 
     if serializer.is_valid(raise_exception=True):
         serializer.save() # DB 저장
         return Response(serializer.data, status=201) 
       
-      
+# 로그인 기능
 @api_view(['POST'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def login(request):
     if request.method == 'POST':
         serializer = UserLoginSerializer(data=request.data)
