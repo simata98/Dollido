@@ -33,10 +33,45 @@ const theme = createTheme();
 export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const email = data.get('email');
+    const password = data.get('password');
+
+    fetch('http://localhost:8000/accounts/login/',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            })
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res)
+      
+      const at = res.access_token;
+      const nfe = res.non_field_errors;
+
+      if (at){
+        return(
+          window.location.href = '/'
+        )
+      }
+
+      else {
+        const em = res.email;
+
+        if (em)(
+          alert()
+        )
+
+        else if (nfe){
+          alert(nfe)
+        }
+      }
     });
   };
 

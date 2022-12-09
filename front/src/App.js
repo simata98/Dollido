@@ -5,7 +5,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-// import CreateDay from './pages/Createday';
+import Asdf from './pages/Asdf';
+import New from './pages/New';
+
 function App() {
   return (
     <div className="App">
@@ -14,14 +16,16 @@ function App() {
         <Link to="/about">About | </Link>
         <Link to="/signin">signin | </Link>
         <Link to="/signup">signup | </Link>
-        {/* <Link to="/createday">Createday | </Link> */}
+        <Link to="/asdf">Asdf | </Link>
+        <Link to="/new">new | </Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/createday" element={<CreateDay />} /> */}
+        <Route path="/asdf" element={<Asdf />} />
+        <Route path="/new" element={<New />} />
       </Routes>
     </div>
   );
