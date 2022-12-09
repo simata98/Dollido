@@ -34,8 +34,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'post',
-    'accounts',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +44,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
-    'lost112',
+    'post.apps.PostConfig',
+    'accounts.apps.AccountsConfig',
+    # 'api.apps.ApiConfig',
+    'api',
 ]
 
 # User model 다른 것을 쓰기 위함
