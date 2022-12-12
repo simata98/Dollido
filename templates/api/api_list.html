@@ -1,0 +1,95 @@
+<!-- templates/api/api_list.html -->
+
+<form method="get" action="" class="form" style="margin-left: 7%; margin-top: 5%;">
+    <div>
+        <select name="option_selction" id="option" required>
+          <option value="옵션2">옵션1</option>
+          <option value="옵션3">옵션2</option>
+          <option value="옵션5" disabled>옵션5</option>
+        </select>
+        
+        <select name="option_selction" id="option" required>
+            <option value="옵션1">옵션1</option>
+            <option value="옵션2">옵션2</option>
+            <option value="옵션3">옵션3</option>
+            <option value="옵션4">옵션4</option>
+            <option value="옵션5" disabled>옵션5</option>
+          </select>
+
+          <select name="option_selction" id="option" required>
+            <option value="옵션1">옵션1</option>
+            <option value="옵션2">옵션2</option>
+            <option value="옵션3">옵션3</option>
+            <option value="옵션5" disabled>옵션5</option>
+          </select>
+        <input type="submit">
+      </div>
+  </form>
+
+<table>
+    <thead>
+        <tr class="text-center">
+            <th>이미지</th>
+            <th>제목</th>
+            <th>분류</th>
+            <th>색상</th>
+            <th>습득일자</th>
+            <th>보관장소</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% if api_list %}
+        {% for api in api_list %}
+        <tr class="text-center">
+            <td>
+                <img src={{ api.fdFilePathImg }} width=100 height=100>
+            </td>
+            <td>{{ api.fdSbjt|truncatechars:30 }}</td>
+            <td>{{ api.category }}</td>
+            <td>{{ api.clrNm }}</td>
+            <td>{{ api.fdYmd }}</td>
+            <td>{{ api.depPlace }}</td>
+            
+        {% endfor %}
+        {% else %}
+        <tr class="text-center">
+            <td colspan="5">
+                작성된 게시글이 없습니다.
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+            tabindex="-1">이전</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">이전</a>
+    </li>
+    {% endif %}
+
+    {% for page in page_range %}
+    <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link"
+            href="?page={{ page_obj.next_page_number }}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#">다음</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
