@@ -20,7 +20,7 @@ from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/token/', obtain_jwt_token),
-    path('accounts/token/verify/', verify_jwt_token),
-    path('accounts/token/refresh/', refresh_jwt_token),
+    # path('accounts/token/', obtain_jwt_token),
+    # path('accounts/token/verify/', verify_jwt_token),
+    # path('accounts/token/refresh/', refresh_jwt_token),
 ]
