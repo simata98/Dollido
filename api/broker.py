@@ -16,20 +16,24 @@ from post.models import ApiListId
 def get_lost112():
     url = 'http://apis.data.go.kr/1320000/LosfundInfoInqireService/getLosfundInfoAccToClAreaPd'
     params ={'serviceKey' : 'QKItEKc++kSGuac4NXrc3ukFyI5co7vZL8RJs+zQTLNGLbpF8Ye4FyPMljEXst017F0idpn3lKcCJjbT0XsxsA==', 
-            #  'PRDT_CL_CD_01' : 'PRH000', 
-             #'PRDT_CL_CD_02' : 'PRH200', 
-            #  'FD_COL_CD' : 'CL1002', 
-             #'START_YMD' : '20180302', 
-             #'END_YMD' : '20180802', 
-             #'N_FD_LCT_CD' : 'LCA000', 
-             # 'pageNo' : '1', 
-             'numOfRows' : '100000'
+            #  'PRDT_CL_CD_01' : 'PRJ000', 
+            #  #'PRDT_CL_CD_02' : 'PRH200', 
+            # #  'FD_COL_CD' : 'CL1002', 
+            #  'START_YMD' : '20220101', 
+            #  'END_YMD' : '20221212', 
+            #  #'N_FD_LCT_CD' : 'LCA000', 
+            #  # 'pageNo' : '1', 
+            # #  'numOfRows' : '10'
              }
-
+    
     response = requests.get(url, params=params).content
     jsonObject = xmltodict.parse(response)
-    api = ApiListId()
-    
+    params['numOfRows'] =jsonObject['response']['body']['totalCount']
+    params['PRDT_CL_CD_01'] ='PRH000'
+    params['START_YMD'] ='20220101'
+    params['END_YMD'] ='20221212'
+    response = requests.get(url, params=params).content
+    jsonObject = xmltodict.parse(response)
     for j in jsonObject['response']['body']['items']['item']:
         api = ApiListId()
         
@@ -58,7 +62,45 @@ def get_lost112():
             api.clrNm  = j['clrNm']
         
         api.save()
+    
+    response2 = requests.get(url, params=params).content
+    jsonObject2 = xmltodict.parse(response2)
+    params['numOfRows'] =jsonObject2['response']['body']['totalCount']
+    params['PRDT_CL_CD_01'] ='PRJ000'
+    params['START_YMD'] ='20220101'
+    params['END_YMD'] ='20221212'
+    response2 = requests.get(url, params=params).content
+    jsonObject2 = xmltodict.parse(response2)
+    
+    for e in jsonObject2['response']['body']['items']['item']:
+        api = ApiListId()
         
+        # API list primary key
+        api.atcId = e['atcId']
+        if 'fdPrdtNm' in e.keys():
+            # 물품명
+            api.fdPrdtNm = e['fdPrdtNm']
+        if 'fdFilePathImg' in e.keys():
+            # 분실물 이미지명
+            api.fdFilePathImg = e['fdFilePathImg']
+        if 'fdSbjt' in e.keys():
+            # 게시제목
+            api.fdSbjt = e['fdSbjt']
+        if 'depPlace' in e.keys():
+            # 보관 장소
+            api.depPlace = e['depPlace']
+        if 'fdYmd' in e.keys():
+            # 습득일자
+            api.fdYmd = e['fdYmd']
+        if 'prdtClNm' in e.keys():
+            # 카테고리 (외래키)
+            api.category = e['prdtClNm']
+        if 'clrNm' in e.keys():
+            # 색상명
+            api.clrNm  = e['clrNm']
+        
+        api.save()
+    
     print('2 completed')
     return
 

@@ -20,7 +20,7 @@ class ApiListId(models.Model):
   # 보관 장소
   depPlace = models.CharField(max_length=30)
   # 습득일자  
-  fdYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False)
+  fdYmd = models.DateField(max_length=10, null = True)
   # 카테고리 (외래키)
   # category = models.ForeignKey(Category, on_delete=models.CASCADE)
   category = models.CharField(max_length=20)
