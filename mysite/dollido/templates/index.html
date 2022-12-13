@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>분실물 목록</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                     <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>분실물</th>
+                        <th>특이사항</th>
+                        <th>이미지</th>
+                        <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for value in lost %}
+                    <tr>
+                        <td>{{ value.item }}</td>
+                        <td>{{ value.description }}</td>
+                        <td><a href="{% url 'detail_lost' pk=value.pk %}">{% if value.image %}<img src="/media/{{ value.image }}" class="img img-responsive" width="100px">{% endif %}</a></td>
+                        <td>{{ value.create_date }}</td>
+                        <td><a class="btn btn-success btn-sm" href="{%url 'edit_lost' pk=value.pk%}"> 수정</a><a class="btn btn-danger btn-sm" onclick="return confirm('정말 삭제하시겠습니까?')" href="/delete_lost/{{ value.id }}"> 삭제</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr><td>No Record Found!</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br><br>
+    <center><a href="/create_lost" class="btn btn-primary">Add New Record</a></center>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" />
+</body>
+</html>
