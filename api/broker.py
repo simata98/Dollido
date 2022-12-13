@@ -26,39 +26,38 @@ def get_lost112():
             #  'numOfRows' : '100000'
              }
 
-    response = requests.get(url, params=params).content
-    jsonObject = xmltodict.parse(response)
-    print(jsonObject)
-    api = ApiListId()
+    # response = requests.get(url, params=params).content
+    # jsonObject = xmltodict.parse(response)
+    # api = ApiListId()
     
-    for j in jsonObject['response']['body']['items']['item']:
-        api = ApiListId()
+    # for j in jsonObject['response']['body']['items']['item']:
+    #     api = ApiListId()
         
-        # API list primary key
-        api.atcId = j['atcId']
-        if 'fdPrdtNm' in j.keys():
-            # 물품명
-            api.fdPrdtNm = j['fdPrdtNm']
-        if 'fdFilePathImg' in j.keys():
-            # 분실물 이미지명
-            api.fdFilePathImg = j['fdFilePathImg']
-        if 'fdSbjt' in j.keys():
-            # 게시제목
-            api.fdSbjt = j['fdSbjt']
-        if 'depPlace' in j.keys():
-            # 보관 장소
-            api.depPlace = j['depPlace']
-        if 'fdYmd' in j.keys():
-            # 습득일자
-            api.fdYmd = j['fdYmd']
-        if 'prdtClNm' in j.keys():
-            # 카테고리 (외래키)
-            api.category = j['prdtClNm']
-        if 'clrNm' in j.keys():
-            # 색상명
-            api.clrNm  = j['clrNm']
+    #     # API list primary key
+    #     api.atcId = j['atcId']
+    #     if 'fdPrdtNm' in j.keys():
+    #         # 물품명
+    #         api.fdPrdtNm = j['fdPrdtNm']
+    #     if 'fdFilePathImg' in j.keys():
+    #         # 분실물 이미지명
+    #         api.fdFilePathImg = j['fdFilePathImg']
+    #     if 'fdSbjt' in j.keys():
+    #         # 게시제목
+    #         api.fdSbjt = j['fdSbjt']
+    #     if 'depPlace' in j.keys():
+    #         # 보관 장소
+    #         api.depPlace = j['depPlace']
+    #     if 'fdYmd' in j.keys():
+    #         # 습득일자
+    #         api.fdYmd = j['fdYmd']
+    #     if 'prdtClNm' in j.keys():
+    #         # 카테고리 (외래키)
+    #         api.category = j['prdtClNm']
+    #     if 'clrNm' in j.keys():
+    #         # 색상명
+    #         api.clrNm  = j['clrNm']
         
-        api.save()
+    #     api.save()
         
     print('2 completed')
     return
