@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>분실물 상세내용</title>
+    </head>
+    <body>
+        <h1><a href="/">홈으로 돌아가기</a></h1>
+        <h1>{{ lost.item }}</h1>
+        <h3><a href="{% url 'edit_lost' pk=lost.pk %}">내용 수정하기</a></h3>
+        <section>
+            <div>
+                <img src="/media/{{ lost.image }}"  width="300"/>
+                <p>{{ lost.description }}</p>
+            </div>
+        </section>
+    </body>
+</html>
