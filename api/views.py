@@ -2,6 +2,8 @@ from django.views.generic import ListView
 from post.models import ApiListId
 from django.db.models import Q
 from django.contrib import messages
+# from users.decorators import login_message_required
+from django.shortcuts import render, get_object_or_404
 
 class ApiListView(ListView):
     model = ApiListId
@@ -57,3 +59,20 @@ class ApiListView(ListView):
         context['type'] = search_type
 
         return context
+
+def api_detail_view(request, pk):
+    api = get_object_or_404(ApiListId, pk=pk)
+    # api = ApiListId.objects.get(atcId=pk)
+    # session_cookie = request.session['user_id']
+    # cookie_name = F'notice_hits:{session_cookie}'
+
+    # if request.user == api.writer:
+    #     notice_auth = True
+    # else:
+    #     notice_auth = False
+    
+    context = {
+        'api': api,
+        # 'notice_auth': notice_auth,
+    }
+    return render(request, 'api/api_detail.html', context)

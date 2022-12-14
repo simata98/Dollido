@@ -47,7 +47,7 @@
             <tbody>
                 {% if api_list %}
                 {% for api in api_list %}
-                <tr class="text-center" style="cursor:pointer;" onclick="location.href='/api/{{ api.atcid }}/'">
+                <tr class="text-center" style="cursor:pointer;" onclick="location.href='/api/{{ api.atcId }}/'" align-items=center>
                     <td>
                         <img src={{ api.fdFilePathImg }} width=100 height=100>
                     </td>
