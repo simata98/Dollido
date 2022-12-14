@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from dollido.forms import LostForm
-from dollido.models import Lost
+from dollido.models import Lost, DollidoLstId
 from django.http import HttpResponse
 from django.contrib import messages
 
 # Create your views here.
 
 def detail_lost(request, pk):
-    lost = get_object_or_404(Lost, pk=pk)
+    lost = get_object_or_404(DollidoLstId, pk=pk)
     return render(request, 'detail_lost.html', {'lost':lost})
 
 def create_lost(request):
@@ -22,11 +22,11 @@ def create_lost(request):
     return render(request, 'create.html', {'form':form})
 
 def show_lost(request):
-    lost = Lost.objects.order_by('-id');
+    lost = DollidoLstId.objects.order_by('-id');
     return render(request, 'index.html', {'lost' : lost})
 
 def edit_lost(request, pk):
-    lost = get_object_or_404(Lost, pk=pk)
+    lost = get_object_or_404(DollidoLstId, pk=pk)
     if request.method == "POST":
         form = LostForm(request.POST, instance=lost)
         if form.is_valid():
@@ -39,7 +39,7 @@ def edit_lost(request, pk):
 
 
 def delete_lost(request, id):
-    lost = Lost.objects.get(id=id)
+    lost = DollidoLstId.objects.get(id=id)
     lost.delete()
     messages.success(request, '삭제 성공!')    
     return redirect('/show_lost')

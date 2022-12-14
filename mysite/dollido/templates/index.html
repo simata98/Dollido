@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>분실물 목록</title>
+    <title>습득물 목록</title>
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -19,18 +19,22 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>분실물</th>
-                        <th>특이사항</th>
-                        <th>이미지</th>
-                        <th>날짜</th>
+                        <th>습득물</th>
+                        <th>상세설명</th>
+                        <th>사진</th>
+                        <th>습득일자</th>
+                        <th>수거함 위치</th>
+                        <th>게시일</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for value in lost %}
                     <tr>
-                        <td>{{ value.item }}</td>
-                        <td>{{ value.description }}</td>
-                        <td><a href="{% url 'detail_lost' pk=value.pk %}">{% if value.image %}<img src="/media/{{ value.image }}" class="img img-responsive" width="100px">{% endif %}</a></td>
+                        <td>{{ value.lstPrdtNm }}</td>
+                        <td>{{ value.lstcontent }}</td>
+                        <td><a href="{% url 'detail_lost' pk=value.pk %}">{% if value.lstFilePathImg %}<img src="/media/{{ value.lstFilePathImg }}" class="img img-responsive" width="100px">{% endif %}</a></td>
+                        <td>{{ value.lstYmd }}</td>
+                        <td>{{ value.lstPlace }}</td>
                         <td>{{ value.create_date }}</td>
                         <td><a class="btn btn-success btn-sm" href="{%url 'edit_lost' pk=value.pk%}"> 수정</a><a class="btn btn-danger btn-sm" onclick="return confirm('정말 삭제하시겠습니까?')" href="/delete_lost/{{ value.id }}"> 삭제</a></td>
                     </tr>

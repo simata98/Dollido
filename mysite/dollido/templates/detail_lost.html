@@ -8,8 +8,8 @@
         <h3><a href="{% url 'edit_lost' pk=lost.pk %}">내용 수정하기</a></h3>
         <section>
             <div>
-                <img src="/media/{{ lost.image }}"  width="300"/>
-                <p>{{ lost.description }}</p>
+                <img src="/media/{{ lost.lstFilePathImg }}"  width="300"/>
+                <p>{{ lost.lstcontent }}</p>
             </div>
         </section>
     </body>
