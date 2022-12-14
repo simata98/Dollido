@@ -1,10 +1,8 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,6 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios";
 
 
 
@@ -31,48 +30,47 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  let [inputEmail, setInputEmail] = useState("");
+  let [inputPw, setInputPw] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
+    const user = {
+      email: inputEmail,
+      password: inputPw,
+    };
 
-    fetch('http://localhost:8000/accounts/login/',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                password,
-            })
-    })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res)
-      
-      const at = res.access_token;
-      const nfe = res.non_field_errors;
-
-      if (at){
-        return(
-          window.location.href = '/'
-        )
-      }
-
-      else {
-        const em = res.email;
-
-        if (em)(
-          alert()
-        )
-
-        else if (nfe){
-          alert(nfe)
+    axios
+      .post('http://localhost:8000/accounts/auth/', user)
+      .then((res) => {
+        if (res.data.token.access && res.data.user.is_active) {
+          localStorage.clear();
+          localStorage.setItem("token", res.data.token.access);
+          localStorage.setItem("is_active", res.data.user.is_active);
+          window.location.replace("/");
+        } else {
+          alert("이메일 인증이 필요합니다.");
+          setInputEmail("");
+          setInputPw("");
+          localStorage.clear();
         }
-      }
-    });
+      })
+      .catch((err) => {
+        alert("아이디 또는 비밀번호가 일치하지 않거나 없는 아이디 입니다.");
+        setInputEmail("");
+        setInputPw("");
+      });
+  };
+
+  // 입력한 이메일값
+  const handleInputEmail = (e) => {
+    setInputEmail(e.target.value);
+  };
+
+  // 입력한 패스워드값
+  const handleInputPw = (e) => {
+    setInputPw(e.target.value);
   };
 
   return (
@@ -95,6 +93,8 @@ export default function SignIn() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              value={inputEmail}
+              onChange={handleInputEmail}
               margin="normal"
               required
               fullWidth
@@ -105,6 +105,8 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              value={inputPw}
+              onChange={handleInputPw}
               margin="normal"
               required
               fullWidth
@@ -113,10 +115,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
@@ -127,13 +125,8 @@ export default function SignIn() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link href="signup" variant="body2">
+                <Link href="agreement" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
