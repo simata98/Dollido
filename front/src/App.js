@@ -5,8 +5,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import Asdf from './pages/Asdf';
 import New from './pages/New';
+import Agreement from './pages/Agreement';
+// import Board from './pages/Board';
 
 function App() {
   return (
@@ -15,8 +16,7 @@ function App() {
         <Link to="/">Home | </Link>
         <Link to="/about">About | </Link>
         <Link to="/signin">signin | </Link>
-        <Link to="/signup">signup | </Link>
-        <Link to="/asdf">Asdf | </Link>
+        <Link to="/Agreement">signup | </Link>
         <Link to="/new">new | </Link>
       </nav>
       <Routes>
@@ -24,7 +24,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/asdf" element={<Asdf />} />
+        <Route path="/agreement" element={<Agreement />} />
+        {/* <Route path="/board" element={<Board />} /> */}
         <Route path="/new" element={<New />} />
       </Routes>
     </div>
