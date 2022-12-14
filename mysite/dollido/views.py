@@ -4,9 +4,7 @@ from dollido.models import Lost
 from django.http import HttpResponse
 from django.contrib import messages
 
-
 # Create your views here.
-
 
 def detail_lost(request, pk):
     lost = get_object_or_404(Lost, pk=pk)
@@ -16,16 +14,12 @@ def create_lost(request):
     if request.method == 'POST': # POST 방식으로 요청이 들어왔을 때
         form = LostForm(request.POST, request.FILES) # 입력된 내용들을 form이라는 변수에 저장
         if form.is_valid(): # form이 유효하다면(= models.py에서 정의한 필드에 적합하다면)
-            
             lost = form.save(commit=False)
             lost.save()
             return redirect('/show_lost')
-        else:
-            form = LostForm()
-            return redirect('/show_lost')
     else:
         form = LostForm()
-        return render(request, 'create.html', {'form':form})
+    return render(request, 'create.html', {'form':form})
 
 def show_lost(request):
     lost = Lost.objects.order_by('-id');
