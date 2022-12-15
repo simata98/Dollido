@@ -5,6 +5,7 @@ from django.urls import path
 urlpatterns = [
     path('lost/<int:pk>/', views.detail_lost, name='detail_lost'),
     path('create_lost', views.create_lost),
+    path('take_upload', views.take_upload),
     path('', views.show_lost),
     path('show_lost/', views.show_lost),
     path('lost/<int:pk>/edit/', views.edit_lost, name='edit_lost'),

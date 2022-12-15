@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from dollido.forms import LostForm
+from dollido.forms import LostForm, TakeForm
 from dollido.models import Lost, DollidoLstId
 from django.http import HttpResponse
 from django.contrib import messages
@@ -43,5 +43,19 @@ def delete_lost(request, id):
     lost.delete()
     messages.success(request, '삭제 성공!')    
     return redirect('/show_lost')
-             
+
+import base64
+def take_upload(request):
+    if request.method == 'POST': # POST 방식으로 요청이 들어왔을 때
+        dataURL = request.POST.get('files')
+        print(dataURL)
+        
+        form = LostForm(request.POST, request.FILES) # 입력된 내용들을 form이라는 변수에 저장
+        if form.is_valid(): # form이 유효하다면(= models.py에서 정의한 필드에 적합하다면)
+            lost = form.save(commit=False)
+            lost.save()
+            return redirect('/show_lost')
+    else:
+        form = TakeForm()
+    return render(request, 'take.html', {'form':form})         
                 

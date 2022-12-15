@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>분실물 등록</title>
+	</head>
+	<body>
+		<form method="POST" class="post-form" action="/take_upload" enctype="multipart/form-data"> 
+            {% csrf_token %} 
+            <h1>
+				<a href="/">홈으로 돌아가기</a>
+			</h1>
+			<div>
+				<section>
+					<h2>분실물 등록하기</h2>
+					{{ form.as_p }}
+					<video id="video" width="320" height="240" autoplay></video>
+					<canvas id="canvas" width="960" height="720"></canvas>
+                    <input id='test' name='files' type='hidden'>
+					<button type="button" id="webcamBtn">촬영하기</button>
+					<script>
+						if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+							navigator.mediaDevices.getUserMedia({
+								video: true
+							}).then(function(stream) {
+								const video = document.getElementById('video');
+								video.srcObject = stream;
+								video.play();
+							});
+						}
+						const canvas = document.getElementById('canvas');
+						const context = canvas.getContext('2d');
+						const video = document.getElementById('video');
+						document.getElementById("webcamBtn").addEventListener("click", function() {
+							context.drawImage(video, 0, 0, 320, 240);
+                            var image = document.getElementById('canvas').toDataURL('image/png').replace("image/png", "image/octet-stream");
+                            
+							console.log(context.getImageData(0, 0, 320, 240));
+                            document.getElementById("test").value = image;
+						});
+					</script>
+					<button type='submit'>등록하기</button>
+			</div>
+			</section>
+		</form>
+	</body>
+</html>
