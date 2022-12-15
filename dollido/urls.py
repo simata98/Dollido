@@ -24,5 +24,5 @@ urlpatterns = [
     path('accounts/token/', obtain_jwt_token),
     path('accounts/token/verify/', verify_jwt_token),
     path('accounts/token/refresh/', refresh_jwt_token),
-    path('api/', include('api.urls'))
+    path('lost112/', include('api.urls'))
 ]
