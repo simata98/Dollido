@@ -1,23 +1,22 @@
-User = get_user_model()
+from .models import User
+from rest_framework import serializers
+from rest_framework_jwt.settings import api_settings
 
-class UserCreateSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
-    username = serializers.CharField(required=True)
-    password = serializers.CharField(required=True)
-    print(email)
-    def create(self, validated_data):
-        user = User.objects.create( # User 생성
-            email=validated_data['email'],
-            username=validated_data['username'],
-        )
-        user.set_password(validated_data['password'])
-
-        user.save()
-        return user
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = '__all__'
     
-JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
-JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+  def create(self, validated_data):
+    user = User.objects.create_user(
+      email = validated_data['email'],
+      tel = validated_data['tel'],
+      address = validated_data['address'],
+      password = validated_data['password'],
+    )
+    return user
 
+    
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=64)
     password = serializers.CharField(max_length=128, write_only=True)
@@ -27,6 +26,7 @@ class UserLoginSerializer(serializers.Serializer):
         email = data.get("email", None)
         password = data.get("password", None)
         user = authenticate(email=email, password=password)
+        is_active = data.get('is_active', None)
 
         if user is None:
             return {
@@ -38,9 +38,10 @@ class UserLoginSerializer(serializers.Serializer):
             update_last_login(None, user)
         except User.DoesNotExist:
             raise serializers.ValidationError(
-                'User with given email and password does not exists'
+                '이메일 또는 비밀번호가 잘못 입력되었습니다'
             )
         return {
             'email': user.email,
-            'token': jwt_token
+            'is_active': user.is_active,
+            'token': jwt_token,
         }
