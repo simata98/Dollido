@@ -48,16 +48,12 @@ export default function SignIn() {
           localStorage.clear();
           localStorage.setItem("token", res.data.token.access);
           localStorage.setItem("is_active", res.data.user.is_active);
-          window.location.replace("/");
-        } else {
-          alert("이메일 인증이 필요합니다.");
-          setInputEmail("");
-          setInputPw("");
-          localStorage.clear();
+          console.log(res.data.token.access)
+          //window.location.replace("/");
         }
       })
       .catch((err) => {
-        alert("아이디 또는 비밀번호가 일치하지 않거나 없는 아이디 입니다.");
+        alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
       });

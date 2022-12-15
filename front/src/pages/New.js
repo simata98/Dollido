@@ -2,7 +2,19 @@
 // https://my-json-server.typicode.com/typicode/demo/posts
 // http://127.0.0.1:8000/accounts/user/
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import React from "react";
+
 function App() {
+    const onLogout = () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          localStorage.clear();
+          window.location.replace("/Signin");
+        }
+    }
+
     const onSubmitHandler = (e) =>{
         e.preventDefault();
 
@@ -24,6 +36,15 @@ function App() {
     
     return (
         <div className='App'>
+            <Box m={1} //margin
+                display="flex"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+            >
+                <Button variant="contained" color="primary" sx={{ height: 40 }} onClick={onLogout}>
+                    로그아웃
+                </Button>
+            </Box>
             <h1>TODO setTodoList</h1>
             <form onSubmit={onSubmitHandler}>
                 <input name='Email' />

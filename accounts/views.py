@@ -123,17 +123,21 @@ class AuthAPIView(APIView):
 
         except(jwt.exceptions.InvalidTokenError):
             # 사용 불가능한 토큰일 때
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({"message" : "사용 불가능한 토큰"}, status=400)
 
     # 로그인
     def post(self, request):
     	# 유저 인증
         user = authenticate(
-            email=request.data.get("email"), password=request.data.get("password")
+            email=request.data.get("email"), 
+            password=request.data.get("password")
         )
+        
         # 이미 회원가입 된 유저일 때
         if user is not None:
             serializer = UserSerializer(user)
+            # 이메일 인증을 했을 경우와 아닐 경우에는 user 정보 RESPONSE
+            # 이메일 인증 여부 확인
             # jwt 토큰 접근
             token = TokenObtainPairSerializer.get_token(user)
             refresh_token = str(token)
@@ -154,7 +158,18 @@ class AuthAPIView(APIView):
             res.set_cookie("refresh", refresh_token, httponly=True)
             return res
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            res = Response(
+                {
+                    "user": {
+                        "is_active" : False
+                    },
+                    "message": "회원가입이 되어 있지 않은 계정이거나 이메일 인증이 되지 않은 계정",
+                    "token": {
+                        "access": "unvalid_token"
+                    },
+                }, status=400
+            )
+            return res
 
     # 로그아웃
     def delete(self, request):
