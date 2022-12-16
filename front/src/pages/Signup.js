@@ -38,9 +38,10 @@ export default function Signup() {
 
     // name 입력값
     const handleInputName = (e) => {
+        const nameRegex = /^[가-힣]{2,5}$/
         setInputName(e.target.value)
-        if (e.target.value.length < 2 || e.target.value.length > 5) {
-          setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
+        if (!nameRegex.test(e.target.value)) {
+          setNameMessage('한글 2글자 이상 5글자 이하로 입력해주세요.')
           setIsName(false)
         } else {
           setNameMessage('올바른 이름 형식입니다 :)')
@@ -50,8 +51,9 @@ export default function Signup() {
 
     // email 입력값
     const handleInputEmail = (e) => {
-        const emailRegex =
-        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        // const emailRegex =
+        // /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        const emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
         setInputEmail(e.target.value);
         console.log(e.target.value);
         if (!emailRegex.test(e.target.value)) {
@@ -98,10 +100,10 @@ export default function Signup() {
         setInputTel(e.target.value);
         console.log(e.target.value);
         if (!telRegex.test(e.target.value) && e.target.value.length===11) {
-            setTelMessage('핸드폰번호를 정확히 입력해주세요')
+            setTelMessage('숫자를 정확히 입력했어요 : )')
             setIsTel(true)
         } else {
-            setTelMessage('숫자를 정확히 입력했어요 : )')
+            setTelMessage('핸드폰번호를 정확히 입력해주세요')
             setIsTel(false)
         }
     };
