@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'mainpage.apps.MainpageConfig',
     'corsheaders',
+
+    'api',
 ]
 
 # User model 다른 것을 쓰기 위함
