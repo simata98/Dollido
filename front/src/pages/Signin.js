@@ -49,7 +49,7 @@ export default function SignIn() {
           localStorage.setItem("token", res.data.token.access);
           localStorage.setItem("is_active", res.data.user.is_active);
           console.log(res.data.token.access)
-          //window.location.replace("/");
+          window.location.replace("/new");
         }
       })
       .catch((err) => {
