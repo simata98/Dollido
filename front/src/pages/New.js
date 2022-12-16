@@ -14,46 +14,36 @@ function App() {
           window.location.replace("/Signin");
         }
     }
-
-    const onSubmitHandler = (e) =>{
-        e.preventDefault();
-
-        const email = e.target.Email.value;
-        const password1 = e.target.Password1.value;
-        const password2 = e.target.Password2.value;
-        fetch('http://localhost:8000/accounts/registration/',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                password1,
-                password2,
-            })
-        });
-    };
     
-    return (
-        <div className='App'>
-            <Box m={1} //margin
-                display="flex"
-                justifyContent="flex-end"
-                alignItems="flex-end"
-            >
-                <Button variant="contained" color="primary" sx={{ height: 40 }} onClick={onLogout}>
-                    로그아웃
-                </Button>
-            </Box>
-            <h1>TODO setTodoList</h1>
-            <form onSubmit={onSubmitHandler}>
-                <input name='Email' />
-                <input name='Password1' />
-                <input name='Password2' />
-                <input type='submit' value='제출' />
-            </form>
-        </div>
-    );
+    console.log(localStorage)
+
+    if (localStorage.getItem("token")) {
+        return (
+            <div className='App'>
+                <Box m={1} //margin
+                    display="flex"
+                    justifyContent="flex-end"
+                    alignItems="flex-end"
+                >
+                    <Button variant="contained" color="primary" sx={{ height: 40 }} onClick={onLogout}>
+                        로그아웃
+                    </Button>
+                </Box>
+                <h1>TODO setTodoList</h1>
+                <form>
+                    <input name='Email' />
+                    <input name='Password1' />
+                    <input name='Password2' />
+                    <input type='submit' value='제출' />
+                </form>
+            </div>
+        );
+    }
+    
+    else {
+        window.location.replace("/Signin");
+        alert("로그인이 필요합니다.");
+    }
 }
 
 export default App;
