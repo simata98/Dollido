@@ -7,7 +7,7 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import New from './pages/New';
 import Agreement from './pages/Agreement';
-// import Board from './pages/Board';
+import MyDataGrid from './pages/Mydatagrid';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Link to="/signin">signin | </Link>
         <Link to="/Agreement">signup | </Link>
         <Link to="/new">new | </Link>
+        <Link to="/mydatagrid">mydatagrid | </Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -25,7 +26,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/agreement" element={<Agreement />} />
-        {/* <Route path="/board" element={<Board />} /> */}
+        <Route path="/mydataGrid" element={<MyDataGrid />} />
         <Route path="/new" element={<New />} />
       </Routes>
     </div>
