@@ -6,10 +6,13 @@
         <h1><a href="/">홈으로 돌아가기</a></h1>
         <h1>{{ lost.item }}</h1>
         <h3><a href="{% url 'edit_lost' pk=lost.pk %}">내용 수정하기</a></h3>
+
+            
         <section>
             <div>
                 <img src="/media/{{ lost.lstFilePathImg }}"  width="300"/>
-                <p>{{ lost.lstcontent }}</p>
+                <p><h3>상세설명</h3>{{ lost.lstcontent }}</p>
+
             </div>
         </section>
     </body>
