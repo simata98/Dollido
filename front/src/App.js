@@ -8,28 +8,34 @@ import Signup from './pages/Signup';
 import New from './pages/New';
 import Agreement from './pages/Agreement';
 import MyDataGrid from './pages/Mydatagrid';
+import Header from "./components/Header";
+
 
 function App() {
   return (
-    <div className="App">
-      <nav>
-        <Link to="/">Home | </Link>
-        <Link to="/about">About | </Link>
-        <Link to="/signin">signin | </Link>
-        <Link to="/Agreement">signup | </Link>
-        <Link to="/new">new | </Link>
-        <Link to="/mydatagrid">mydatagrid | </Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/agreement" element={<Agreement />} />
-        <Route path="/mydataGrid" element={<MyDataGrid />} />
-        <Route path="/new" element={<New />} />
-      </Routes>
-    </div>
+    <React.Fragment>
+      <Header />
+      <div className="App">
+        <nav>
+          <Link to="/">Home | </Link>
+          <Link to="/about">About | </Link>
+          <Link to="/signin">signin | </Link>
+          <Link to="/Agreement">signup | </Link>
+          <Link to="/new">new | </Link>
+          <Link to="/mydatagrid">mydatagrid | </Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/agreement" element={<Agreement />} />
+          <Route path="/mydataGrid" element={<MyDataGrid />} />
+          <Route path="/new" element={<New />} />
+          <Route path="/header" element={<Header />} />
+        </Routes>
+      </div>
+    </React.Fragment>
   );
 }
 
