@@ -5,10 +5,10 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
-import New from './pages/New';
 import Agreement from './pages/Agreement';
 import MyDataGrid from './pages/Mydatagrid';
 import Header from "./components/Header";
+import Board from "./pages/Board";
 
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
           <Link to="/about">About | </Link>
           <Link to="/signin">signin | </Link>
           <Link to="/Agreement">signup | </Link>
-          <Link to="/new">new | </Link>
           <Link to="/mydatagrid">mydatagrid | </Link>
         </nav>
         <Routes>
@@ -31,8 +30,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/agreement" element={<Agreement />} />
           <Route path="/mydataGrid" element={<MyDataGrid />} />
-          <Route path="/new" element={<New />} />
           <Route path="/header" element={<Header />} />
+          <Route path="/board" element={<Board />} />
         </Routes>
       </div>
     </React.Fragment>
