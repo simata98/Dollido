@@ -27,53 +27,53 @@ def call_api(**kwargs):
 
 
 def get_lost112(CATEGORY=CATEGORY, START_YMD=START_YMD, END_YMD=END_YMD):
-    cnt = 0
-    for cat in CATEGORY:
+    # cnt = 0
+    # for cat in CATEGORY:
         
-        initial_value = call_api(numOfRows='1',
-                PRDT_CL_CD_01=cat, 
-                START_YMD=START_YMD,
-                END_YMD=END_YMD)
+    #     initial_value = call_api(numOfRows='1',
+    #             PRDT_CL_CD_01=cat, 
+    #             START_YMD=START_YMD,
+    #             END_YMD=END_YMD)
         
-        print(cat, initial_value['response']['body']['totalCount'])
+    #     print(cat, initial_value['response']['body']['totalCount'])
 
-        jsonObject = call_api(numOfRows=initial_value['response']['body']['totalCount'],
-                PRDT_CL_CD_01=cat, 
-                START_YMD=START_YMD,
-                END_YMD=END_YMD)
+    #     jsonObject = call_api(numOfRows=initial_value['response']['body']['totalCount'],
+    #             PRDT_CL_CD_01=cat, 
+    #             START_YMD=START_YMD,
+    #             END_YMD=END_YMD)
         
-        for j in jsonObject['response']['body']['items']['item']:
-            api = ApiListId()
+    #     for j in jsonObject['response']['body']['items']['item']:
+    #         api = ApiListId()
             
-            # API list primary key
-            api.atcId = j['atcId']
-            if 'fdPrdtNm' in j.keys():
-                # 물품명
-                api.fdPrdtNm = j['fdPrdtNm']
-            if 'fdFilePathImg' in j.keys():
-                # 분실물 이미지명
-                api.fdFilePathImg = j['fdFilePathImg']
-            if 'fdSbjt' in j.keys():
-                # 게시제목
-                api.fdSbjt = j['fdSbjt']
-            if 'depPlace' in j.keys():
-                # 보관 장소
-                api.depPlace = j['depPlace']
-            if 'fdYmd' in j.keys():
-                # 습득일자
-                api.fdYmd = j['fdYmd']
-            if 'prdtClNm' in j.keys():
-                # 카테고리 (외래키)
-                api.category = j['prdtClNm']
-            if 'clrNm' in j.keys():
-                # 색상명
-                api.clrNm  = j['clrNm']    
-            api.save()
+    #         # API list primary key
+    #         api.atcId = j['atcId']
+    #         if 'fdPrdtNm' in j.keys():
+    #             # 물품명
+    #             api.fdPrdtNm = j['fdPrdtNm']
+    #         if 'fdFilePathImg' in j.keys():
+    #             # 분실물 이미지명
+    #             api.fdFilePathImg = j['fdFilePathImg']
+    #         if 'fdSbjt' in j.keys():
+    #             # 게시제목
+    #             api.fdSbjt = j['fdSbjt']
+    #         if 'depPlace' in j.keys():
+    #             # 보관 장소
+    #             api.depPlace = j['depPlace']
+    #         if 'fdYmd' in j.keys():
+    #             # 습득일자
+    #             api.fdYmd = j['fdYmd']
+    #         if 'prdtClNm' in j.keys():
+    #             # 카테고리 (외래키)
+    #             api.category = j['prdtClNm']
+    #         if 'clrNm' in j.keys():
+    #             # 색상명
+    #             api.clrNm  = j['clrNm']    
+    #         api.save()
             
-            cnt += 1
-            if cnt % 5000 == 0:
-                print(cnt)
-    print('api completed')
+    #         cnt += 1
+    #         if cnt % 5000 == 0:
+    #             print(cnt)
+    # print('api completed')
     return
 
 def job():
