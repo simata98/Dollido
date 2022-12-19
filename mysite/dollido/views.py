@@ -29,6 +29,7 @@ def edit_lost(request, pk):
     lost = get_object_or_404(DollidoLstId, pk=pk)
     if request.method == "POST":
         form = LostForm(request.POST, instance=lost)
+        #form = LostForm(request.POST, request.FILES, instance=lost)
         if form.is_valid():
             lost = form.save(commit=False)
             lost.save()
