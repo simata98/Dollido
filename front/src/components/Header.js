@@ -32,15 +32,15 @@ const Header = () => {
     <div className="header-wrapper">
       <div className="header-title">
         <Link to="/">
-          <span>Duckgugong</span>
+          <span>Dollido</span>
         </Link>
       </div>
       <div className="header-menu">
-        <Link to="/">게시판</Link>
-        <Link to="/about">글쓰기</Link>
+        <Link to="/mydatagrid">게시판</Link>
+        <Link to="/about">내 게시물</Link>
         {isAuth ? (
           <>
-            <Link to="/mydatagrid">내 게시물</Link>
+            <Link to="/">글쓰기</Link>
             <Link to="#" onClick={onLogout}>로그아웃</Link>
           </>
         ) : (

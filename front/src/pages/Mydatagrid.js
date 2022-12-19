@@ -55,6 +55,11 @@ export default function MyDataGrid() {
     // response.data의 값을 tasks 안에 넣을려고 useState를 설정해줌
     const [tasks, setTasks] = useState([]);
 
+    const handleRowClick = (params) => {
+        localStorage.setItem("code", params.row.atcId);
+        window.location.replace('/board')
+      };
+      
     // load tasks from the backend when the component is rendered
       useEffect(() => {
       axios
@@ -70,9 +75,10 @@ export default function MyDataGrid() {
         <div style={{ height: 650, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <DataGrid
                 getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
-                rows={tasks}
+                rows={tasks}    
                 columns={columns}
                 getRowId={getRowId}
+                onRowClick={handleRowClick}
             />
         </div>
     );
