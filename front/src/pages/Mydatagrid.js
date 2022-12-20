@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
-
+import Stack from '@mui/material/Stack';
 // DataGrid의 컬럼을 하나하나씩 만들어준다
 const columns = [
     {
@@ -18,6 +18,8 @@ const columns = [
         field: 'fdFilePathImg',
         headerName: 'Image',
         width: 200,
+        headerAlign: 'center',
+        align: 'center',
         // renderCell를 통해서 <img 이미지링크>를 받아준다
         renderCell: (params) => <img src={params.value} height="100" alt = 'fdFilePathImg'/>
     },
@@ -74,6 +76,13 @@ export default function MyDataGrid() {
         // display 
         <div style={{ marginTop: '5%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <DataGrid
+              components={{
+                NoRowsOverlay: () => (
+                  <Stack height="100%" alignItems="center" justifyContent="center">
+                    <img src='/loading.png' height="50%" alt = 'fdFilePathImg'/>
+                    로딩중입니다! 잠시만 기다려주세요!
+                  </Stack>
+    )}}
                 getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
                 rows={tasks}    
                 columns={columns}
