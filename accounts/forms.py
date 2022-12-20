@@ -16,6 +16,10 @@ class RegisterForm(UserCreationForm):
   def __init__(self, *args, **kwargs):
     super(RegisterForm, self).__init__(*args, **kwargs)
     
+    self.fields['username'].label = '이름'
+    self.fields['email'].widget.attrs.update({
+      'class' : 'form-control',
+    })
     self.fields['email'].label = '이메일'
     self.fields['email'].validators = [email_validator]
     self.fields['email'].widget.attrs.update({
@@ -41,7 +45,7 @@ class RegisterForm(UserCreationForm):
     })
   class Meta:
     model = User
-    fields = ['email', 'password1', 'password2', 'tel', 'address']
+    fields = ['username','email', 'password1', 'password2', 'tel', 'address']
       
   def save(self, commit=True):
     user = super(RegisterForm, self).save(commit=False)
