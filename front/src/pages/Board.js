@@ -4,8 +4,6 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -14,9 +12,10 @@ import Box from '@mui/material/Box';
 
 export default function MyDataGrid() {
   const [tasks, setTasks] = useState([]);
-
+  
   useEffect(() => {
     const code = localStorage.getItem("code");
+    
     axios
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get(`http://127.0.0.1:8000/lost112/${code}`)
@@ -25,12 +24,11 @@ export default function MyDataGrid() {
         console.log(code)
       });
   }, []);
+  console.log(tasks)
+  console.log(tasks.atcId)
+  console.log(tasks.fdPrdtNm)
+  console.log(tasks.fdFilePathImg)
 
-  // const [expanded, setExpanded] = useState(false);
-
-  // const handleExpandClick = () => {
-    // setExpanded(!expanded);
-  // };
   return (
     <Box
       sx={{
@@ -55,7 +53,7 @@ export default function MyDataGrid() {
               <MoreVertIcon />
             </IconButton>
           }
-          title={'[' + tasks.fdPrdtNm + ']' + ' ' + tasks.category} // 이름+카테고리
+          title={'[' + tasks.fdPrdtNm + '] ' + tasks.category} // 이름+카테고리
           subheader={'습득일자 : ' + tasks.fdYmd}// 년-월-일
         />
         <CardMedia
