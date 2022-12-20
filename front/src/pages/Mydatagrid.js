@@ -72,7 +72,7 @@ export default function MyDataGrid() {
     //   console.log(data)
     return (
         // display 
-        <div style={{ height: 650, width: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ marginTop: '5%', height: 600, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <DataGrid
                 getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
                 rows={tasks}    
