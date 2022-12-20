@@ -19,7 +19,7 @@ const columns = [
         headerName: 'Image',
         width: 200,
         // renderCell를 통해서 <img 이미지링크>를 받아준다
-        renderCell: (params) => <img src={params.value} height="100" />
+        renderCell: (params) => <img src={params.value} height="100" alt = 'fdFilePathImg'/>
     },
     {
         field: 'fdSbjt',
@@ -57,7 +57,7 @@ export default function MyDataGrid() {
 
     const handleRowClick = (params) => {
         localStorage.setItem("code", params.row.atcId);
-        window.location.replace('/board')
+        window.location.href = '/board';
       };
       
     // load tasks from the backend when the component is rendered
@@ -72,7 +72,7 @@ export default function MyDataGrid() {
     //   console.log(data)
     return (
         // display 
-        <div style={{ marginTop: '5%', height: 600, width: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ marginTop: '5%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <DataGrid
                 getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
                 rows={tasks}    

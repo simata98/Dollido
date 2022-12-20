@@ -1,5 +1,5 @@
 import "./header.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import {useDispatch, useSelector} from "react-redux";
 // import {jwtUtils} from "../utils/jwtUtils";
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   // const dispatch = useDispatch();
-  const navigate = useNavigate();
   // const token = useSelector(state => state.Auth.token);
   const token = localStorage.getItem("token");
   const [isAuth, setIsAuth] = useState(false);
@@ -25,7 +24,7 @@ const Header = () => {
     if (token) {
       localStorage.clear();
       alert("로그아웃 되었습니다😎");
-      window.location.replace("/Signin");
+      window.location.href = "/Signin";
     }
   }
   return (
@@ -36,10 +35,12 @@ const Header = () => {
         </Link>
       </div>
       <div className="header-menu">
-        <Link to="/mydatagrid">게시판</Link>
-        <Link to="/about">내 게시물</Link>
+        {/* <Link to="/mydatagrid">게시판</Link>
+        <Link to="/about">내 게시물</Link> */}
         {isAuth ? (
           <>
+            <Link to="/mydatagrid">게시판</Link>
+            <Link to="/about">내 게시물</Link>
             <Link to="/">글쓰기</Link>
             <Link to="#" onClick={onLogout}>로그아웃</Link>
           </>
@@ -49,6 +50,8 @@ const Header = () => {
             <Link to="/agreement">회원가입</Link>
           </>
         )}
+
+        <Link to="/about">about</Link>
       </div>
     </div>
   );
