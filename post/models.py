@@ -30,7 +30,7 @@ class ApiListId(models.Model):
 
 class DollidoLstId(models.Model):
     # 사용자 (외래키)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # 물품명
     lstPrdtNm = models.CharField('습득물 이름',max_length=200)
     # 습득물 이미지
@@ -44,6 +44,5 @@ class DollidoLstId(models.Model):
     # 게시일자
     create_date = models.DateTimeField(default=timezone.now)
 
-  
     def __str__(self):
             return self.item
