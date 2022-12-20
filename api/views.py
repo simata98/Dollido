@@ -15,5 +15,5 @@ def api_detail_list(request):
 @api_view(['GET'])
 def api_detail_view(request, pk):
     data = get_object_or_404(ApiListId, pk=pk)
-    serializer = ApiSerializer(data, many=True)
+    serializer = ApiSerializer(data)
     return Response(serializer.data)
