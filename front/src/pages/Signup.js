@@ -125,7 +125,7 @@ export default function Signup() {
         e.preventDefault();
 
         const user = {
-            // name: inputName,
+            username: inputName,
             // password2: inputPwValidate,
             password: inputPw,
             email: inputEmail,
@@ -168,7 +168,7 @@ export default function Signup() {
         <Container component="main" maxWidth="xs">
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 10,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
