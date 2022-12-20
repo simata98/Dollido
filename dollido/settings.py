@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     # 설치한 추가 라이브러리들
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'dj_rest_auth',
     'django_extensions',
     'rest_framework',
