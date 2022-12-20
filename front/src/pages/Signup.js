@@ -146,7 +146,7 @@ export default function Signup() {
                 if (res.data.token.access) {
                     console.log(res.data.token.access);
                     alert("가입을 축하드립니다!");
-                    window.location.replace("/Signin");
+                    window.location.href = "/Signin";
                 } else {
                     setInputName("");
                     setInputEmail("");
@@ -168,7 +168,7 @@ export default function Signup() {
         <Container component="main" maxWidth="xs">
             <Box
                 sx={{
-                    marginTop: 10,
+                    marginTop: 20,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -177,7 +177,7 @@ export default function Signup() {
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5">    
                     회원가입
                 </Typography>
                 <TextField

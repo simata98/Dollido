@@ -49,7 +49,7 @@ export default function SignIn() {
           localStorage.setItem("token", res.data.token.access);
           localStorage.setItem("is_active", res.data.user.is_active);
           console.log(res.data.token.access)
-          window.location.replace("/new");
+          window.location.href = "/mydataGrid";
         }
       })
       .catch((err) => {
@@ -75,7 +75,7 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 10,
+            marginTop: 30,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
