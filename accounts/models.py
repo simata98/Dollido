@@ -33,7 +33,11 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = None
+    username = models.CharField(
+        verbose_name=_('username'), 
+        max_length=10,
+        help_text='이름을 입력해주세요'
+    )
     
     email = models.EmailField(
         verbose_name=_('이메일 주소'),
@@ -73,7 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # 이메일 필드를 사용자 이름으로 사용하게 설정
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['tel', 'address',]
+    REQUIRED_FIELDS = ['username','tel', 'address',]
     
     class Meta:
         verbose_name = _('user')
