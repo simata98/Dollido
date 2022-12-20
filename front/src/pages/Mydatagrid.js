@@ -19,7 +19,7 @@ const columns = [
         headerName: 'Image',
         width: 200,
         // renderCell를 통해서 <img 이미지링크>를 받아준다
-        renderCell: (params) => <img src={params.value} height="100" />
+        renderCell: (params) => <img src={params.value} height="100" alt='fdFilePathImg' />
     },
     {
         field: 'fdSbjt',
