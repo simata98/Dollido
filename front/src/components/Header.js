@@ -35,10 +35,12 @@ const Header = () => {
         </Link>
       </div>
       <div className="header-menu">
-        <Link to="/mydatagrid">게시판</Link>
-        <Link to="/about">내 게시물</Link>
+        {/* <Link to="/mydatagrid">게시판</Link>
+        <Link to="/about">내 게시물</Link> */}
         {isAuth ? (
           <>
+            <Link to="/mydatagrid">게시판</Link>
+            <Link to="/about">내 게시물</Link>
             <Link to="/">글쓰기</Link>
             <Link to="#" onClick={onLogout}>로그아웃</Link>
           </>
@@ -48,6 +50,8 @@ const Header = () => {
             <Link to="/agreement">회원가입</Link>
           </>
         )}
+
+        <Link to="/about">about</Link>
       </div>
     </div>
   );

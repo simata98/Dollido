@@ -49,7 +49,7 @@ export default function SignIn() {
           localStorage.setItem("token", res.data.token.access);
           localStorage.setItem("is_active", res.data.user.is_active);
           console.log(res.data.token.access)
-          window.location.href = "/new";
+          window.location.href = "/mydataGrid";
         }
       })
       .catch((err) => {
