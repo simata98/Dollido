@@ -1,5 +1,5 @@
 import "./header.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import {useDispatch, useSelector} from "react-redux";
 // import {jwtUtils} from "../utils/jwtUtils";
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   // const dispatch = useDispatch();
-  const navigate = useNavigate();
   // const token = useSelector(state => state.Auth.token);
   const token = localStorage.getItem("token");
   const [isAuth, setIsAuth] = useState(false);

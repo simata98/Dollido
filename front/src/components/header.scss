@@ -4,7 +4,7 @@ a {
   padding: 0;
   text-decoration-line: none;
   font-weight: bold;
-  color: black;
+  color: #19CE60;
   &:hover { color: blue; }
 }
 
@@ -20,7 +20,7 @@ a {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background-color: snow;
+  background-color: #F3F5F9;
   .header-title{
     a {
       font-size: 3rem;
