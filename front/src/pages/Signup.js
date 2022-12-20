@@ -125,7 +125,7 @@ export default function Signup() {
         e.preventDefault();
 
         const user = {
-            name: inputName,
+            username: inputName,
             // password2: inputPwValidate,
             password: inputPw,
             email: inputEmail,
