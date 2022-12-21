@@ -194,5 +194,9 @@ bower_components
 psd
 thumb
 sketch
-
+# package.json
+package.json
 # End of https://www.toptal.com/developers/gitignore/api/react
+
+# my_settings.py
+my_settings.py
