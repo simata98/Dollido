@@ -9,6 +9,8 @@ import Agreement from './pages/Agreement';
 import MyDataGrid from './pages/Mydatagrid';
 import Header from "./components/Header";
 import Board from "./pages/Board";
+import Dollidolist from "./pages/Dollidolist";
+import Dollidodetail from "./pages/Dollidodetail";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/mydataGrid" element={<MyDataGrid />} />
           <Route path="/header" element={<Header />} />
           <Route path="/board" element={<Board />} />
+          <Route path="/dollidolist" element={<Dollidolist />} />
+          <Route path="/dollidodetail" element={<Dollidodetail />} />
         </Routes>
       </div>
     </React.Fragment>
