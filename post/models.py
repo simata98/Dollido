@@ -32,7 +32,7 @@ class DollidoLstId(models.Model):
     class Meta:
         verbose_name_plural = '돌리도 게시판'
     # 사용자 (외래키)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자', null=True, blank=True, related_name='user_id')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자', null=True, blank=True, related_name='user_id')
     # 물품명
     lstPrdtNm = models.CharField('습득물 이름',max_length=200, blank=True)
     # 습득물 이미지
