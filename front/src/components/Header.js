@@ -31,7 +31,11 @@ const Header = () => {
     <div className="header-wrapper">
       <div className="header-title">
         <Link to="/">
-          <span>Dollido</span>
+          <img
+            src = {`/title.png`}
+            width = '50%'
+            alt = 'title'
+          />
         </Link>
       </div>
       <div className="header-menu">
