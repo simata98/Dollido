@@ -20,8 +20,8 @@ urlpatterns = [
     path("register/", views.RegisterAPIView.as_view()),
     path('activate/<str:uidb64>/<str:token>/', views.Activate.as_view()),
     # path('main/', views.main_view, name='main'),
-    path("auth/refresh/", TokenRefreshView.as_view()),
-    path('auth/', views.AuthAPIView.as_view()),
+    path("login/refresh/", TokenRefreshView.as_view()),
+    path('login/', views.AuthAPIView.as_view()),
     # 일반 회원 회원가입/로그인
     # path('dj-rest-auth/', include('dj_rest_auth.urls')),
     # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),

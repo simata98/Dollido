@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import DollidoLstId
+from accounts.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from rest_framework.views import APIView
@@ -8,8 +9,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import PostSerializer
+from accounts.serializers import UserSerializer
+from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
+@login_required
 def PostList(request):
   # 게시물 읽어오기
   if request.method == 'GET':
@@ -18,10 +22,11 @@ def PostList(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
   
   # 게시물 생성하기
+
   elif request.method == 'POST':
     serializer = PostSerializer(data=request.data)
     if serializer.is_valid():
-      serializer.save()
+      serializer.save(user = request.user)
       return Response(serializer.data, status=201)
     return Response(serializer.errors, status=404)
 
