@@ -1,7 +1,5 @@
 import sty from ".//css/styles.css";
 import Box from '@mui/material/Box';
-import sty from ".//css/styles.css";
-import Box from '@mui/material/Box';
 
 export default function About() {
     return (
