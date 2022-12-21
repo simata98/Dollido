@@ -183,11 +183,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, '.static')
 
-# 로그인 관련 redirect
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/main/'
-LOGOUT_REDIRECT_URL = '/'
-
 # 이메일 인증 관련
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
