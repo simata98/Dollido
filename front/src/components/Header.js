@@ -31,7 +31,11 @@ const Header = () => {
     <div className="header-wrapper">
       <div className="header-title">
         <Link to="/">
-          <span>Dollido</span>
+          <img
+            src = {`/title.png`}
+            width = '50%'
+            alt = 'title'
+          />
         </Link>
       </div>
       <div className="header-menu">
@@ -39,9 +43,9 @@ const Header = () => {
         <Link to="/about">내 게시물</Link> */}
         {isAuth ? (
           <>
-            <Link to="/mydatagrid">게시판</Link>
+            <Link to="/mydatagrid">Lost112</Link>
+            <Link to="/dollidolist">Dollido</Link>
             <Link to="/about">내 게시물</Link>
-            <Link to="/">글쓰기</Link>
             <Link to="#" onClick={onLogout}>로그아웃</Link>
           </>
         ) : (
