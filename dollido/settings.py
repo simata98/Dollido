@@ -176,8 +176,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # MEDIA 관련
-MEDIA_URL = '/media/' # 업로드 할 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/front/public/' # 업로드 할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'front')
 
 # STATIC 관련
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
