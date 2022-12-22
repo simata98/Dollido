@@ -144,6 +144,12 @@ export default function MyDataGrid() {
           });
       }, []);
     //   console.log(data)
+    const [sortModel, setSortModel] = React.useState([
+      {
+        field: 'fdYmd',
+        sort: 'desc',
+      },
+    ]);
     return (
         // display 
         <div style={{ marginTop: '7%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -154,6 +160,8 @@ export default function MyDataGrid() {
                 getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
                 rows={tasks}    
                 columns={columns}
+                sortModel={sortModel}
+                onSortModelChange={(model) => setSortModel(model)}
                 getRowId={getRowId}
                 onRowClick={handleRowClick}
             />
