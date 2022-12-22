@@ -8,4 +8,3 @@ class PostSerializer(serializers.ModelSerializer):
   class Meta:
     model = DollidoLstId
     fields = '__all__'
-  
