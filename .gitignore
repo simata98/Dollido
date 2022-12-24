@@ -200,3 +200,6 @@ package.json
 
 # my_settings.py
 my_settings.py
+
+# uploaded image
+front/public/images

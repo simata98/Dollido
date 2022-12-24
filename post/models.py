@@ -36,7 +36,7 @@ class DollidoLstId(models.Model):
     # 물품명
     lstPrdtNm = models.CharField('습득물 이름',max_length=200, blank=True)
     # 습득물 이미지
-    lstFilePathImg = models.ImageField('사진 등록', upload_to='public', blank=True)
+    lstFilePathImg = models.ImageField('사진 등록', upload_to='images/', blank=True)
     # 습득물 상세설명
     lstcontent = models.CharField('특이사항',max_length=500, default='')
     # 습득일자
@@ -47,6 +47,8 @@ class DollidoLstId(models.Model):
     create_date = models.DateTimeField(default=timezone.now)
     # 물건을 찾았는지
     find_status = models.BooleanField(default=False)
+    # 분류된 색상 결과
+    clrNm = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return self.lstPrdtNm
