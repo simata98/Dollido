@@ -14,7 +14,11 @@ from tensorflow import keras
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+# yolo 관련
 from keras.models import model_from_json
+from ast import literal_eval
+import collections
+import yolov5
 
 @api_view(['GET', 'POST'])
 def PostList(request):
@@ -60,9 +64,25 @@ def PostList(request):
         print('results', classification_result)
         return classification_result
       
-      print(serializer.data)
+      def predict_yolo(img_path=IMAGE_PATH, isize=IMAGE_SIZE):
+        model = yolov5.load('post/yolo_classification/best.pt')
+        model.conf = 0.25
+        model.iou = 0.45
+        
+        img = keras.preprocessing.image.load_img(img_path, target_size=(isize, isize))
+        results = model(img, size=IMAGE_SIZE)
+        results_list = results.pandas().xyxy[0].to_json(orient="records")
+        results_list = literal_eval(results_list)
+        classes_list = [item["name"] for item in results_list]
+        results_counter = collections.Counter(classes_list)
+        return classes_list
+      
       new_serializer_data = serializer.data
-      new_serializer_data['clrNm'] = predict_color(img_path=IMAGE_PATH)
+      predicted_color = predict_color(img_path=IMAGE_PATH)
+      new_serializer_data['clrNm'] = predicted_color
+      predicted_yolo = predict_yolo(img_path=IMAGE_PATH)
+      product = predicted_color + ' color ' + predicted_yolo[1] + ' ' + predicted_yolo[0]
+      new_serializer_data['lstPrdtNm'] = product
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)
 
