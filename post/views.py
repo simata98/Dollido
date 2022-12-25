@@ -28,7 +28,9 @@ def PostList(request):
   elif request.method == 'POST':
     serializer = PostSerializer(data=request.data)
     if serializer.is_valid():
-      post_instance = serializer.save()
+      serializer.save()
+      
+      # 색상 구분 파이프라인
       json_file = open("post/color_classification/model.json", "r")
       loaded_model_json = json_file.read()
       json_file.close()
@@ -58,10 +60,11 @@ def PostList(request):
         print('results', classification_result)
         return classification_result
       
-      newdict={'clrNm':predict_color(img_path=IMAGE_PATH)}
-      newdict.update(serializer.data)
-      return Response(newdict, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=404)
+      print(serializer.data)
+      new_serializer_data = serializer.data
+      new_serializer_data['clrNm'] = predict_color(img_path=IMAGE_PATH)
+      return Response(new_serializer_data, status=status.HTTP_201_CREATED)
+    return Response(new_serializer_data.errors, status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def PostDetail(request, pk):
