@@ -34,21 +34,21 @@ class DollidoLstId(models.Model):
     # 사용자 (외래키)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자', null=True, blank=True, related_name='user_id')
     # 물품명
-    lstPrdtNm = models.CharField('습득물 이름',max_length=200, blank=True)
+    lstPrdtNm = models.CharField('습득물 이름',max_length=200, blank=True, null=True)
     # 습득물 이미지
-    lstFilePathImg = models.ImageField('사진 등록', upload_to='images/', blank=True)
-    # 습득물 상세설명
-    lstcontent = models.CharField('특이사항',max_length=500, default='')
+    lstFilePathImg = models.ImageField('사진 등록', upload_to='images/', blank=True, null=True)
+    # 습득물 특이사항
+    lstcontent = models.CharField('특이사항', max_length=500, default='', blank=True, null=True)
     # 습득일자
-    lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True)
+    lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True, null=True)
     # 보관장소 (수거함)
-    lstPlace = models.CharField(blank = True, max_length =50)
+    lstPlace = models.CharField(blank=True, max_length =50, null=True)
     # 게시일자
     create_date = models.DateTimeField(default=dateformat.format(timezone.now(), 'Y-m-d H:i:s'))
     # 물건을 찾았는지
     find_status = models.BooleanField(default=False)
     # 분류된 색상 결과
-    clrNm = models.CharField(max_length=10, blank=True)
+    clrNm = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         return self.lstPrdtNm
