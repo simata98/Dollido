@@ -126,7 +126,7 @@ def PostList(request):
         if exifGPS[3] == 'W': Lon = Lon * -1
         print(Lat, ",",  Lon)
         
-        return "https://www.google.com/maps/place/"+str(Lat)+"+"+str(Lon)
+        return "https://www.google.com/maps/place/"+str(Lat)+"+"+str(Lon), taglabel['DateTimeOriginal']
       
       new_serializer_data = serializer.data
       predicted_color = predict_color(img_path=IMAGE_PATH)
@@ -135,8 +135,9 @@ def PostList(request):
       predicted_yolo_str = ' '.join(set(predicted_yolo))
       product = predicted_color + ' color ' + predicted_yolo_str
       new_serializer_data['lstPrdtNm'] = product
-      img_metadata = metadata(img_path=IMAGE_PATH)
-      new_serializer_data['lstPlace'] = img_metadata
+      img_gps, img_date = metadata(img_path=IMAGE_PATH)
+      new_serializer_data['lstPlace'] = img_gps
+      new_serializer_data['lstYmd'] = img_date
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)

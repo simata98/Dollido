@@ -3,8 +3,10 @@ import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { useMediaQuery } from "react-responsive";
 // import imgA from 'C:/bigproject/dollido/media/lost_image/halloween-g8058b6ce3_640.png';
 // DataGrid의 컬럼을 하나하나씩 만들어준다
+
 const columns = [
     {
         field: 'id',
@@ -23,9 +25,8 @@ const columns = [
         // headerAlign: 'center',
         align: 'center',
         // renderCell를 통해서 <img 이미지링크>를 받아준다
-        renderCell: (params) => 
+      renderCell: (params) =>
         < img src = { 'images/' + params.value.split('/').pop() } height = "100" alt = 'lstFilePathImg' />
-
         // <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
         // renderCell: (params) => <img src='/halloween-g8058b6ce3_640.png' height="100" alt = 'lstFilePathImg'/>
     },
@@ -130,7 +131,21 @@ function CustomNoRowsOverlay() {
     );
   }
 
-export default function MyDataGrid() {
+export const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({
+      query: "(max-width:768px)"
+  });
+  return <>{isMobile && children}</>
+}
+  
+export const Pc = ({ children }) => {
+    const isPc = useMediaQuery({
+        query: "(min-width:769px)"
+    });
+    return <>{isPc && children}</>
+}
+
+export default function MyDataGrid({children}) {
     // response.data의 값을 tasks 안에 넣을려고 useState를 설정해줌
     const [tasks, setTasks] = useState([]);
 
