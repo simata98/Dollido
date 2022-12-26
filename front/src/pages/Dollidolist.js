@@ -24,7 +24,8 @@ const columns = [
         align: 'center',
         // renderCell를 통해서 <img 이미지링크>를 받아준다
         renderCell: (params) => 
-            <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
+        < img src = { 'images/' + params.value.split('/').pop() } height = "100" alt = 'lstFilePathImg' />
+
         // <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
         // renderCell: (params) => <img src='/halloween-g8058b6ce3_640.png' height="100" alt = 'lstFilePathImg'/>
     },
