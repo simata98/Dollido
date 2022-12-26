@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 export default function Dollidodetail() {
   const [tasks, setTasks] = useState([]);
   var dollidoimage = tasks.lstFilePathImg
-  var dollidoimage2 = (dollidoimage||'').split("/").pop();
+  var dollidoimage2 = 'images/' + (dollidoimage||'').split("/").pop();
 //   var workList= (data||'').split('.');
   useEffect(() => {
     const code2 = localStorage.getItem("code2");

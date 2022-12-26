@@ -34,7 +34,7 @@ def PostList(request):
     if serializer.is_valid():
       serializer.save()
       
-      # 색상 구분 파이프라인
+      # !색상 구분 파이프라인
       json_file = open("post/color_classification/model.json", "r")
       loaded_model_json = json_file.read()
       json_file.close()
@@ -64,6 +64,7 @@ def PostList(request):
         print('results', classification_result)
         return classification_result
       
+      # !yolo 파이프라인
       def predict_yolo(img_path=IMAGE_PATH, isize=IMAGE_SIZE):
         model = yolov5.load('post/yolo_classification/best.pt')
         model.conf = 0.25
@@ -76,6 +77,10 @@ def PostList(request):
         classes_list = [item["name"] for item in results_list]
         results_counter = collections.Counter(classes_list)
         return classes_list
+      
+      # # !이미지 메타데이터 파이프라인
+      # def metadata(img_path=IMAGE_PATH):
+
       
       new_serializer_data = serializer.data
       predicted_color = predict_color(img_path=IMAGE_PATH)
