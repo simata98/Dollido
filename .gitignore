@@ -195,7 +195,7 @@ psd
 thumb
 sketch
 # package.json
-package.json
+package-lock.json
 # End of https://www.toptal.com/developers/gitignore/api/react
 
 # my_settings.py
