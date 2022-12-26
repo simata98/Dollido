@@ -68,7 +68,7 @@ export default function Signup() {
     // pw 입력값
     const handleInputPw = (e) => {
         const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-~])(?=.*[0-9]).{8,25}$/
         setInputPw(e.target.value);
         console.log(e.target.value);
         if (!passwordRegex.test(e.target.value)) {
