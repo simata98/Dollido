@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 // import imgA from 'C:/bigproject/dollido/media/lost_image/halloween-g8058b6ce3_640.png';
 // DataGrid의 컬럼을 하나하나씩 만들어준다
+
 const columns = [
     {
         field: 'id',
@@ -23,8 +24,8 @@ const columns = [
         // headerAlign: 'center',
         align: 'center',
         // renderCell를 통해서 <img 이미지링크>를 받아준다
-        renderCell: (params) => 
-            <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
+      renderCell: (params) =>
+        < img src = { 'images/' + params.value.split('/').pop() } height = "100" alt = 'lstFilePathImg' />
         // <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
         // renderCell: (params) => <img src='/halloween-g8058b6ce3_640.png' height="100" alt = 'lstFilePathImg'/>
     },
