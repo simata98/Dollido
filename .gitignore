@@ -194,9 +194,12 @@ bower_components
 psd
 thumb
 sketch
-# package.json
-package.json
+# package-lock.json
+front/package-lock.json
 # End of https://www.toptal.com/developers/gitignore/api/react
 
 # my_settings.py
 my_settings.py
+
+# uploaded image
+front/public/images
