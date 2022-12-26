@@ -12,6 +12,7 @@ import Board from "./pages/Board";
 import Dollidolist from "./pages/Dollidolist";
 import Dollidodetail from "./pages/Dollidodetail";
 import AddDollido from "./pages/AddDollido";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/dollidolist" element={<Dollidolist />} />
           <Route path="/dollidodetail" element={<Dollidodetail />} />
           <Route path="/adddollido" element={<AddDollido />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
     </React.Fragment>

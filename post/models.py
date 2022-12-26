@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import User
-from django.utils import timezone
+from django.utils import timezone, dateformat
 
 class Category(models.Model):
   category_id = models.AutoField(primary_key=True)
@@ -44,9 +44,12 @@ class DollidoLstId(models.Model):
     # 보관장소 (수거함)
     lstPlace = models.CharField(blank = True, max_length =50)
     # 게시일자
-    create_date = models.DateTimeField(default=timezone.now)
+    create_date = models.DateTimeField(default=dateformat.format(timezone.now(), 'Y-m-d H:i:s'))
     # 물건을 찾았는지
     find_status = models.BooleanField(default=False)
+    # 분류된 색상 결과
+    clrNm = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return self.lstPrdtNm
+
