@@ -13,7 +13,7 @@ def Mainpage_info(request):
     today = date.today()
     today = today.strftime('%Y-%m-%d')
     
-    # 20dlf 전 ~ 오늘, 집계된 습득물 개수
+    # 20일 전 ~ 오늘, 집계된 습득물 개수
     res = {'dollido_cnt':{},
            'api_cnt':{},
            }
@@ -22,12 +22,9 @@ def Mainpage_info(request):
         day = day.strftime('%Y-%m-%d')
         res['dollido_cnt'][day]= Stat_info.objects.get(date=day).dollido_cnt
         res['api_cnt'][day] = Stat_info.objects.get(date=day).api_cnt
-    # data = Stat_info.objects.filter(fdYmd=today)[:10]
-    # serializer = ApiSerializer(data, many=True)
-    # res['data'] = serializer.data
+
     
     return Response(res)
-    
 
 @api_view(['GET'])
 def Mainpage_detail(request, pk):
