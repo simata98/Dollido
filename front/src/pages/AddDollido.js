@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -26,11 +27,14 @@ const AddDollido = () => {
   const [find_status, setFind_status] = useState(false);
   const [image, setImage] = useState({
     image_file: "",
-    preview_URL: "logo192.png",
+    preview_URL: "upload.png",
   });
   const canSubmit = useCallback(() => {
-    return image.image_file !== "" && content !== "" && title !== "" && lstYmd !== "" && lstPlace !== "" && clrNm !== "";
-  }, [image, title, content, lstYmd, lstPlace, clrNm]);
+    return image.image_file;
+  }, [image]);
+  // const canSubmit = useCallback(() => {
+  //   return image.image_file !== "" && content !== "" && title !== "" && lstYmd !== "" && lstPlace !== "" && clrNm !== "";
+  // }, [image, title, content, lstYmd, lstPlace, clrNm]);
 
   let inputRef;
 
@@ -74,7 +78,17 @@ const AddDollido = () => {
         console.log(value);
       }
       const response = await axios.post("http://localhost:8000/post/", formData);
-      console.log("response >>", response.data)
+      console.log("response >>", response.data);
+      setClrNm(response.data.clrNm);
+      console.log(response.data.id)
+      formData.set("lstPrdtNm", response.data.lstPrdtNm);
+      formData.set("lstFilePathImg", response.data.lstFilePathImg);
+      formData.set("lstcontent", response.data.lstcontent);
+      formData.set("lstYmd", response.data.lstYmd);
+      formData.set("lstPlace", response.data.lstPlace);
+      formData.set("clrNm", response.data.clrNm);
+      formData.set("find_status", response.data.find_status);
+      await axios.put(`http://localhost:8000/post/${response.data.id}/`, formData)
       window.alert("😎등록이 완료되었습니다😎");
       // navigate("/dollidolist");
     } catch (e) {
@@ -126,7 +140,7 @@ const AddDollido = () => {
                   style={{ display: "none" }}
                 />
                 <div>
-                  <img src={image.preview_URL} Width="800px" />
+                  <img src={image.preview_URL} width="800px" />
                   {/* <img src={image.image_file.name} /> */}
                   {/* <img src="logo192.png" /> */}
                 </div>
@@ -159,13 +173,13 @@ const AddDollido = () => {
                     value={content}
                   />
                   <input
-                      onChange={(e) => {
-                        setLstYmd(e.target.value);
-                      }}
-                      className="text"
-                      placeholder="습득일자"
-                      value={lstYmd}
-                    />
+                    onChange={(e) => {
+                      setLstYmd(e.target.value);
+                    }}
+                    className="text"
+                    placeholder="습득일자"
+                    value={lstYmd}
+                  />
                   {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       label="Date"
@@ -194,6 +208,17 @@ const AddDollido = () => {
                     placeholder="색깔"
                     value={clrNm}
                   />
+                  <Autocomplete
+                    onChange={(e) => {
+                      setClrNm(e.target.value);
+                    }}
+                    inputValue={clrNm}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={categorical}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="색깔" />}
+                  />
                   <input
                     onChange={(e) => {
                       setFind_status(e.target.value);
@@ -211,5 +236,24 @@ const AddDollido = () => {
     </React.Fragment >
   );
 }
+
+
+
+const categorical = [
+  { label: 'black' },
+  { label: 'blue' },
+  { label: 'brown' },
+  { label: 'gray' },
+  { label: 'green' },
+  { label: 'navy' },
+  { label: 'orange' },
+  { label: 'pink' },
+  { label: 'purple' },
+  { label: 'red' },
+  { label: 'skyblue' },
+  { label: 'violet' },
+  { label: 'white' },
+  { label: 'yellow' }
+]
 
 export default AddDollido;
