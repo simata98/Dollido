@@ -200,24 +200,26 @@ const AddDollido = () => {
                     placeholder="습득장소"
                     value={lstPlace}
                   />
-                  <input
+                  {/* <input
                     onChange={(e) => {
                       setClrNm(e.target.value);
                     }}
                     className="text"
                     placeholder="색깔"
                     value={clrNm}
-                  />
+                  /> */}
                   <Autocomplete
+                    freeSolo
                     onChange={(e) => {
                       setClrNm(e.target.value);
                     }}
-                    inputValue={clrNm}
+                    value={clrNm}
                     disablePortal
                     id="combo-box-demo"
                     options={categorical}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} label="색깔" />}
+                  // renderInput={(clrNm) => <TextField {...clrNm} label="색깔" />}
                   />
                   <input
                     onChange={(e) => {
@@ -239,21 +241,24 @@ const AddDollido = () => {
 
 
 
-const categorical = [
-  { label: 'black' },
-  { label: 'blue' },
-  { label: 'brown' },
-  { label: 'gray' },
-  { label: 'green' },
-  { label: 'navy' },
-  { label: 'orange' },
-  { label: 'pink' },
-  { label: 'purple' },
-  { label: 'red' },
-  { label: 'skyblue' },
-  { label: 'violet' },
-  { label: 'white' },
-  { label: 'yellow' }
-]
+// const categorical = [
+//   { label: 'black' },
+//   { label: 'blue' },
+//   { label: 'brown' },
+//   { label: 'gray' },
+//   { label: 'green' },
+//   { label: 'navy' },
+//   { label: 'orange' },
+//   { label: 'pink' },
+//   { label: 'purple' },
+//   { label: 'red' },
+//   { label: 'skyblue' },
+//   { label: 'violet' },
+//   { label: 'white' },
+//   { label: 'yellow' }
+// ]
+
+const categorical = ['베이지색', '검정색', '파랑색', '갈색', '금색', '초록색', '회색', '밤색', '네이비색',
+  '올리브색', '오렌지색', '핑크색', '보라색', '빨간색', '은색', '하얀색', '노란색']
 
 export default AddDollido;
