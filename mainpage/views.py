@@ -23,7 +23,6 @@ def Mainpage_info(request):
         res['dollido_cnt'][day]= Stat_info.objects.get(date=day).dollido_cnt
         res['api_cnt'][day] = Stat_info.objects.get(date=day).api_cnt
 
-    
     return Response(res)
 
 @api_view(['GET'])
