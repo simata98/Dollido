@@ -46,3 +46,8 @@ class DollidoLstId(models.Model):
 
     def __str__(self):
             return self.item
+          
+class Stat_info(models.Model):
+  date = models.DateField(primary_key=True, max_length=10)
+  api_cnt = models.IntegerField()
+  dollido_cnt = models.IntegerField()

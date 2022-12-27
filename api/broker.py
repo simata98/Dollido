@@ -5,10 +5,10 @@ from datetime import date, timedelta
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-from post.models import ApiListId
+from post.models import ApiListId, DollidoLstId, Stat_info
 
 CATEGORY = ['PRH000', 'PRJ000']
-START_YMD = '20220101'
+START_YMD = '20221120'
 # END_YMD = '20221215'
 today = date.today()
 END_YMD = today.strftime('%Y%m%d')
@@ -75,6 +75,31 @@ def get_lost112(CATEGORY=CATEGORY, START_YMD=START_YMD, END_YMD=END_YMD):
                 print(cnt)
     print('api completed')
     return
+
+def count_rows():
+    today = date.today()
+    today = today.strftime('%Y-%m-%d')
+    
+    # 열흘 전 ~ 오늘, 집계된 습득물 개수
+    
+    for i in range(20):
+        day = date.today() - timedelta(i)
+        day = day.strftime('%Y-%m-%d')
+        
+        print(day)
+        
+        api_data = ApiListId.objects.filter(fdYmd=day)
+        api_cnt = api_data.count()
+        
+        dollido_data = DollidoLstId.objects.filter(lstYmd=day)
+        dollido_cnt = dollido_data.count()
+        
+        stat = Stat_info()
+        stat.date = day
+        stat.api_cnt = api_cnt
+        stat.dollido_cnt = dollido_cnt
+        stat.save()
+    print('Stat info completed')
 
 def job():
     today = date.today()
