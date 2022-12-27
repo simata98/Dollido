@@ -92,7 +92,6 @@ class RegisterAPIView(APIView):
             # jwt 토큰 => 쿠키에 저장
             res.set_cookie("access", access_token, httponly=True)
             res.set_cookie("refresh", refresh_token, httponly=True)
-            
             return res
             
         except KeyError:
@@ -203,10 +202,8 @@ class Activate(View):
             if account_activation_token.check_token(user, token):
                 user.is_active = True
                 user.save()
-                messages.info(request, '메일 인증에 성공하였습니다! 돌리도 서비스를 이제부터 사용 가능합니다!')
-                return redirect('http://' + hostname + ':' + react_port + '/Signin')
+                return render(request, 'accounts/register_success.html')
 
-            messages.error(request, '메일 인증에 실패했습니다. 이메일 인증을 했는지 확인해주세요!')
             return JsonResponse({"message" : "AUTH FAIL"}, status=400)
 
         except ValidationError:
