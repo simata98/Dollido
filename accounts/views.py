@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, get_object_or_404
 from dollido.settings import SECRET_KEY
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from django.contrib import messages
 
 from django.views.generic.edit import FormView, View, CreateView
 from .forms import LoginForm, RegisterForm
@@ -27,6 +28,8 @@ from django.contrib.sites.shortcuts  import get_current_site
 from django.utils.http               import urlsafe_base64_encode,urlsafe_base64_decode
 from django.core.mail                import EmailMessage
 from django.utils.encoding           import force_bytes, force_text
+from django.template.loader          import render_to_string
+
 
 # JWT 토큰 관련
 from rest_framework.views import APIView
@@ -57,10 +60,17 @@ class RegisterAPIView(APIView):
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk)).encode().decode()
             token = account_activation_token.make_token(user)
             message_data = message(domain, uidb64, token)
+            message_data_2 = render_to_string('accounts/register_email.html', {
+                'domain' : domain,
+                'uidb64' : uidb64,
+                'token' : token,
+            })
+            
             
             mail_title = "돌리도 서비스 회원가입을 위해 이메일 인증을 완료해주세요"
             mail_to = data['email']
-            email = EmailMessage(mail_title, message_data, to=[mail_to])
+            email = EmailMessage(mail_title, message_data_2, to=[mail_to])
+            email.content_subtype = "html"
             email.send()
             
             # jwt 토큰 접근
@@ -183,6 +193,9 @@ class AuthAPIView(APIView):
 
 class Activate(View):
     def get(self, request, uidb64, token):
+        react_port = '3000'
+        hostname = request.get_host().split(':')[0]
+        
         try:
             uid  = force_text(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=uid)
@@ -190,13 +203,17 @@ class Activate(View):
             if account_activation_token.check_token(user, token):
                 user.is_active = True
                 user.save()
-                return JsonResponse({"message" : "SUCCESS"}, status=200)
+                messages.info(request, '메일 인증에 성공하였습니다! 돌리도 서비스를 이제부터 사용 가능합니다!')
+                return redirect('http://' + hostname + ':' + react_port + '/Signin')
 
+            messages.error(request, '메일 인증에 실패했습니다. 이메일 인증을 했는지 확인해주세요!')
             return JsonResponse({"message" : "AUTH FAIL"}, status=400)
 
         except ValidationError:
+            messages.error(request, '메일 인증에 실패했습니다. 입력오류입니다!')
             return JsonResponse({"message" : "TYPE_ERROR"}, status=400)
         except KeyError:
+            messages.error(request, '메일 인증에 실패했습니다. 키 오류입니다!')
             return JsonResponse({"message" : "INVALID_KEY"}, status=400)
 
 class UserViewSet(viewsets.ModelViewSet):
