@@ -140,7 +140,7 @@ const AddDollido = () => {
                   style={{ display: "none" }}
                 />
                 <div>
-                  <img src={image.preview_URL} width="800px" />
+                  <img src={image.preview_URL} width="400px" />
                   {/* <img src={image.image_file.name} /> */}
                   {/* <img src="logo192.png" /> */}
                 </div>
