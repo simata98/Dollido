@@ -25,6 +25,9 @@ from PIL.ExifTags import TAGS
 
 @api_view(['GET', 'POST'])
 def PostList(request):
+  # if not request.session.get('writer'):
+  #   return redirect('http://localhost:3000/Signin')
+  
   # 게시물 읽어오기
   if request.method == 'GET':
     post = DollidoLstId.objects.all()
@@ -34,8 +37,12 @@ def PostList(request):
   # 게시물 생성하기
   elif request.method == 'POST':
     serializer = PostSerializer(data=request.data)
+    # writer_id = request.session.get('writer')
+    # writer = User.object.get(pk = writer_id)
+    
     if serializer.is_valid():
       serializer.save()
+      # user_id 
       
       # !색상 구분 파이프라인
       json_file = open("post/color_classification/model.json", "r")
@@ -49,8 +56,8 @@ def PostList(request):
       THRESHOLD = 0.1
       
       def predict_color(img_path=IMAGE_PATH, isize=IMAGE_SIZE, thrs=THRESHOLD):
-        classes = ['Beige', 'Black', 'Blue', 'Brown', 'Gold', 'Green', 'Grey', 'Maroon', 'Navy',
-          'Olive', 'Orange', 'Pink', 'Purple', 'Red', 'Silver', 'White', 'Yellow']
+        classes = ['베이지색', '검정색', '파랑색', '갈색', '금색', '초록색', '회색', '밤색', '네이비색',
+          '올리브색', '오렌지색', '핑크색', '보라색', '빨간색', '은색', '하얀색', '노란색']
       
         image = keras.preprocessing.image.load_img(img_path, target_size=(isize, isize))
         data = np.asarray(image)
@@ -79,8 +86,9 @@ def PostList(request):
         results_list = literal_eval(results_list)
         classes_list = [item["name"] for item in results_list]
         results_counter = collections.Counter(classes_list)
-        print(classes_list)
-        return classes_list
+        class_dict = {'phone':'스마트폰', 'wallet':'지갑', 'apple':'애플', 'balenciaga':'발렌시아가', 'coach':'코치', 'louisvuitton':'루이비똥', 'metrocity':'메트로시티', 'samsung':'삼성'}
+        translated_list = set([class_dict[x] for x in classes_list])
+        return translated_list
       
       # !이미지 메타데이터 파이프라인
       # https://www.jbmpa.com/python_advanced/3
@@ -129,15 +137,32 @@ def PostList(request):
         return "https://www.google.com/maps/place/"+str(Lat)+"+"+str(Lon), taglabel['DateTimeOriginal']
       
       new_serializer_data = serializer.data
-      predicted_color = predict_color(img_path=IMAGE_PATH)
+      
+      if predict_color(img_path=IMAGE_PATH):
+        predicted_color = predict_color(img_path=IMAGE_PATH)
+      else:
+        predicted_color = '탐지되지 않은 색깔'
       new_serializer_data['clrNm'] = predicted_color
-      predicted_yolo = predict_yolo(img_path=IMAGE_PATH)
-      predicted_yolo_str = ' '.join(set(predicted_yolo))
-      product = predicted_color + ' color ' + predicted_yolo_str
+      
+      if predict_yolo(img_path=IMAGE_PATH):
+        predicted_yolo = predict_yolo(img_path=IMAGE_PATH)
+        predicted_yolo_str = ' '.join(set(predicted_yolo))
+      else:
+        predicted_yolo_str = '탐지되지 않은 물건'
+
+      product = predicted_color + ' ' + predicted_yolo_str
       new_serializer_data['lstPrdtNm'] = product
-      img_gps, img_date = metadata(img_path=IMAGE_PATH)
+      
+      try:
+        img_gps, img_date = metadata(img_path=IMAGE_PATH)
+      except:
+        img_gps = '탐지되지 않은 위치'
+        img_date = '탐지되지 않은 날짜'
+      
       new_serializer_data['lstPlace'] = img_gps
       new_serializer_data['lstYmd'] = img_date
+      new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
+      # new_serializer_data['writer_id'] = writer
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)
