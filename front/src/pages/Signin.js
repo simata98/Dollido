@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import { Mobile, Pc } from '../pages/responsive';
+import cookies from 'react-cookies';
 
 
 function Copyright(props) {
@@ -46,8 +47,8 @@ export default function SignIn() {
       .then((res) => {
         if (res.data.token.access && res.data.user.is_active) {
           localStorage.clear();
-          localStorage.setItem("token", res.data.token.access);
-          localStorage.setItem("is_active", res.data.user.is_active);
+          cookies.save("access", res.data.token.access);
+          cookies.save("refresh", res.data.token.refresh)
           console.log(res.data.token.access)
           window.location.href = "/mydataGrid";
         }
