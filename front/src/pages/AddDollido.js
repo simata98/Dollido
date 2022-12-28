@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import axios from "axios";
 import { minWidth } from '@mui/system';
 import Grid from '@mui/material/Grid';
-import imageCompression from 'browser-image-compression';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
@@ -28,6 +28,7 @@ const AddDollido = () => {
   const [lstPlace, setLstPlace] = useState("");
   const [clrNm, setClrNm] = useState("");
   const [find_status, setFind_status] = useState(false);
+  const [loading, setLoading] = useState(null);
   const [image, setImage] = useState({
     image_file: "",
     preview_URL: "upload.png",
@@ -41,53 +42,21 @@ const AddDollido = () => {
 
   let inputRef;
 
-  const compressImage = async (image) => {
-    try{
-      const options = {
-        maxSizeMb: 0.9,
-        maxWidthOrHeight: 400,
-      }
-      return await imageCompression(image, options);
-    } catch(e){
-      console.log(e);
-    }
-    
-  }
-  const saveImage = async (e) => {
+  const saveImage = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0])
-    function blobToFile(theBlob, fileName){       
-    return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: theBlob.type })
-}
-    const compressed =  await compressImage(e.target.files[0])
-    const compressed2 =  blobToFile(compressed, compressed.name)
     const fileReader = new FileReader();
-    if (compressed2) {
-      fileReader.readAsDataURL(compressed2);
+    if (e.target.files[0]) {
+      fileReader.readAsDataURL(e.target.files[0]);
     }
     fileReader.onload = () => {
       setImage({
-        image_file: compressed2,
-        // image_file: e.target.files[0],
+        image_file: e.target.files[0],
         preview_URL: fileReader.result,
       });
     };
   };
-  // const saveImage = (e) => {
-  //   e.preventDefault();
-  //   const fileReader = new FileReader();
-  //   if (e.target.files[0]) {
-  //     fileReader.readAsDataURL(e.target.files[0]);
-  //   }
-  //   fileReader.onload = () => {
-  //     setImage({
-  //       image_file: e.target.files[0],
-  //       preview_URL: fileReader.result,
-  //     });
-  //   };
-  // };
-  // console.log(image)
-  // console.log(image.image_file)
+  console.log(image)
+  console.log(image.image_file)
 
   const handleSubmit = useCallback(async () => {
     try {
@@ -113,6 +82,7 @@ const AddDollido = () => {
       for (let value of formData.values()) {
         console.log(value);
       }
+      setLoading(true);
       const response = await axios.post("http://localhost:8000/post/", formData);
       // console.log("response >>", response.data);
       setDollido_id(response.data.id);
@@ -136,8 +106,13 @@ const AddDollido = () => {
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
+    } finally {
+      setLoading(false);
     }
   }, [canSubmit]);
+
+
+
 
   const handleSubmit2 = () => {
     console.log(clrNm)
@@ -149,12 +124,12 @@ const AddDollido = () => {
     formData2.append("lstPlace", lstPlace);
     formData2.append("clrNm", clrNm.label);
     formData2.append("find_status", find_status);
-          // FormData의 key 확인
+    // FormData의 key 확인
     for (let key of formData2.keys()) {
       console.log(key);
     }
 
-      // FormData의 value 확인
+    // FormData의 value 확인
     for (let value of formData2.values()) {
       console.log(value);
     }
@@ -163,8 +138,6 @@ const AddDollido = () => {
     axios.put(`http://localhost:8000/post/${dollido_id}/`, formData2)
     window.alert("😎등록이 완료되었습니다😎");
   }
-
-
 
 
 
@@ -179,6 +152,11 @@ const AddDollido = () => {
             alignItems: 'center',
           }}
         >
+          {loading &&
+            <Box sx={{ display: 'flex' }}>
+              <CircularProgress />
+            </Box>
+}
           <div className="addBoard-wrapper">
             <div className="addBoard-header">
               게시물 등록하기 🖊️
