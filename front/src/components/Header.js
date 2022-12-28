@@ -11,6 +11,8 @@ import NoAuthMenubar from "./noAuthMenu"
 import AuthMenubar from "./isAuthMenu"
 import BurgerIcon from "./burgerIcon"
 import "./index.css"
+import cookies from 'react-cookies';
+
 
 const styles = {
   fontFamily: "sans-serif",
@@ -26,7 +28,7 @@ const contentStyle = {
 const Header = ({children, open, ...props}) => {
   // const dispatch = useDispatch();
   // const token = useSelector(state => state.Auth.token);
-  const token = localStorage.getItem("token");
+  const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
 
 
@@ -38,9 +40,10 @@ const Header = ({children, open, ...props}) => {
     }
   }, [token]);
   const onLogout = () => {
-    const token = localStorage.getItem("token");
+    const token = cookies.load('access');
     if (token) {
-      localStorage.clear();
+      cookies.remove('access')
+      cookies.remove('refresh')
       alert("로그아웃 되었습니다😎");
       window.location.href = "/Signin";
     }
