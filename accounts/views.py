@@ -40,7 +40,6 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status
 from rest_framework.response import Response
 
-
 ################################################################
 class RegisterAPIView(APIView):
     def post(self, request):
@@ -106,7 +105,8 @@ class AuthAPIView(APIView):
     def get(self, request):
         try:
             # access token을 decode 해서 유저 id 추출 => 유저 식별
-            access = request.COOKIES['access']
+            access = request.COOKIES.get('access')
+            print(request.COOKIES)
             payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
             pk = payload.get('user_id')
             user = get_object_or_404(User, pk=pk)

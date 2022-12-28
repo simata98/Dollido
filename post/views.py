@@ -22,8 +22,10 @@ import yolov5
 # 이미지 메타데이터 관련
 from PIL import Image
 from PIL.ExifTags import TAGS
+from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
+@login_required()
 def PostList(request):
   # if not request.session.get('writer'):
   #   return redirect('http://localhost:3000/Signin')
