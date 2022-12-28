@@ -162,6 +162,7 @@ AUTH_USER_MODEL = 'accounts.User'
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'jwt_token'
 JWT_AUTH_REFRESH_COOKIE = 'jwt_refresh_token'
+LOGIN_URL = '/accounts/auth/'
 
 # ACCOUNT 관련
 SITE_ID = 1
@@ -197,6 +198,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : (
+         'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
@@ -231,6 +235,7 @@ SIMPLE_JWT = {
     'JTI_CLAIM': 'jti',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    # 이 시간이 지나면 다시 로그인 해야 함
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
