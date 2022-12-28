@@ -42,8 +42,9 @@ const Header = ({children, open, ...props}) => {
   const onLogout = () => {
     const token = cookies.load('access');
     if (token) {
-      cookies.remove('access')
-      cookies.remove('refresh')
+      cookies.remove('access');
+      cookies.remove('refresh');
+      cookies.remove('is_active');
       alert("로그아웃 되었습니다😎");
       window.location.href = "/Signin";
     }
