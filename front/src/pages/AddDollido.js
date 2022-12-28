@@ -12,6 +12,8 @@ import Container from '@mui/material/Container';
 import axios from "axios";
 import { minWidth } from '@mui/system';
 import Grid from '@mui/material/Grid';
+import imageCompression from 'browser-image-compression';
+
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
   const token = localStorage.getItem('token')
@@ -39,24 +41,57 @@ const AddDollido = () => {
 
   let inputRef;
 
-  const saveImage = (e) => {
+  const compressImage = async (image) => {
+    try{
+      const options = {
+        maxSizeMb: 0.9,
+        maxWidthOrHeight: 400,
+      }
+      return await imageCompression(image, options);
+    } catch(e){
+      console.log(e);
+    }
+    
+  }
+  const saveImage = async (e) => {
     e.preventDefault();
+    console.log(e.target.files[0])
+    function blobToFile(theBlob, fileName){       
+    return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: theBlob.type })
+}
+    const compressed =  await compressImage(e.target.files[0])
+    const compressed2 =  blobToFile(compressed, compressed.name)
     const fileReader = new FileReader();
-    if (e.target.files[0]) {
-      fileReader.readAsDataURL(e.target.files[0]);
+    if (compressed2) {
+      fileReader.readAsDataURL(compressed2);
     }
     fileReader.onload = () => {
       setImage({
-        image_file: e.target.files[0],
+        image_file: compressed2,
+        // image_file: e.target.files[0],
         preview_URL: fileReader.result,
       });
     };
   };
+  // const saveImage = (e) => {
+  //   e.preventDefault();
+  //   const fileReader = new FileReader();
+  //   if (e.target.files[0]) {
+  //     fileReader.readAsDataURL(e.target.files[0]);
+  //   }
+  //   fileReader.onload = () => {
+  //     setImage({
+  //       image_file: e.target.files[0],
+  //       preview_URL: fileReader.result,
+  //     });
+  //   };
+  // };
   // console.log(image)
   // console.log(image.image_file)
 
   const handleSubmit = useCallback(async () => {
     try {
+      console.log(image.image_file)
       const formData = new FormData();
       // formData.append("lstPrdtNm", title);
       formData.append("lstFilePathImg", image.image_file);
@@ -75,9 +110,9 @@ const AddDollido = () => {
       // }
 
       // FormData의 value 확인
-      // for (let value of formData.values()) {
-      //   console.log(value);
-      // }
+      for (let value of formData.values()) {
+        console.log(value);
+      }
       const response = await axios.post("http://localhost:8000/post/", formData);
       // console.log("response >>", response.data);
       setDollido_id(response.data.id);
