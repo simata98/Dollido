@@ -13,19 +13,20 @@
             <div class="card" style="width: 32rem;">
                 <div class="card-body">
                     <div class="text-center">
-                        <img src="{% static 'img/logo2.png' %}"
+                        <img src="{% static 'img/logo.png' %}"
                             style="width: 40%; margin-top:10px; margin-bottom: -20px;">
                     </div>
                     <div class="row mt-5">
                         <div class="col-12" style="margin-left: 35px;">
-                            <h4 style="font-weight: bold; margin-bottom: 20px;">인증을 위한 메일이 발송되었습니다.</h4>
-                            <p>입력하신 메일을 확인해주세요.<br>인증을 하지 않으시면 로그인이 되지 않습니다.</p>
+                            <h4 style="font-weight: bold; margin-bottom: 20px;">이메일 인증에 성공하였습니다!</h4>
+                            <p>로그인 페이지로 돌아가 로그인 해주세요.<br>돌리도 서비스에 오신걸 환영합니다!</p>
                             <br>
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
-                        <button onclick="location.href='/'" style="opacity: 90%; font-size: 16px; margin-top: -5px;"
-                            class="btn btn-red"><i class="fas fa-home"></i>&nbsp;&nbsp;메인으로</button>
+                        {% comment %} 이 부분 바꿔줘야 함 {% endcomment %}
+                        <button onclick="location.href='http://localhost:3000/signin'" style="opacity: 90%; font-size: 16px; margin-top: -5px;"
+                            class="btn btn-red"><i class="fas fa-home"></i>&nbsp;&nbsp;로그인하러 가기</button>
                     </div>
                 </div>
             </div>

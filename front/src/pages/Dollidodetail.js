@@ -22,16 +22,14 @@ export default function Dollidodetail() {
   //   var workList= (data||'').split('.');
   useEffect(() => {
     const code2 = localStorage.getItem("code2");
-    console.log(code2)
-    console.log(status)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get(`http://127.0.0.1:8000/post/${code2}/`)
       .then(response => {
         setTasks(response.data);
         setStatus(response.data.find_status)
-        // console.log(code2)
-        // console.log(status)
+        delete axios.defaults.headers.common['Authorization'];
       });
   }, []);
   // console.log(tasks.id)

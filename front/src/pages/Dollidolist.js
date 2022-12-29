@@ -55,7 +55,7 @@ const columns = [
   // },
   {
     field: 'create_date',
-    headerName: 'creat_date',
+    headerName: 'create_date',
     width: 150,
   },
   {
@@ -164,10 +164,12 @@ export default function MyDataGrid({ children }) {
 
   // load tasks from the backend when the component is rendered
   useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get('http://127.0.0.1:8000/post/')
       .then(response => {
+        delete axios.defaults.headers.common['Authorization'];
         setTasks(response.data);
       });
   }, []);
