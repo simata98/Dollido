@@ -36,7 +36,6 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const user = {
       email: inputEmail,
       password: inputPw,
@@ -47,6 +46,7 @@ export default function SignIn() {
       .then((res) => {
         if (res.data.token.access && res.data.user.is_active) {
           localStorage.clear();
+          delete axios.defaults.headers.common['Authorization']
           cookies.save("access", res.data.token.access)
           cookies.save("refresh", res.data.token.access)
           localStorage.setItem("token", res.data.token.access)
@@ -58,6 +58,7 @@ export default function SignIn() {
         alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
+        window.location.reload();
       });
   };
 
