@@ -32,7 +32,7 @@ class DollidoLstId(models.Model):
     class Meta:
         verbose_name_plural = '돌리도 게시판'
     # 사용자 (외래키)
-    # writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자', null=True, blank=True)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자', null=True, blank=True)
     # 물품명
     lstPrdtNm = models.CharField('습득물 이름',max_length=200, blank=True, null=True)
     # 습득물 이미지
@@ -40,8 +40,7 @@ class DollidoLstId(models.Model):
     # 습득물 특이사항
     lstcontent = models.CharField('특이사항', max_length=500, default='', blank=True, null=True)
     # 습득일자
-    # lstYmd = models.DateTimeField(max_length=100, auto_now=False, auto_now_add=False, blank=True, null=True)
-    lstYmd = models.CharField('습득일자', max_length=100, blank=True, null=True)
+    lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True, null=True)
     # 보관장소 (수거함)
     lstPlace = models.CharField(blank=True, max_length=200, null=True)
     # 게시일자

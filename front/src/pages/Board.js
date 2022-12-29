@@ -15,7 +15,7 @@ export default function MyDataGrid() {
   
   useEffect(() => {
     const code = localStorage.getItem("code");
-    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get(`http://127.0.0.1:8000/lost112/${code}`)
