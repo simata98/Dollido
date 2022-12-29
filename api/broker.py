@@ -8,7 +8,7 @@ from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from post.models import ApiListId
 
 CATEGORY = ['PRH000', 'PRJ000']
-START_YMD = '20220101'
+START_YMD = '20221201'
 # END_YMD = '20221215'
 today = date.today()
 END_YMD = today.strftime('%Y%m%d')

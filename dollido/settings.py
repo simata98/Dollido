@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     # 설치한 추가 라이브러리들
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'dj_rest_auth',
     'django_extensions',
     'rest_framework',
@@ -143,10 +142,7 @@ LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -177,17 +173,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # MEDIA 관련
-MEDIA_URL = '/media/' # 업로드 할 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'front/public/' # 업로드 할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'front/public/')
 
 # STATIC 관련
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, '.static')
-
-# 로그인 관련 redirect
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/main/'
-LOGOUT_REDIRECT_URL = '/'
 
 # 이메일 인증 관련
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
