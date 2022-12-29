@@ -36,7 +36,6 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import permission_classes
-from .serializers import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 ################################################################
