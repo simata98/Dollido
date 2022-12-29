@@ -7,7 +7,7 @@ import { Grid, Container, Typography } from '@mui/material';
 // 배너 슬라이드
 // import "swiper/css/grid";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
 import 'swiper/swiper-bundle.css'
 // import 'swiper/css';
 // import "swiper/swiper.scss";
@@ -25,7 +25,7 @@ import {
 // components
 import Iconify from '../components/iconify';
 
-SwiperCore.use([Navigation, Pagination])
+SwiperCore.use([Navigation, Pagination, Autoplay])
 
 
 // ----------------------------------------------------------------------
@@ -48,31 +48,68 @@ export default function DashboardAppPage() {
         <Swiper 
           className="banner"
           spaceBetween={1}
-          slidesPerView={1}
+          slidesPerView={2}
           navigation
           pagination={{ clickable: true }}
+          Autoplay={{ delay: 500 }}
         >
           <SwiperSlide>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="등록된 지갑" total={715000} icon={'ant-design:android-filled'}/>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="등록된 지갑" total={1} icon={'ant-design:android-filled'}/>
           </Grid>
           </SwiperSlide>
           
           <SwiperSlide>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="New Users" total={2} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
           </SwiperSlide>
           
           <SwiperSlide>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="Item Orders" total={3} color="warning" icon={'ant-design:windows-filled'} />
           </Grid>
           </SwiperSlide>
           
           <SwiperSlide>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="Bug Reports" total={4} color="error" icon={'ant-design:bug-filled'} />
+          </Grid>
+          </SwiperSlide>
+
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="등록된 지갑" total={5} icon={'ant-design:android-filled'}/>
+          </Grid>
+          </SwiperSlide>
+          
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="New Users" total={6} color="info" icon={'ant-design:apple-filled'} />
+          </Grid>
+          </SwiperSlide>
+          
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="Item Orders" total={7} color="warning" icon={'ant-design:windows-filled'} />
+          </Grid>
+          </SwiperSlide>
+          
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="Bug Reports" total={8} color="error" icon={'ant-design:bug-filled'} />
+          </Grid>
+          </SwiperSlide>
+
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="등록된 지갑" total={9} icon={'ant-design:android-filled'}/>
+          </Grid>
+          </SwiperSlide>
+          
+          <SwiperSlide>
+          <Grid item xs={12} sm={6} md={13}>
+            <AppWidgetSummary title="New Users" total={10} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
           </SwiperSlide>
         </Swiper>
