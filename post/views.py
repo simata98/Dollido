@@ -24,9 +24,11 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
+@login_required(login_url='/accounts/auth/')
 def PostList(request):
   # if not request.session.get('writer'):
   #   return redirect('http://localhost:3000/Signin')
@@ -171,7 +173,8 @@ def PostList(request):
     return Response(new_serializer_data.errors, status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
+@login_required(login_url='/accounts/auth/')
 def PostDetail(request, pk):
   # pk에 해당하는 Post가 존재하는지 확인
   try:
