@@ -12,6 +12,7 @@ import Board from "./pages/Board";
 import Dollidolist from "./pages/Dollidolist";
 import Dollidodetail from "./pages/Dollidodetail";
 import AddDollido from "./pages/AddDollido";
+// import Editdollido from "./pages/Editdollido";
 import Test from "./pages/Test";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/dollidolist" element={<Dollidolist />} />
           <Route path="/dollidodetail" element={<Dollidodetail />} />
           <Route path="/adddollido" element={<AddDollido />} />
+          {/* <Route path="/editdollido" element={<Editdollido />} /> */}
           <Route path="/test" element={<Test />} />
         </Routes>
       </div>
