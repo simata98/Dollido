@@ -3,15 +3,6 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-// components
-import Iconify from '../components/iconify';
-// sections
-import {
-  AppNewsUpdate,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppWidgetSummary,
-} from '../sections/@dashboard/app';
 
 // 배너 슬라이드
 // import "swiper/css/grid";
@@ -22,6 +13,17 @@ import 'swiper/swiper-bundle.css'
 // import "swiper/swiper.scss";
 // import 'swiper/components/navigation/navigation.min.css';
 // import "swiper/components/pagination/pagination.scss";
+
+// sections
+import {
+  AppNewsUpdate,
+  AppCurrentVisits,
+  AppWebsiteVisits,
+  AppWidgetSummary,
+} from '../sections/@dashboard/app';
+
+// components
+import Iconify from '../components/iconify';
 
 SwiperCore.use([Navigation, Pagination])
 
@@ -52,10 +54,10 @@ export default function DashboardAppPage() {
         >
           <SwiperSlide>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="등록된 지갑" total={715000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="등록된 지갑" total={715000} icon={'ant-design:android-filled'}/>
           </Grid>
           </SwiperSlide>
-
+          
           <SwiperSlide>
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
