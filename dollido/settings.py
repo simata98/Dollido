@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     # 설치한 추가 라이브러리들
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'dj_rest_auth',
     'django_extensions',
     'rest_framework',
@@ -143,10 +142,7 @@ LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -166,6 +162,7 @@ AUTH_USER_MODEL = 'accounts.User'
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'jwt_token'
 JWT_AUTH_REFRESH_COOKIE = 'jwt_refresh_token'
+LOGIN_URL = '/accounts/auth/'
 
 # ACCOUNT 관련
 SITE_ID = 1
@@ -177,17 +174,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # MEDIA 관련
-MEDIA_URL = '/media/' # 업로드 할 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'front/public/' # 업로드 할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'front/public/')
 
 # STATIC 관련
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, '.static')
-
-# 로그인 관련 redirect
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/accounts/main/'
-LOGOUT_REDIRECT_URL = '/'
 
 # 이메일 인증 관련
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
@@ -206,9 +198,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication'
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+
 }
 
 # 추가적인 JWT 설정, 다 쓸 필요는 없지만 혹시 몰라서 다 넣었다.
@@ -240,6 +238,7 @@ SIMPLE_JWT = {
     'JTI_CLAIM': 'jti',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    # 이 시간이 지나면 다시 로그인 해야 함
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
