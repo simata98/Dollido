@@ -13,7 +13,7 @@ import axios from "axios";
 import { minWidth } from '@mui/system';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import cookies from 'react-cookies';
 
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
@@ -29,6 +29,7 @@ const AddDollido = () => {
   const [lstPlace, setLstPlace] = useState("");
   const [clrNm, setClrNm] = useState("");
   const [find_status, setFind_status] = useState(false);
+  const [writer, setWriter] = useState("");
   const [loading, setLoading] = useState(null);
   const [image, setImage] = useState({
     image_file: "",
@@ -42,7 +43,7 @@ const AddDollido = () => {
   // }, [image, title, content, lstYmd, lstPlace, clrNm]);
 
   let inputRef;
-
+  console.log(cookies.load('access'));
   const saveImage = (e) => {
     e.preventDefault();
     const fileReader = new FileReader();
@@ -84,6 +85,8 @@ const AddDollido = () => {
         console.log(value);
       }
       setLoading(true);
+
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       const response = await axios.post("http://localhost:8000/post/", formData);
       // console.log("response >>", response.data);
       setDollido_id(response.data.id);
@@ -93,6 +96,8 @@ const AddDollido = () => {
       setLstPlace(response.data.lstPlace);
       setClrNm(response.data.clrNm);
       setFind_status(response.data.find_status);
+      setWriter(response.data.writer);
+      // delete axios.defaults.headers.common['Authorization'];
       console.log(response.data.id)
       // formData.set("lstPrdtNm", response.data.lstPrdtNm);
       // formData.set("lstFilePathImg", response.data.lstFilePathImg);
@@ -117,15 +122,23 @@ const AddDollido = () => {
 
   const handleSubmit2 = () => {
     console.log(clrNm)
+    console.log(clrNm.label)
+    delete axios.defaults.headers.common['Authorization'];
     const formData2 = new FormData();
     formData2.append("lstPrdtNm", title);
     formData2.append("lstFilePathImg", image.image_file);
     formData2.append("lstcontent", content);
     formData2.append("lstYmd", lstYmd);
     formData2.append("lstPlace", lstPlace);
-    formData2.append("clrNm", clrNm.label);
+    formData2.append("clrNm", clrNm);
     formData2.append("find_status", find_status);
-    // FormData의 key 확인
+    formData2.append("writer", writer);
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+    axios
+      .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
+    window.alert("😎등록이 완료되었습니다😎");
+    // window.location.href = "/dollidolist";
     for (let key of formData2.keys()) {
       console.log(key);
     }
@@ -134,10 +147,6 @@ const AddDollido = () => {
     for (let value of formData2.values()) {
       console.log(value);
     }
-    console.log(formData2)
-    console.log(dollido_id)
-    axios.put(`http://localhost:8000/post/${dollido_id}/`, formData2)
-    window.alert("😎등록이 완료되었습니다😎");
   }
 
 
@@ -157,7 +166,7 @@ const AddDollido = () => {
             <Box sx={{ display: 'flex' }}>
               <CircularProgress />
             </Box>
-}
+          }
           <div className="addBoard-wrapper">
             <div className="addBoard-header">
               게시물 등록하기 🖊️
@@ -277,9 +286,11 @@ const AddDollido = () => {
                       setClrNm(newValue);
                     }}
                     value={clrNm}
+                    // label={clrNm}
                     disablePortal
                     id="combo-box-demo"
-                    options={categorical}
+                    // options={categorical}
+                    options={categorical.map((option) => option.label)}
                     sx={{ width: 300 }}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
                     renderInput={(params) => <TextField {...params} label="색깔" />}
@@ -291,6 +302,15 @@ const AddDollido = () => {
                     className="text"
                     placeholder="현황"
                     value={find_status}
+                  />
+                  <input
+                    onChange={(e) => {
+                      setWriter(e.target.value);
+                    }}
+                    disabled
+                    className="text"
+                    placeholder="작성자"
+                    value={writer}
                   />
                 </div>
               </div>
@@ -304,6 +324,25 @@ const AddDollido = () => {
 
 
 
+// const categorical = [
+//   { label: '베이지색', value: '베이지색', id: 1 },
+//   { label: '검정색', value: '검정색', id: 2 },
+//   { label: '파랑색', value: '파랑색', id: 3 },
+//   { label: '갈색', value: '갈색', id: 4 },
+//   { label: '금색', value: '금색', id: 5 },
+//   { label: '초록색', value: '초록색', id: 6 },
+//   { label: '회색', value: '회색', id: 7 },
+//   { label: '밤색', value: '밤색', id: 8 },
+//   { label: '네이비색', value: '네이비색', id: 9 },
+//   { label: '올리브색', value: '올리브색', id: 10 },
+//   { label: '오렌지색', value: '오렌지색', id: 11 },
+//   { label: '핑크색', value: '핑크색', id: 12 },
+//   { label: '보라색', value: '보라색', id: 13 },
+//   { label: '빨간색', value: '빨간색', id: 14 },
+//   { label: '은색', value: '은색', id: 15 },
+//   { label: '하얀색', value: '하얀색', id: 16 },
+//   { label: '노란색', value: '노란색', id: 17 }
+// ]
 const categorical = [
   { label: '베이지색', id: 1 },
   { label: '검정색', id: 2 },

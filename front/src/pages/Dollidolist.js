@@ -64,6 +64,11 @@ const columns = [
     headerName: 'find_status',
     width: 150,
   },
+  {
+    field: 'writer',
+    headerName: 'writer',
+    width: 200,
+  },
 ];
 
 // ID값의 유니크(key)값을 못찾아서 atcID를 ID key값으로 지정해주는 코드
