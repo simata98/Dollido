@@ -84,6 +84,7 @@ const AddDollido = () => {
         console.log(value);
       }
       setLoading(true);
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       const response = await axios.post("http://localhost:8000/post/", formData);
       // console.log("response >>", response.data);
       setDollido_id(response.data.id);
@@ -102,6 +103,7 @@ const AddDollido = () => {
       // formData.set("clrNm", response.data.clrNm);
       // formData.set("find_status", response.data.find_status);
       // await axios.put(`http://localhost:8000/post/${response.data.id}/`, formData)
+      delete axios.defaults.headers.common['Authorization'];
       window.alert("😎예측이 완료되었습니다😎");
       // navigate("/dollidolist");
     } catch (e) {
@@ -116,6 +118,7 @@ const AddDollido = () => {
 
 
   const handleSubmit2 = () => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     console.log(clrNm)
     const formData2 = new FormData();
     formData2.append("lstPrdtNm", title);
