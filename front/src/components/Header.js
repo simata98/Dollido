@@ -1,9 +1,6 @@
 import "./header.scss";
 import { Link } from "react-router-dom";
-// import {useDispatch, useSelector} from "react-redux";
-// import {jwtUtils} from "../utils/jwtUtils";
 import { useEffect, useState } from "react";
-// import {setToken} from "../redux/reducers/AuthReducer";
 import { Mobile, Pc } from '../pages/responsive';
 import Popup from "reactjs-popup";
 import React from "react";
@@ -26,8 +23,6 @@ const contentStyle = {
 };
 
 const Header = ({children, open, ...props}) => {
-  // const dispatch = useDispatch();
-  // const token = useSelector(state => state.Auth.token);
   const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
 
@@ -64,13 +59,10 @@ const Header = ({children, open, ...props}) => {
           </Link>
         </div>
         <div className="header-menu">
-          {/* <Link to="/mydatagrid">게시판</Link>
-          <Link to="/about">내 게시물</Link> */}
           {isAuth ? (
             <>
               <Link to="/mydatagrid">Lost112</Link>
               <Link to="/dollidolist">Dollido</Link>
-              <Link to="/about">내 게시물</Link>
               <Link to="#" onClick={onLogout}>로그아웃</Link>
             </>
           ) : (
