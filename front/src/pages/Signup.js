@@ -68,7 +68,7 @@ export default function Signup() {
     // pw 입력값
     const handleInputPw = (e) => {
         const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-~])(?=.*[0-9]).{8,25}$/
         setInputPw(e.target.value);
         console.log(e.target.value);
         if (!passwordRegex.test(e.target.value)) {
@@ -125,7 +125,7 @@ export default function Signup() {
         e.preventDefault();
 
         const user = {
-            // name: inputName,
+            username: inputName,
             // password2: inputPwValidate,
             password: inputPw,
             email: inputEmail,
@@ -134,10 +134,10 @@ export default function Signup() {
         };
 
         // 유효성 검사
-        if (inputPw !== inputPwValidate) {
-            alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
-            return false;
-        }
+        // if (inputPw !== inputPwValidate) {
+        //     alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
+        //     return false;
+        // }
         
         //register API 호출
         axios
@@ -146,7 +146,7 @@ export default function Signup() {
                 if (res.data.token.access) {
                     console.log(res.data.token.access);
                     alert("가입을 축하드립니다!");
-                    window.location.replace("/Signin");
+                    window.location.href = "/Signin";
                 } else {
                     setInputName("");
                     setInputEmail("");
@@ -168,7 +168,7 @@ export default function Signup() {
         <Container component="main" maxWidth="xs">
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 20,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -177,7 +177,7 @@ export default function Signup() {
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5">    
                     회원가입
                 </Typography>
                 <TextField
