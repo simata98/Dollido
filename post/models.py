@@ -40,7 +40,8 @@ class DollidoLstId(models.Model):
     # 습득물 특이사항
     lstcontent = models.CharField('특이사항', max_length=500, default='', blank=True, null=True)
     # 습득일자
-    lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True, null=True)
+    # lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True, null=True)
+    lstYmd = models.CharField('습득일자', max_length=200, blank=True, null=True)
     # 보관장소 (수거함)
     lstPlace = models.CharField(blank=True, max_length=200, null=True)
     # 게시일자
