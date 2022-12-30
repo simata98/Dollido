@@ -51,8 +51,6 @@ export default function Signup() {
 
     // email 입력값
     const handleInputEmail = (e) => {
-        // const emailRegex =
-        // /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
         const emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
         setInputEmail(e.target.value);
         console.log(e.target.value);
@@ -68,7 +66,7 @@ export default function Signup() {
     // pw 입력값
     const handleInputPw = (e) => {
         const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-~])(?=.*[0-9]).{8,25}$/
+        /^(?=.*[a-zA-Z])(?=.*[~!@#$%^&*"'+=`|:;-_-])(?=.*[0-9]).{8,25}$/
         setInputPw(e.target.value);
         console.log(e.target.value);
         if (!passwordRegex.test(e.target.value)) {
@@ -126,18 +124,11 @@ export default function Signup() {
 
         const user = {
             username: inputName,
-            // password2: inputPwValidate,
             password: inputPw,
             email: inputEmail,
             tel: inputTel,
             address: inputAddress,
         };
-
-        // 유효성 검사
-        // if (inputPw !== inputPwValidate) {
-        //     alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
-        //     return false;
-        // }
         
         //register API 호출
         axios
