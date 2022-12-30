@@ -7,7 +7,8 @@ import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProductsPage';
+import Lost112Page from './pages/Lost112Page';
+import DollidoPage from './pages/DollidoPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import Agreement from './pages/Agreement';
 import SignUp from './pages/SignupPage';
@@ -22,7 +23,8 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
+        { path: 'lost112', element: <Lost112Page /> },
+        { path: 'dollido', element: <DollidoPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },
