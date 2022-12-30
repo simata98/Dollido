@@ -171,7 +171,11 @@ def PostList(request):
       new_serializer_data['lstYmd'] = img_date
       new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
       
+<<<<<<< HEAD
       # # !작성자 관련
+=======
+      # !작성자 관련
+>>>>>>> b7137077ff38ac01f5e2db4bce153f41ef6c6d22
       # access = request.COOKIES.get('access')
       # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
       # pk = payload.get('user_id')
