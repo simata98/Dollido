@@ -12,7 +12,7 @@ import AuthMenubar from "./isAuthMenu"
 import BurgerIcon from "./burgerIcon"
 import "./index.css"
 import cookies from 'react-cookies';
-
+import axios from 'axios';
 
 const styles = {
   fontFamily: "sans-serif",
@@ -44,7 +44,8 @@ const Header = ({children, open, ...props}) => {
     if (token) {
       cookies.remove('access');
       cookies.remove('refresh');
-      cookies.remove('is_active');
+      localStorage.clear();
+      delete axios.defaults.headers.common['Authorization'];
       alert("로그아웃 되었습니다😎");
       window.location.href = "/Signin";
     }

@@ -11,7 +11,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Box from '@mui/material/Box';
 
 
-
 export default function Dollidodetail() {
   const [tasks, setTasks] = useState([]);
   var dollidoimage = tasks.lstFilePathImg
@@ -19,12 +18,13 @@ export default function Dollidodetail() {
 //   var workList= (data||'').split('.');
   useEffect(() => {
     const code2 = localStorage.getItem("code2");
-
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get(`http://127.0.0.1:8000/post/${code2}`)
       .then(response => {
         setTasks(response.data);
+        delete axios.defaults.headers.common['Authorization'];
         console.log(code2)
       });
   }, []);

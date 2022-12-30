@@ -34,12 +34,13 @@ from django.template.loader          import render_to_string
 # JWT 토큰 관련
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
-from .serializers import *
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import permission_classes
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 ################################################################
 class RegisterAPIView(APIView):
+    permissions_classes = [AllowAny]
     def post(self, request):
         data = json.loads(request.body)
         try:
@@ -99,24 +100,21 @@ class RegisterAPIView(APIView):
             return JsonResponse({'message': 'VALIDATION_ERROR'}, status=400)
 
 class AuthAPIView(APIView):
+    permissions_classes = [AllowAny]
     # 유저 정보 확인
     def get(self, request):
         try:
             # access token을 decode 해서 유저 id 추출 => 유저 식별
             access = request.COOKIES.get('access')
-            print(request.COOKIES)
             payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-            print(payload)
             pk = payload.get('user_id')
             user = get_object_or_404(User, pk=pk)
-            print(user)
             serializer = UserSerializer(instance=user)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         except(jwt.exceptions.ExpiredSignatureError):
             # 토큰 만료 시 토큰 갱신
             data = {'refresh': request.COOKIES.get('refresh', None)}
-            print(data)
             serializer = TokenRefreshSerializer(data=data)
             if serializer.is_valid(raise_exception=True):
                 access = serializer.data.get('access', None)
@@ -192,6 +190,7 @@ class AuthAPIView(APIView):
         return response
 
 class Activate(View):
+    permissions_classes = [AllowAny]
     def get(self, request, uidb64, token):
         react_port = '3000'
         hostname = request.get_host().split(':')[0]
@@ -213,8 +212,3 @@ class Activate(View):
         except KeyError:
             messages.error(request, '메일 인증에 실패했습니다. 키 오류입니다!')
             return JsonResponse({"message" : "INVALID_KEY"}, status=400)
-
-class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
