@@ -1,7 +1,4 @@
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-
 // @mui
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -23,28 +20,17 @@ const StyledProductImg = styled('img')({
 
 // ----------------------------------------------------------------------
 
-// ShopProductCard.propTypes = {
-//   tasks: PropTypes.object,
-// };
+ShopProductCard.propTypes = {
+  product: PropTypes.object,
+};
 
-export default function ShopProductCard() {
-  // const [tasks, setTasks] = useState([]);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await axios.get(
-  //       'http://127.0.0.1:8000/lost112/'
-  //     );
-  //     setTasks(response.data);
-  //   };
-  //   getData();
-  // }, []);
-
-  // console.log(tasks)
-
+export default function ShopProductCard({ product }) {
+  console.log(product)
+  const { category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
   return (
     <Card>
-      {/* <Box sx={{ pt: '100%', position: 'relative' }}>
-        {status && (
+      <Box sx={{ pt: '100%', position: 'relative' }}>
+        {/* {status && (
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
@@ -58,34 +44,25 @@ export default function ShopProductCard() {
           >
             {status}
           </Label>
-        )}
-        <StyledProductImg alt={name} src={cover} />
-      </Box> */}
+        )} */}
+        <StyledProductImg alt={category} src={fdFilePathImg} />
+      </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        {/* <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
-            {name}
+        <Link color="inherit" underline="hover">
+          <Typography variant="h6" noWrap>
+            {category}
           </Typography>
-        </Link> */}
+        </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
-            {/* <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                color: 'text.disabled',
-                textDecoration: 'line-through',
-              }}
-            >
-              {priceSale && fCurrency(priceSale)}
-            </Typography> */}
-            11111
+            {fdYmd}
+          </Typography>
+          <Typography variant="subtitle1">
             &nbsp;
-            11111
-            {/* {fCurrency(price)} */}
+            {clrNm}
           </Typography>
         </Stack>
       </Stack>

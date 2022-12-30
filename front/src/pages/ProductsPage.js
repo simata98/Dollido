@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
 // components
 import { ProductSort, ProductList, ProductFilterSidebar } from '../sections/@dashboard/products';
+import PRODUCTS from '../_mock/products';
 
 // ----------------------------------------------------------------------
 
@@ -51,8 +52,8 @@ export default function ProductsPage() {
             <ProductSort />
           </Stack>
         </Stack>
-
-        <ProductList products={tasks} />
+        {/* <ProductList products={tasks} /> */}
+        <ProductList products={tasks.slice(0,32)} />
       </Container>
     </>
   );
