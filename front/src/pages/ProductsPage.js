@@ -1,15 +1,25 @@
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 // @mui
 import { Container, Stack, Typography } from '@mui/material';
 // components
-import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
-// mock
-import PRODUCTS from '../_mock/products';
+import { ProductSort, ProductList, ProductFilterSidebar } from '../sections/@dashboard/products';
 
 // ----------------------------------------------------------------------
 
 export default function ProductsPage() {
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(
+        'http://127.0.0.1:8000/lost112/'
+      );
+      setTasks(response.data);
+    };
+    getData();
+  }, []);
+
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -42,8 +52,7 @@ export default function ProductsPage() {
           </Stack>
         </Stack>
 
-        <ProductList products={PRODUCTS} />
-        <ProductCartWidget />
+        <ProductList products={tasks} />
       </Container>
     </>
   );

@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 // @mui
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -20,16 +23,27 @@ const StyledProductImg = styled('img')({
 
 // ----------------------------------------------------------------------
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object,
-};
+// ShopProductCard.propTypes = {
+//   tasks: PropTypes.object,
+// };
 
-export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
+export default function ShopProductCard() {
+  // const [tasks, setTasks] = useState([]);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await axios.get(
+  //       'http://127.0.0.1:8000/lost112/'
+  //     );
+  //     setTasks(response.data);
+  //   };
+  //   getData();
+  // }, []);
+
+  // console.log(tasks)
 
   return (
     <Card>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
+      {/* <Box sx={{ pt: '100%', position: 'relative' }}>
         {status && (
           <Label
             variant="filled"
@@ -46,19 +60,19 @@ export default function ShopProductCard({ product }) {
           </Label>
         )}
         <StyledProductImg alt={name} src={cover} />
-      </Box>
+      </Box> */}
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
+        {/* <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
             {name}
           </Typography>
-        </Link>
+        </Link> */}
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
-            <Typography
+            {/* <Typography
               component="span"
               variant="body1"
               sx={{
@@ -66,10 +80,12 @@ export default function ShopProductCard({ product }) {
                 textDecoration: 'line-through',
               }}
             >
-              {/* {priceSale && fCurrency(priceSale)} */}
-            </Typography>
+              {priceSale && fCurrency(priceSale)}
+            </Typography> */}
+            11111
             &nbsp;
-            {fCurrency(price)}
+            11111
+            {/* {fCurrency(price)} */}
           </Typography>
         </Stack>
       </Stack>
