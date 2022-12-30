@@ -11,7 +11,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
-
+import { Mobile, Pc } from '../pages/responsive';
+import cookies from 'react-cookies';
 
 
 function Copyright(props) {
@@ -35,7 +36,6 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const user = {
       email: inputEmail,
       password: inputPw,
@@ -46,16 +46,19 @@ export default function SignIn() {
       .then((res) => {
         if (res.data.token.access && res.data.user.is_active) {
           localStorage.clear();
-          localStorage.setItem("token", res.data.token.access);
-          localStorage.setItem("is_active", res.data.user.is_active);
-          console.log(res.data.token.access)
-          window.location.replace("/new");
+          delete axios.defaults.headers.common['Authorization']
+          cookies.save("access", res.data.token.access)
+          cookies.save("refresh", res.data.token.access)
+          localStorage.setItem("token", res.data.token.access)
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+          window.location.href = "/mydataGrid";
         }
       })
       .catch((err) => {
         alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
+        window.location.reload();
       });
   };
 
@@ -73,9 +76,9 @@ export default function SignIn() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
+        <Pc><Box
           sx={{
-            marginTop: 8,
+            marginTop: 30,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -129,6 +132,65 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
+        </Pc>
+
+        <Mobile><Box
+          sx={{
+            marginTop: 10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            로그인
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              value={inputEmail}
+              onChange={handleInputEmail}
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              value={inputPw}
+              onChange={handleInputPw}
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="agreement" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        </Mobile>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
