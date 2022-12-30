@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { Mobile, Pc } from '../pages/responsive';
 import cookies from 'react-cookies';
 
@@ -36,7 +36,6 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const user = {
       email: inputEmail,
       password: inputPw,
@@ -46,12 +45,12 @@ export default function SignIn() {
       .post('http://localhost:8000/accounts/auth/', user)
       .then((res) => {
         if (res.data.token.access && res.data.user.is_active) {
-          // localStorage.clear();
+          localStorage.clear();
+          delete axios.defaults.headers.common['Authorization']
           cookies.save("access", res.data.token.access)
           cookies.save("refresh", res.data.token.access)
-          cookies.save("is_active", res.data.user.is_active)
-          axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token.access}`
-          console.log(res.data.token.access);
+          localStorage.setItem("token", res.data.token.access)
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
           window.location.href = "/mydataGrid";
         }
       })
@@ -59,6 +58,7 @@ export default function SignIn() {
         alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
+        window.location.reload();
       });
   };
 

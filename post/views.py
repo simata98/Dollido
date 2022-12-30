@@ -1,4 +1,7 @@
 import json
+import jwt
+from accounts.models import User
+from dollido.settings import SECRET_KEY
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import DollidoLstId
 from django.http import HttpResponse
@@ -24,9 +27,11 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
+@login_required(login_url='/accounts/auth/')
 def PostList(request):
   # if not request.session.get('writer'):
   #   return redirect('http://localhost:3000/Signin')
@@ -165,12 +170,21 @@ def PostList(request):
       new_serializer_data['lstPlace'] = img_gps
       new_serializer_data['lstYmd'] = img_date
       new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
-      # new_serializer_data['writer_id'] = writer
+      
+      # !작성자 관련
+      access = request.COOKIES.get('access')
+      payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+      pk = payload.get('user_id')
+      user = get_object_or_404(User, pk=pk)
+      serializer = UserSerializer(instance=user)
+      new_serializer_data['writer'] = serializer.data['email']
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+@login_required(login_url='/accounts/auth/')
 def PostDetail(request, pk):
   # pk에 해당하는 Post가 존재하는지 확인
   try:
