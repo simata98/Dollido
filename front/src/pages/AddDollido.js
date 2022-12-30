@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -10,6 +11,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import axios from "axios";
 import { minWidth } from '@mui/system';
+import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
@@ -17,6 +21,7 @@ const AddDollido = () => {
   const navigate = useNavigate();
 
   // 게시판 제목, 내용, 사진
+  const [dollido_id, setDollido_id] = useState(0);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [lstYmd, setLstYmd] = useState("");
@@ -24,13 +29,17 @@ const AddDollido = () => {
   const [lstPlace, setLstPlace] = useState("");
   const [clrNm, setClrNm] = useState("");
   const [find_status, setFind_status] = useState(false);
+  const [loading, setLoading] = useState(null);
   const [image, setImage] = useState({
     image_file: "",
-    preview_URL: "logo192.png",
+    preview_URL: "upload.png",
   });
   const canSubmit = useCallback(() => {
-    return image.image_file !== "" && content !== "" && title !== "" && lstYmd !== "" && lstPlace !== "" && clrNm !== "";
-  }, [image, title, content, lstYmd, lstPlace, clrNm]);
+    return image.image_file;
+  }, [image]);
+  // const canSubmit = useCallback(() => {
+  //   return image.image_file !== "" && content !== "" && title !== "" && lstYmd !== "" && lstPlace !== "" && clrNm !== "";
+  // }, [image, title, content, lstYmd, lstPlace, clrNm]);
 
   let inputRef;
 
@@ -47,42 +56,90 @@ const AddDollido = () => {
       });
     };
   };
-  // console.log(image)
-  // console.log(image.image_file)
+  console.log(image)
+  console.log(image.image_file)
 
   const handleSubmit = useCallback(async () => {
     try {
+      console.log(image.image_file)
       const formData = new FormData();
-      formData.append("lstPrdtNm", title);
+      // formData.append("lstPrdtNm", title);
       formData.append("lstFilePathImg", image.image_file);
-      formData.append("lstcontent", content);
-      formData.append("lstYmd", lstYmd);
-      formData.append("lstPlace", lstPlace);
-      formData.append("clrNm", clrNm);
-      formData.append("find_status", find_status);
+      // formData.append("lstcontent", content);
+      // formData.append("lstYmd", lstYmd);
+      // formData.append("lstPlace", lstPlace);
+      // formData.append("clrNm", clrNm);
+      // formData.append("find_status", find_status);
       // formData.append("user_id", localStorage.getItem(token));
-      console.log(formData)
-      console.log(formData.append)
-      console.log(formData.get)
+      // console.log(formData)
+      // console.log(formData.append)
+      // console.log(formData.get)
       // FormData의 key 확인
-      for (let key of formData.keys()) {
-        console.log(key);
-      }
+      // for (let key of formData.keys()) {
+      //   console.log(key);
+      // }
 
       // FormData의 value 확인
       for (let value of formData.values()) {
         console.log(value);
       }
+      setLoading(true);
       const response = await axios.post("http://localhost:8000/post/", formData);
-      console.log("response >>", response.data)
-      window.alert("😎등록이 완료되었습니다😎");
+      // console.log("response >>", response.data);
+      setDollido_id(response.data.id);
+      setTitle(response.data.lstPrdtNm);
+      setContent(response.data.lstcontent);
+      setLstYmd(response.data.lstYmd);
+      setLstPlace(response.data.lstPlace);
+      setClrNm(response.data.clrNm);
+      setFind_status(response.data.find_status);
+      console.log(response.data.id)
+      // formData.set("lstPrdtNm", response.data.lstPrdtNm);
+      // formData.set("lstFilePathImg", response.data.lstFilePathImg);
+      // formData.set("lstcontent", response.data.lstcontent);
+      // formData.set("lstYmd", response.data.lstYmd);
+      // formData.set("lstPlace", response.data.lstPlace);
+      // formData.set("clrNm", response.data.clrNm);
+      // formData.set("find_status", response.data.find_status);
+      // await axios.put(`http://localhost:8000/post/${response.data.id}/`, formData)
+      window.alert("😎예측이 완료되었습니다😎");
       // navigate("/dollidolist");
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
+    } finally {
+      setLoading(false);
+    }
+  }, [canSubmit]);
+
+
+
+
+  const handleSubmit2 = () => {
+    console.log(clrNm)
+    const formData2 = new FormData();
+    formData2.append("lstPrdtNm", title);
+    formData2.append("lstFilePathImg", image.image_file);
+    formData2.append("lstcontent", content);
+    formData2.append("lstYmd", lstYmd);
+    formData2.append("lstPlace", lstPlace);
+    formData2.append("clrNm", clrNm.label);
+    formData2.append("find_status", find_status);
+    // FormData의 key 확인
+    for (let key of formData2.keys()) {
+      console.log(key);
     }
 
-  }, [canSubmit]);
+    // FormData의 value 확인
+    for (let value of formData2.values()) {
+      console.log(value);
+    }
+    console.log(formData2)
+    console.log(dollido_id)
+    axios.put(`http://localhost:8000/post/${dollido_id}/`, formData2)
+    window.alert("😎등록이 완료되었습니다😎");
+  }
+
 
 
   return (
@@ -90,29 +147,50 @@ const AddDollido = () => {
       <Container fixed>
         <Box
           sx={{
-            marginTop: 30, marginLeft: 30
+            marginTop: 30,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
+          {loading &&
+            <Box sx={{ display: 'flex' }}>
+              <CircularProgress />
+            </Box>
+}
           <div className="addBoard-wrapper">
             <div className="addBoard-header">
               게시물 등록하기 🖊️
             </div>
             <div className="submitButton">
               {canSubmit() ? (
-                <Button
-                  onClick={handleSubmit}
-                  className="success-button"
-                  variant="outlined"
-                >
-                  등록하기😃
-                </Button>
+                <Grid container spacing={2}>
+                  <Grid item xs={8}>
+                    <Button
+                      onClick={handleSubmit}
+                      className="success-button"
+                      variant="outlined"
+                    >
+                      예측하기😃
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      onClick={handleSubmit2}
+                      className="upload-button"
+                      variant="outlined"
+                    >
+                      등록하기😃
+                    </Button>
+                  </Grid>
+                </Grid>
               ) : (
                 <Button
                   className="disable-button"
                   variant="outlined"
                   size="large"
                 >
-                  사진과 내용을 모두 입력하세요😭
+                  사진을 넣어주세요😭
                 </Button>
               )}
             </div>
@@ -126,7 +204,7 @@ const AddDollido = () => {
                   style={{ display: "none" }}
                 />
                 <div>
-                  <img src={image.preview_URL} Width="800px" />
+                  <img src={image.preview_URL} width="400px" />
                   {/* <img src={image.image_file.name} /> */}
                   {/* <img src="logo192.png" /> */}
                 </div>
@@ -159,13 +237,13 @@ const AddDollido = () => {
                     value={content}
                   />
                   <input
-                      onChange={(e) => {
-                        setLstYmd(e.target.value);
-                      }}
-                      className="text"
-                      placeholder="습득일자"
-                      value={lstYmd}
-                    />
+                    onChange={(e) => {
+                      setLstYmd(e.target.value);
+                    }}
+                    className="text"
+                    placeholder="습득일자"
+                    value={lstYmd}
+                  />
                   {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                       label="Date"
@@ -186,13 +264,25 @@ const AddDollido = () => {
                     placeholder="습득장소"
                     value={lstPlace}
                   />
-                  <input
+                  {/* <input
                     onChange={(e) => {
                       setClrNm(e.target.value);
                     }}
                     className="text"
                     placeholder="색깔"
                     value={clrNm}
+                  /> */}
+                  <Autocomplete
+                    onChange={(event, newValue) => {
+                      setClrNm(newValue);
+                    }}
+                    value={clrNm}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={categorical}
+                    sx={{ width: 300 }}
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    renderInput={(params) => <TextField {...params} label="색깔" />}
                   />
                   <input
                     onChange={(e) => {
@@ -211,5 +301,30 @@ const AddDollido = () => {
     </React.Fragment >
   );
 }
+
+
+
+const categorical = [
+  { label: '베이지색', id: 1 },
+  { label: '검정색', id: 2 },
+  { label: '파랑색', id: 3 },
+  { label: '갈색', id: 4 },
+  { label: '금색', id: 5 },
+  { label: '초록색', id: 6 },
+  { label: '회색', id: 7 },
+  { label: '밤색', id: 8 },
+  { label: '네이비색', id: 9 },
+  { label: '올리브색', id: 10 },
+  { label: '오렌지색', id: 11 },
+  { label: '핑크색', id: 12 },
+  { label: '보라색', id: 13 },
+  { label: '빨간색', id: 14 },
+  { label: '은색', id: 15 },
+  { label: '하얀색', id: 16 },
+  { label: '노란색', id: 17 }
+]
+
+// const categorical = ['베이지색', '검정색', '파랑색', '갈색', '금색', '초록색', '회색', '밤색', '네이비색',
+//   '올리브색', '오렌지색', '핑크색', '보라색', '빨간색', '은색', '하얀색', '노란색']
 
 export default AddDollido;
