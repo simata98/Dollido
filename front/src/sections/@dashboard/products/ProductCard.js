@@ -25,10 +25,9 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  console.log(product)
-  const { category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
+  const { atcId, category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
   return (
-    <Card>
+    <Card id={atcId}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {/* {status && (
           <Label

@@ -1,3 +1,5 @@
+import HomeIcon from '@mui/icons-material/Home';
+
 // component
 import SvgColor from '../../../components/svg-color';
 
@@ -9,12 +11,12 @@ const navConfig = [
   {
     title: 'Home',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: icon('ic_home'),
   },
   {
     title: 'login',
     path: '/login',
-    icon: icon('ic_lock'),
+    icon: icon('ic_login'),
   },
   {
     title: 'user',
@@ -24,12 +26,12 @@ const navConfig = [
   {
     title: 'lost112',
     path: '/dashboard/lost112',
-    icon: icon('ic_cart'),
+    icon: icon('ic_police'),
   },
   {
     title: 'Dollido',
     path: '/dashboard/dollido',
-    icon: icon('ic_cart'),
+    icon: icon('ic_D'),
   },
   {
     title: 'blog',
