@@ -14,6 +14,7 @@ import { minWidth } from '@mui/system';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
 import cookies from 'react-cookies';
+import Cookies from 'js-cookie'
 
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
@@ -84,12 +85,8 @@ const AddDollido = () => {
       for (let value of formData.values()) {
         console.log(value);
       }
-      setLoading(true);
-<<<<<<< HEAD
-=======
-
->>>>>>> b7137077ff38ac01f5e2db4bce153f41ef6c6d22
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+      axios.defaults.withCredentials = true
       const response = await axios.post("http://localhost:8000/post/", formData);
       // console.log("response >>", response.data);
       setDollido_id(response.data.id);
