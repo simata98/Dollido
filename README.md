@@ -11,7 +11,7 @@
 
 ## 기존 사례 분석
 
-![lost112.png](/markdown/lost112.png)
+![](/markdown/lost112.png)
 
 ### 기존 서비스의 문제점
 
@@ -33,15 +33,15 @@
 
 ### 회원가입 및 로그인
 
-![Untitled](/markdown/Untitled.png)
+![](/markdown/Untitled.png)
 
 개인 정보 제공 동의 후 회원가입이 가능하며,  모든 동의를 받으면 회원가입 페이지로 진입할 수 있습니다.
 
-![Untitled](/markdown/signup.gif)
+![Signup](/markdown/signup.gif)
 
 회원가입 진행시 유효성 검사를 실시간으로 진행하며, 모든 유효성 검사를 충족시 회원가입을 진행합니다.
 
-![Untitled](/markdown/Untitled%201.png)
+![](/markdown/Untitled%201.png)
 
 데이터베이스에 저장되어 있는 계정이 유효한 계정일 때 메인페이지로 이동합니다.
 
@@ -51,7 +51,7 @@
 
 ### 경찰청 분실물 조지
 
-![Untitled](/markdown/Untitled%202.png)
+![](/markdown/Untitled%202.png)
 
 경찰청 분실물 API([https://www.data.go.kr/data/15000799/openapi.do?recommendDataYn=Y](https://www.data.go.kr/data/15000799/openapi.do?recommendDataYn=Y))를 사용하여 Dollido 서비스에 등록되지 않은 물건들의 정보도 확인할 수 있는 페이지입니다.
 
