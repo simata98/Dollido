@@ -173,7 +173,6 @@ export default function Signup() {
             <ToastContainer />
             <Box
                 sx={{
-                    marginTop: 20,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
