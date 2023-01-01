@@ -170,13 +170,7 @@ def PostList(request):
       new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
       
       # !작성자 관련
-<<<<<<< HEAD
-      print(request.COOKIES)
       access = request.COOKIES.get('access')
-      print(access)
-=======
-      access = request.COOKIES.get('access')
->>>>>>> d7bf01b9e6c7730309833cf7f9407f820e7c78e6
       payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
       pk = payload.get('user_id')
       user = get_object_or_404(User, pk=pk)
