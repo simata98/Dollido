@@ -65,6 +65,16 @@ export default function DashboardAppPage() {
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 2000 }}
+          // breakpoints = {
+          //   768= {
+          //     slidesPerView: {2},  //브라우저가 768보다 클 때
+          //     spaceBetween: {40},
+          //   },
+          //   1024= {
+          //     slidesPerView: {3},  //브라우저가 1024보다 클 때
+          //     spaceBetween: {50},
+          //   }
+          // }
         >
           <SwiperSlide>
           <Grid item xs={12} sm={6} md={13}>

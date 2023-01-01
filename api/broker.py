@@ -80,10 +80,12 @@ def count_rows():
     today = date.today()
     today = today.strftime('%Y-%m-%d')
 
-    Stat_info.objects.all().delete()
+    queryset = Stat_info.objects.all()
+    if len(queryset) > 0:
+        queryset.delete()
 
     # 열흘 전 ~ 오늘, 집계된 습득물 개수
-    for i in range(20):
+    for i in range(10):
         day = date.today() - timedelta(i)
         day = day.strftime('%Y-%m-%d')
         

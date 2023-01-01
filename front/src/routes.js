@@ -12,6 +12,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import Agreement from './pages/Agreement';
 import SignUp from './pages/SignupPage';
 import About from './pages/About';
+import Lost112Detail from './pages/Lost112DetailPage'
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -27,6 +28,8 @@ export default function Router() {
         { path: 'dollido', element: <DollidoPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'about', element: <About /> },
+        { path: 'lost112/*', element: <Lost112Detail/>,
+        },
       ],
     },
     {
