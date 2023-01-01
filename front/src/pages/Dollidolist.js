@@ -3,61 +3,93 @@ import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { useMediaQuery } from "react-responsive";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-
-
+import { Mobile, Pc } from '../pages/responsive';
 
 const columns = [
   {
     field: 'id',
     headerName: 'ID',
     width: 100,
+    flex: 1
   },
   {
     field: 'lstPrdtNm',
     headerName: 'Product Name',
     width: 200,
+    flex: 1
   },
   {
     field: 'lstFilePathImg',
     headerName: 'Image',
     width: 200,
     align: 'center',
+    flex: 1,
     // renderCell를 통해서 <img 이미지링크>를 받아준다
     renderCell: (params) =>
-      < img src={'images/' + params.value.split('/').pop()} height="100" alt='lstFilePathImg' />
+      < img src={'images/' + params.value.split('/').pop()} width="100" height="100" alt='lstFilePathImg' />
   },
   {
     field: 'lstcontent',
     headerName: 'Subject',
     width: 300,
+    flex: 1,
   },
   {
     field: 'lstPlace',
     headerName: 'Deposit Place',
     width: 200,
+    flex: 1,
   },
   {
     field: 'lstYmd',
     headerName: 'Date',
     width: 150,
+    flex: 1,
   },
   {
     field: 'create_date',
     headerName: 'create_date',
     width: 150,
+    flex: 1
   },
   {
     field: 'find_status',
     headerName: 'find_status',
     width: 150,
+    flex: 1
   },
   {
     field: 'writer',
     headerName: 'writer',
     width: 200,
+    flex: 1
+  },
+];
+
+const columns2 = [
+  {
+    field: 'lstPrdtNm',
+    headerName: 'Product Name',
+    width: 200,
+    flex: 1
+  },
+  {
+    field: 'lstFilePathImg',
+    headerName: 'Image',
+    width: 200,
+    align: 'center',
+    flex: 1,
+    // renderCell를 통해서 <img 이미지링크>를 받아준다
+    renderCell: (params) =>
+      < img src={'images/' + params.value.split('/').pop()} height="100" alt='lstFilePathImg' />
+  },
+  {
+    field: 'create_date',
+    headerName: 'create_date',
+    width: 150,
+    flex: 1
   },
 ];
 
@@ -135,20 +167,6 @@ function CustomNoRowsOverlay() {
   );
 }
 
-export const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({
-    query: "(max-width:768px)"
-  });
-  return <>{isMobile && children}</>
-}
-
-export const Pc = ({ children }) => {
-  const isPc = useMediaQuery({
-    query: "(min-width:769px)"
-  });
-  return <>{isPc && children}</>
-}
-
 export default function MyDataGrid({ children }) {
   // response.data의 값을 tasks 안에 넣을려고 useState를 설정해줌
   const [tasks, setTasks] = useState([]);
@@ -170,7 +188,8 @@ export default function MyDataGrid({ children }) {
   }, []);
 
   return (
-    <Box style={{ position: 'relative', marginTop: '7%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Box style={{ position: 'relative', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Pc>
       <DataGrid
         components={{
           NoRowsOverlay: CustomNoRowsOverlay,
@@ -181,12 +200,26 @@ export default function MyDataGrid({ children }) {
         getRowId={getRowId}
         onRowClick={handleRowClick}
       />
+      </Pc>
+      <Mobile>
+      <DataGrid
+        components={{
+          NoRowsOverlay: CustomNoRowsOverlay,
+        }}
+        getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
+        rows={tasks}
+        columns={columns2}
+        getRowId={getRowId}
+        onRowClick={handleRowClick}
+      />
+      </Mobile>
       <Box sx={{
-        position: 'fixed',  left: 20, bottom: 35, display: 'flex', flexDirection: 'column' }}>
-      <Fab href='/adddollido' size='medium' color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>
-    </Box>
+        position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column'
+      }}>
+        <Fab href='/adddollido' size='medium' color="primary" aria-label="add">
+          <AddIcon />
+        </Fab>
+      </Box>
     </Box >
 
 
