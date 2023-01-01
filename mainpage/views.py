@@ -20,7 +20,7 @@ def Mainpage_info(request):
     
     wallet_cnt = 0
     phone_cnt = 0
-    for i in range(19,0,-1):
+    for i in range(9,-1,-1):
         day = date.today() - timedelta(i)
         day = day.strftime('%Y-%m-%d')
         temp = Stat_info.objects.get(date=day)

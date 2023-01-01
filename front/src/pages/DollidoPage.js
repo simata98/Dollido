@@ -59,7 +59,7 @@ export default function ProductsPage() {
           </Stack>
         </Stack>
         {/* <ProductList products={tasks} /> */}
-        <ProductList products={tasks.slice(0,32)} />
+        <ProductList products={tasks.slice(0,10)} />
       </Container>
     </>
   );
