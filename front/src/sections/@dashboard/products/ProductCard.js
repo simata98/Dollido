@@ -30,6 +30,7 @@ export default function ShopProductCard({ product }) {
     <Card id={atcId}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {/* {status && (
+
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
@@ -45,12 +46,14 @@ export default function ShopProductCard({ product }) {
           </Label>
         )} */}
         <StyledProductImg alt={category} src={fdFilePathImg} />
+
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">
           <Typography variant="h6" noWrap>
             {category}
+
           </Typography>
         </Link>
 

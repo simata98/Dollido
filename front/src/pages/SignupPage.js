@@ -12,7 +12,6 @@ import Logo from '../components/logo';
 // ----------------------------------------------------------------------
 
 
-
 const StyledRoot = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex',
@@ -192,7 +191,6 @@ export default function Sinup() {
 
       window.location.href = "/";
   };
-
   return (
     <>
       <Helmet>
