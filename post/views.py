@@ -178,6 +178,7 @@ def PostList(request):
       user = get_object_or_404(User, pk=pk)
       serializer = UserSerializer(instance=user)
       new_serializer_data['writer'] = serializer.data['email']
+      new_serializer_data['writer_id'] = serializer.data['id']
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)

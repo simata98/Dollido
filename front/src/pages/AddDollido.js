@@ -14,7 +14,6 @@ import { minWidth } from '@mui/system';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
 import cookies from 'react-cookies';
-import Cookies from 'js-cookie'
 
 const AddDollido = () => {
   // const token = useSelector(state => state.Auth.token);
@@ -58,29 +57,13 @@ const AddDollido = () => {
       });
     };
   };
-  console.log(image)
-  console.log(image.image_file)
 
   const handleSubmit = useCallback(async () => {
     try {
-      console.log(image.image_file)
       const formData = new FormData();
-      // formData.append("lstPrdtNm", title);
       formData.append("lstFilePathImg", image.image_file);
-      // formData.append("lstcontent", content);
-      // formData.append("lstYmd", lstYmd);
-      // formData.append("lstPlace", lstPlace);
-      // formData.append("clrNm", clrNm);
-      // formData.append("find_status", find_status);
-      // formData.append("user_id", localStorage.getItem(token));
-      // console.log(formData)
-      // console.log(formData.append)
-      // console.log(formData.get)
-      // FormData의 key 확인
-      // for (let key of formData.keys()) {
-      //   console.log(key);
-      // }
 
+      setLoading(true)
       // FormData의 value 확인
       for (let value of formData.values()) {
         console.log(value);

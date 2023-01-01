@@ -13,7 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import { Mobile, Pc } from '../pages/responsive';
 import cookies from 'react-cookies';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Copyright(props) {
   return (
@@ -51,14 +52,23 @@ export default function SignIn() {
           cookies.save("refresh", res.data.token.access)
           localStorage.setItem("token", res.data.token.access)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-          window.location.href = "/mydataGrid";
+          toast.success("로그인에 성공하였습니다", {
+            autoClose: 2000,
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          setTimeout(() => window.location.href = "/mydataGrid", 2000);
         }
       })
       .catch((err) => {
-        alert("없는 계정이거나, 이메일 인증이 필요합니다.");
+        toast.error("로그인에 실패하였습니다", {
+          autoClose: 3000,
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        // alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
-        window.location.reload();
+        // setTimeout(() => console.log("after"), 3000);
+        // window.location.reload();
       });
   };
 
@@ -90,6 +100,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
+          <ToastContainer/>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               value={inputEmail}
@@ -148,6 +159,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
+          <ToastContainer/>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               value={inputEmail}
