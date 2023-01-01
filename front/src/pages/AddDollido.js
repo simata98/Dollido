@@ -130,12 +130,10 @@ const AddDollido = () => {
             <CircularProgress />
           </Box>
         }
-        <Box>
-          {/* <Grid container spacing={2} alt="카드 두개구분 화면 반으로 나누기">
-            <Grid item xs={6} alt="카드 1번 구역"> */}
+          <Grid container spacing={2} alt="카드 두개구분 화면 반으로 나누기">
+            {/* <Grid item xs={6} sm={6} md alt="카드 1번 구역"> */}
               <Box
                 sx={{
-                  marginTop: 30,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -194,7 +192,6 @@ const AddDollido = () => {
             {/* <Grid item xs={6}> */}
               <Box
                 sx={{
-                  marginTop: 30,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -296,8 +293,7 @@ const AddDollido = () => {
                 </Card>
               </Box>
             {/* </Grid> */}
-          {/* </Grid> */}
-        </Box>
+          </Grid>
       </Container>
     </React.Fragment >
   );
