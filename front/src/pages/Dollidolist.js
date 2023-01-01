@@ -222,6 +222,5 @@ export default function MyDataGrid({ children }) {
       </Box>
     </Box >
 
-
   );
 }
