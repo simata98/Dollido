@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -31,6 +33,18 @@ SwiperCore.use([Navigation, Pagination, Autoplay])
 
 export default function DashboardAppPage() {
   const theme = useTheme();
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(
+        'http://127.0.0.1:8000/'
+      );
+      setTasks(response.data);
+    };
+    getData();
+  }, []);
+
+  console.log(tasks.data)
 
   return (
     <>
@@ -46,11 +60,11 @@ export default function DashboardAppPage() {
         <Grid container spacing={3}>
         <Swiper 
           className="banner"
-          spaceBetween={1}
+          spaceBetween={10}
           slidesPerView={2}
           navigation
           pagination={{ clickable: true }}
-          Autoplay={{ delay: 500 }}
+          autoplay={{ delay: 2000 }}
         >
           <SwiperSlide>
           <Grid item xs={12} sm={6} md={13}>
