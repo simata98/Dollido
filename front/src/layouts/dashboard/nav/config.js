@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import HomeIcon from '@mui/icons-material/Home';
-
-=======
->>>>>>> lost/sbs_main_final
 // component
 import SvgColor from '../../../components/svg-color';
 
@@ -12,7 +7,6 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 
 const navConfig = [
   {
-<<<<<<< HEAD
     title: 'Home',
     path: '/dashboard/app',
     icon: icon('ic_home'),
@@ -21,11 +15,6 @@ const navConfig = [
     title: 'login',
     path: '/login',
     icon: icon('ic_login'),
-=======
-    title: 'dashboard',
-    path: '/dashboard/app',
-    icon: icon('ic_analytics'),
->>>>>>> lost/sbs_main_final
   },
   {
     title: 'user',
@@ -46,6 +35,11 @@ const navConfig = [
     title: 'blog',
     path: '/dashboard/blog',
     icon: icon('ic_blog'),
+  },
+  {
+    title: 'about',
+    path: '/about',
+    icon: icon('ic_disabled'),
   },
 ];
 
