@@ -135,7 +135,6 @@ export default function MyDataGrid() {
         window.location.href = '/board';
       };
       
-    // load tasks from the backend when the component is rendered
   useEffect(() => {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       axios
@@ -146,15 +145,13 @@ export default function MyDataGrid() {
           setTasks(response.data);
           });
       }, []);
-    //   console.log(data)
-    const [sortModel, setSortModel] = React.useState([
+    const [sortModel, setSortModel] = useState([
       {
         field: 'fdYmd',
         sort: 'desc',
       },
     ]);
     return (
-        // display 
         <div style={{ marginTop: '7%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <DataGrid
                 components={{

@@ -1,9 +1,6 @@
 import "./header.scss";
 import { Link } from "react-router-dom";
-// import {useDispatch, useSelector} from "react-redux";
-// import {jwtUtils} from "../utils/jwtUtils";
 import { useEffect, useState } from "react";
-// import {setToken} from "../redux/reducers/AuthReducer";
 import { Mobile, Pc } from '../pages/responsive';
 import Popup from "reactjs-popup";
 import React from "react";
@@ -13,6 +10,8 @@ import BurgerIcon from "./burgerIcon"
 import "./index.css"
 import cookies from 'react-cookies';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const styles = {
   fontFamily: "sans-serif",
@@ -26,8 +25,6 @@ const contentStyle = {
 };
 
 const Header = ({children, open, ...props}) => {
-  // const dispatch = useDispatch();
-  // const token = useSelector(state => state.Auth.token);
   const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
 
@@ -46,13 +43,19 @@ const Header = ({children, open, ...props}) => {
       cookies.remove('refresh');
       localStorage.clear();
       delete axios.defaults.headers.common['Authorization'];
-      alert("로그아웃 되었습니다😎");
-      window.location.href = "/Signin";
+      toast.success("로그아웃 되었습니다😎", {
+        position: "top-center",
+        autoClose: 2000,
+      })
+      setTimeout(() => window.location.href = "/Signin", 2000);
+      // alert("로그아웃 되었습니다😎");
+      // window.location.href = "/Signin";
     }
   }
   return (
     <>
     <Pc>
+    <ToastContainer/>
       <div className="header-wrapper">
         <div className="header-title">
           <Link to="/">
@@ -64,13 +67,10 @@ const Header = ({children, open, ...props}) => {
           </Link>
         </div>
         <div className="header-menu">
-          {/* <Link to="/mydatagrid">게시판</Link>
-          <Link to="/about">내 게시물</Link> */}
           {isAuth ? (
             <>
               <Link to="/mydatagrid">Lost112</Link>
               <Link to="/dollidolist">Dollido</Link>
-              <Link to="/about">내 게시물</Link>
               <Link to="#" onClick={onLogout}>로그아웃</Link>
             </>
           ) : (
@@ -87,6 +87,7 @@ const Header = ({children, open, ...props}) => {
       
       {/* https://codesandbox.io/s/k2x7l5jy27?file=/src/Menu.js */}
       <Mobile>
+        <ToastContainer/>
       {isAuth ? (
             <>
               <div style={styles}>

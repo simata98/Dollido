@@ -251,7 +251,6 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_PATH': '/',
     'AUTH_COOKIE_SAMESITE': "None", 
 }
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]
