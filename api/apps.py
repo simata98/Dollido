@@ -7,5 +7,5 @@ class ApiConfig(AppConfig):
         from post.models import ApiListId
         from .broker import sched_lost, get_lost112, count_rows
         # get_lost112()
-        count_rows()
+        # count_rows()
         sched_lost()
