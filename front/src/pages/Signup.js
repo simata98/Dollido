@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -7,6 +7,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export default function Signup() {
     let [inputName, setInputName] = useState("");
@@ -16,7 +20,7 @@ export default function Signup() {
     let [inputTel, setInputTel] = useState("");
     let [inputAddress, setInputAddress] = useState("");
 
-      //오류메시지 상태저장
+    //오류메시지 상태저장
     const [nameMessage, setNameMessage] = useState('')
     const [emailMessage, setEmailMessage] = useState('')
     const [passwordMessage, setPasswordMessage] = useState('')
@@ -24,28 +28,28 @@ export default function Signup() {
     const [telMessage, setTelMessage] = useState("")
     const [addressMessage, setAddressMessage] = useState('')
 
-      // 유효성 검사
+    // 유효성 검사
     const [isName, setIsName] = useState(true)
     const [isEmail, setIsEmail] = useState(true)
     const [isPassword, setIsPassword] = useState(true)
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(true)
     const [isTel, setIsTel] = useState(true)
     const [isAddress, setIsAddress] = useState(true)
-    
+
 
     const check = isName && isEmail && isPassword && isPasswordConfirm && isTel && isAddress
-                  && inputName && inputEmail && inputPw && inputPwValidate && inputTel && inputAddress;
+        && inputName && inputEmail && inputPw && inputPwValidate && inputTel && inputAddress;
 
     // name 입력값
     const handleInputName = (e) => {
         const nameRegex = /^[가-힣]{2,5}$/
         setInputName(e.target.value)
         if (!nameRegex.test(e.target.value)) {
-          setNameMessage('한글 2글자 이상 5글자 이하로 입력해주세요.')
-          setIsName(false)
+            setNameMessage('한글 2글자 이상 5글자 이하로 입력해주세요.')
+            setIsName(false)
         } else {
-          setNameMessage('올바른 이름 형식입니다 :)')
-          setIsName(true)
+            setNameMessage('올바른 이름 형식입니다 :)')
+            setIsName(true)
         }
     };
 
@@ -57,24 +61,24 @@ export default function Signup() {
         if (!emailRegex.test(e.target.value)) {
             setEmailMessage('이메일 형식이 틀렸어요! 다시 확인해주세요 ㅜ ㅜ')
             setIsEmail(false)
-          } else {
+        } else {
             setEmailMessage('올바른 이메일 형식이에요 : )')
             setIsEmail(true)
-          }
+        }
     };
 
     // pw 입력값
     const handleInputPw = (e) => {
         const passwordRegex =
-        /^(?=.*[a-zA-Z])(?=.*[~!@#$%^&*"'+=`|:;-_-])(?=.*[0-9]).{8,25}$/
+            /^(?=.*[a-zA-Z])(?=.*[~!@#$%^&*"'+=`|:;-_-])(?=.*[0-9]).{8,25}$/
         setInputPw(e.target.value);
         console.log(e.target.value);
         if (!passwordRegex.test(e.target.value)) {
-          setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!')
-          setIsPassword(false)
+            setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!')
+            setIsPassword(false)
         } else {
-          setPasswordMessage('안전한 비밀번호에요 : )')
-          setIsPassword(true)
+            setPasswordMessage('안전한 비밀번호에요 : )')
+            setIsPassword(true)
         }
     };
 
@@ -83,21 +87,21 @@ export default function Signup() {
         setInputPwValidate(e.target.value);
         console.log(e.target.value);
         if (inputPw === e.target.value) {
-          setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )')
-          setIsPasswordConfirm(true)
+            setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )')
+            setIsPasswordConfirm(true)
         } else {
-          setPasswordConfirmMessage('비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ')
-          setIsPasswordConfirm(false)
+            setPasswordConfirmMessage('비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ')
+            setIsPasswordConfirm(false)
         }
     };
 
     // tel 입력값
     const handleInputTel = (e) => {
         const telRegex =
-        /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
+            /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
         setInputTel(e.target.value);
         console.log(e.target.value);
-        if (!telRegex.test(e.target.value) && e.target.value.length===11) {
+        if (!telRegex.test(e.target.value) && e.target.value.length === 11) {
             setTelMessage('숫자를 정확히 입력했어요 : )')
             setIsTel(true)
         } else {
@@ -111,8 +115,8 @@ export default function Signup() {
         setInputAddress(e.target.value);
         console.log(e.target.value);
         if (e.target.value.length === 0) {
-          setAddressMessage('주소를 입력해주세요')
-          setIsAddress(false)
+            setAddressMessage('주소를 입력해주세요')
+            setIsAddress(false)
         } else {
             setAddressMessage('주소가 상세할수록 좋아요 : )')
             setIsAddress(true)
@@ -129,15 +133,20 @@ export default function Signup() {
             tel: inputTel,
             address: inputAddress,
         };
-        
+
         //register API 호출
         axios
             .post('http://localhost:8000/accounts/register/', user)
             .then((res) => {
                 if (res.data.token.access) {
                     console.log(res.data.token.access);
-                    alert("가입을 축하드립니다!");
-                    window.location.href = "/Signin";
+                    toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
+                        position: "top-center",
+                        autoClose: 2000,
+                    })
+                    setTimeout(() => window.location.href = "/Signin", 2000);
+                    // alert("가입을 축하드립니다!");
+                    // window.location.href = "/Signin";
                 } else {
                     setInputName("");
                     setInputEmail("");
@@ -151,12 +160,17 @@ export default function Signup() {
             .catch((err) => {
                 console.log(user);
                 console.log(err);
-                alert("이미 존재하는 아이디 입니다.");
+                toast.error("이미 존재하는 아이디 입니다." + "😭", {
+                    position: "top-center",
+                    autoClose: 2000,
+                })
+                // alert("이미 존재하는 아이디 입니다.");
             });
     };
 
     return (
         <Container component="main" maxWidth="xs">
+            <ToastContainer />
             <Box
                 sx={{
                     marginTop: 20,
@@ -168,7 +182,7 @@ export default function Signup() {
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">    
+                <Typography component="h1" variant="h5">
                     회원가입
                 </Typography>
                 <TextField

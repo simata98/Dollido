@@ -13,6 +13,9 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Stack from '@mui/material/Stack';
 
 const AddDollido = () => {
 
@@ -70,12 +73,20 @@ const AddDollido = () => {
       setClrNm(response.data.clrNm);
       // setFind_status(response.data.find_status);
       setWriter(response.data.writer_id);
-
-      window.alert("😎예측이 완료되었습니다😎");
+      toast.success("😎예측이 완료되었습니다😎", {
+        position: "top-center",
+        autoClose: 1000,
+      })
+      setTimeout(() => 1000);
+      // window.alert("😎예측이 완료되었습니다😎");
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
-      alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
+      toast.error("오류발생! 로그아웃 후 재로그인 해주세요!" + "😭", {
+        position: "top-center",
+        autoClose: 1000,
+      })
+      // alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
     } finally {
       setLoading(false);
     }
@@ -109,124 +120,42 @@ const AddDollido = () => {
   return (
     <React.Fragment>
       <Container fixed>
-        <Grid container spacing={2} alt="카드 두개구분 화면 반으로 나누기">
-          <Grid item xs={6} alt="카드 1번 구역">
-            <Box
-              sx={{
-                marginTop: 30,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                alt: "박스라는 카드 1번 틀 생성"
-              }}
-            >
-              <Card alt="카드 1번">
-                {loading &&
-                  <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-                    <CircularProgress />
-                    사진을 예측해서 자동으로 내용이 채워집니다.
-                  </Box>
-                }
-                <Box>
-                  <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => inputRef.click()}
-                      >
-                        😎사진 고르기😎
-                      </Button>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Button
-                        onClick={handleSubmit}
-                        className="success-button"
-                        variant="outlined"
-                      >
-                        예측하기😃
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
-                <CardMedia
-                  component="img"
-                  height='100%'
-                  image={image.preview_URL} // 사진이미지
-                />
-                {/* <StyledProductImg src={image.preview_URL} /> */}
-              </Card>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box
-              sx={{
-                marginTop: 30,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Card>
-                {loading &&
-                  <Box sx={{ display: 'flex' }}>
-                    <CircularProgress />
-                  </Box>
-                }
-                <div className="addBoard-wrapper">
-                  <div className="addBoard-header">
-                    게시물 등록하기 🖊️
-                  </div>
-                  <div className="submitButton">
-                    {canSubmit() ? (
-                      <Grid container spacing={2}>
-                        <Grid item xs={8}>
-                          {/* <Button
-                            onClick={handleSubmit}
-                            className="success-button"
-                            variant="outlined"
-                          >
-                            예측하기😃
-                          </Button> */}
-                        </Grid>
-                        <Grid item xs={4}>
-                          <Button
-                            onClick={handleSubmit2}
-                            className="upload-button"
-                            variant="outlined"
-                            href='dollidolist'
-                          >
-                            등록하기😃
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    ) : (
-                      <Button
-                        className="disable-button"
-                        variant="outlined"
-                        size="large"
-                      >
-                        사진을 넣어주세요😭
-                      </Button>
-                    )}
-                  </div>
-                  <div className="addBoard-body">
-                    <div className="uploader-wrapper">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={saveImage}
-                        ref={(refParam) => (inputRef = refParam)}
-                        style={{ display: "none" }}
-                      />
-                      <div>
-                        <img src={image.preview_URL} width="400px" />
-                      </div>
-                      <div className="upload-button">
+        <ToastContainer />
+        {loading &&
+          <Box sx={{ // 화면 스크롤해도 가운데 고정
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+          }}>
+            <CircularProgress />
+          </Box>
+        }
+        <Box>
+          {/* <Grid container spacing={2} alt="카드 두개구분 화면 반으로 나누기">
+            <Grid item xs={6} alt="카드 1번 구역"> */}
+              <Box
+                sx={{
+                  marginTop: 30,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  alt: "박스라는 카드 1번 틀 생성"
+                }}
+              >
+                <Card alt="카드 1번">
+                  {/* {loading &&
+                    <Box sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}>
+                      <CircularProgress />
+                      사진을 예측해서 자동으로 내용이 채워집니다.
+                    </Box>
+                  } */}
+                  <Box>
+                    <Grid container spacing={2}>
+                      <Grid item xs={8}>
                         <Button
                           variant="outlined"
                           color="primary"
@@ -234,81 +163,141 @@ const AddDollido = () => {
                         >
                           😎사진 고르기😎
                         </Button>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Button
+                          onClick={handleSubmit}
+                          className="success-button"
+                          variant="outlined"
+                        >
+                          예측하기😃
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={saveImage}
+                    ref={(refParam) => (inputRef = refParam)}
+                    style={{ display: "none" }}
+                  />
+                  <CardMedia
+                    component="img"
+                    height='500px'
+                    image={image.preview_URL} // 사진이미지
+                  />
+                  {/* <StyledProductImg src={image.preview_URL} /> */}
+                </Card>
+              </Box>
+            {/* </Grid> */}
+            {/* <Grid item xs={6}> */}
+              <Box
+                sx={{
+                  marginTop: 30,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Card>
+                  <Stack spacing={2}>
+                    <div className="addBoard-wrapper">
+                      <div className="addBoard-header">
+                        게시물 등록하기 🖊️
                       </div>
-                    </div>
-                    <div>
-                      <div className="textArea-wrapper">
-                        <input
-                          onChange={(e) => {
-                            setTitle(e.target.value);
-                          }}
-                          className="title"
-                          placeholder="물품명"
-                          value={title}
-                        />
-                        <input
-                          onChange={(e) => {
-                            setContent(e.target.value);
-                          }}
-                          className="text"
-                          placeholder="습득물 상세설명"
-                          value={content}
-                        />
-                        <input
-                          onChange={(e) => {
-                            setLstYmd(e.target.value);
-                          }}
-                          className="text"
-                          placeholder="습득일자"
-                          value={lstYmd}
-                        />
-                        <input
-                          onChange={(e) => {
-                            setLstPlace(e.target.value);
-                          }}
-                          disabled
-                          className="text"
-                          placeholder="습득장소"
-                          value={lstPlace}
-                        />
-                        <Autocomplete
-                          onChange={(event, newValue) => {
-                            setClrNm(newValue);
-                          }}
-                          value={clrNm}
-                          disablePortal
-                          id="combo-box-demo"
-                          options={categorical.map((option) => option.label)}
-                          sx={{ width: 300 }}
-                          isOptionEqualToValue={(option, value) => option.id === value.id}
-                          renderInput={(params) => <TextField {...params} label="색깔" />}
-                        />
-                        {/* <input
-                    onChange={(e) => {
-                      setFind_status(e.target.value);
-                    }}
-                    className="text"
-                    placeholder="현황"
-                    disabled
-                    value={find_status}
-                  /> */}
-                        {/* <input
-                    onChange={(e) => {
-                      setWriter(e.target.value);
-                    }}
-                    disabled
-                    className="text"
-                    placeholder="작성자"
-                    value={writer}
-                  /> */}
+                      <div className="submitButton">
+                        {canSubmit() ? (
+                          <Grid container spacing={2}>
+                            <Grid item xs={8}>
+                            </Grid>
+                            <Grid item xs={4}>
+                              <Button
+                                onClick={handleSubmit2}
+                                className="upload-button"
+                                variant="outlined"
+                                href='dollidolist'
+                              >
+                                등록하기😃
+                              </Button>
+                            </Grid>
+                          </Grid>
+                        ) : (
+                          <Button
+                            className="disable-button"
+                            variant="outlined"
+                            size="large"
+                          >
+                            사진을 넣어주세요😭
+                          </Button>
+                        )}
                       </div>
+                      <Grid container spacing={2}>
+                        <div className="addBoard-body">
+                          <div className="textArea-wrapper">
+                            <TextField
+                              onChange={(e) => {
+                                setTitle(e.target.value);
+                              }}
+                              fullWidth
+                              className="title"
+                              placeholder="물품명"
+                              value={title}
+                            />
+                            <Autocomplete
+                              onChange={(event, newValue) => {
+                                setClrNm(newValue);
+                              }}
+                              fullWidth
+                              value={clrNm}
+                              disablePortal
+                              id="combo-box-demo"
+                              options={categorical.map((option) => option.label)}
+                              sx={{ width: 300 }}
+                              isOptionEqualToValue={(option, value) => option.id === value.id}
+                              renderInput={(params) => <TextField {...params} label="색깔" />}
+                            />
+                            <TextField
+                              onChange={(e) => {
+                                setContent(e.target.value);
+                              }}
+                              fullWidth
+                              multiline
+                              rows={3}
+                              className="text"
+                              placeholder="습득물 상세설명"
+                              value={content}
+                            />
+                            <TextField
+                              onChange={(e) => {
+                                setLstYmd(e.target.value);
+                              }}
+                              fullWidth
+                              disabled
+                              className="text"
+                              placeholder="습득일자"
+                              value={lstYmd}
+                            />
+                            <TextField
+                              onChange={(e) => {
+                                setLstPlace(e.target.value);
+                              }}
+                              fullWidth
+                              disabled
+                              className="text"
+                              placeholder="습득장소"
+                              value={lstPlace}
+                            />
+                          </div>
+                        </div>
+                      </Grid>
                     </div>
-                  </div>
-                </div>
-              </Card>
-            </Box>
-          </Grid>
-        </Grid>
+                  </Stack>
+                </Card>
+              </Box>
+            {/* </Grid> */}
+          {/* </Grid> */}
+        </Box>
       </Container>
     </React.Fragment >
   );
