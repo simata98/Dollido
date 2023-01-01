@@ -69,9 +69,11 @@ const Header = ({ children, open, ...props }) => {
           <div className="header-menu">
             {isAuth ? (
               <>
+                <Link to="/mainpage">메인페이지</Link>
                 <Link to="/mydatagrid">Lost112</Link>
                 <Link to="/dollidolist">Dollido</Link>
                 <Link to="#" onClick={onLogout}>로그아웃</Link>
+                
               </>
             ) : (
               <>
