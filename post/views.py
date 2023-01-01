@@ -31,7 +31,6 @@ from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-@login_required(login_url='/accounts/auth/')
 def PostList(request):
   # if not request.session.get('writer'):
   #   return redirect('http://localhost:3000/Signin')
@@ -50,7 +49,6 @@ def PostList(request):
     
     if serializer.is_valid():
       serializer.save()
-      # user_id 
       
       # !색상 구분 파이프라인
       json_file = open("post/color_classification/model.json", "r")
@@ -171,24 +169,21 @@ def PostList(request):
       new_serializer_data['lstYmd'] = img_date
       new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
       
-<<<<<<< HEAD
-      # # !작성자 관련
-=======
       # !작성자 관련
->>>>>>> b7137077ff38ac01f5e2db4bce153f41ef6c6d22
-      # access = request.COOKIES.get('access')
-      # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-      # pk = payload.get('user_id')
-      # user = get_object_or_404(User, pk=pk)
-      # serializer = UserSerializer(instance=user)
-      # new_serializer_data['writer'] = serializer.data['email']
+      print(request.COOKIES)
+      access = request.COOKIES.get('access')
+      print(access)
+      payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+      pk = payload.get('user_id')
+      user = get_object_or_404(User, pk=pk)
+      serializer = UserSerializer(instance=user)
+      new_serializer_data['writer'] = serializer.data['email']
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-@login_required(login_url='/accounts/auth/')
 def PostDetail(request, pk):
   # pk에 해당하는 Post가 존재하는지 확인
   try:

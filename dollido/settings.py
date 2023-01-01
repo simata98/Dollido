@@ -241,4 +241,27 @@ SIMPLE_JWT = {
     # 이 시간이 지나면 다시 로그인 해야 함
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    
+    # custom
+    'AUTH_COOKIE': 'access',
+    'AUTH_COOKIE_REFRESH': 'refresh',
+    'AUTH_COOKIE_DOMAIN': None,
+    'AUTH_COOKIE_SECURE': True, 
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_PATH': '/',
+    'AUTH_COOKIE_SAMESITE': "None", 
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTP_ONLY = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000"
+]
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "None"
