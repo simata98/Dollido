@@ -10,6 +10,8 @@ import BurgerIcon from "./burgerIcon"
 import "./index.css"
 import cookies from 'react-cookies';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const styles = {
   fontFamily: "sans-serif",
@@ -41,13 +43,19 @@ const Header = ({children, open, ...props}) => {
       cookies.remove('refresh');
       localStorage.clear();
       delete axios.defaults.headers.common['Authorization'];
-      alert("로그아웃 되었습니다😎");
-      window.location.href = "/Signin";
+      toast.success("로그아웃 되었습니다😎", {
+        position: "top-center",
+        autoClose: 2000,
+      })
+      setTimeout(() => window.location.href = "/Signin", 2000);
+      // alert("로그아웃 되었습니다😎");
+      // window.location.href = "/Signin";
     }
   }
   return (
     <>
     <Pc>
+    <ToastContainer/>
       <div className="header-wrapper">
         <div className="header-title">
           <Link to="/">
@@ -79,6 +87,7 @@ const Header = ({children, open, ...props}) => {
       
       {/* https://codesandbox.io/s/k2x7l5jy27?file=/src/Menu.js */}
       <Mobile>
+        <ToastContainer/>
       {isAuth ? (
             <>
               <div style={styles}>
