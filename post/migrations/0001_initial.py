@@ -61,5 +61,8 @@ class Migration(migrations.Migration):
                 ('dollido_phone_cnt', models.IntegerField()),
                 ('total_cnt', models.IntegerField()),
             ],
+            options={
+                'verbose_name_plural': '돌리도 게시판',
+            },
         ),
     ]

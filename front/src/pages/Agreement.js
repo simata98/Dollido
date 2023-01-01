@@ -112,6 +112,7 @@ export default function LoginPage() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+
                 }}
               >
                 <Typography variant="h2" gutterBottom>

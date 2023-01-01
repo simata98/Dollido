@@ -6,12 +6,12 @@ import SimpleLayout from './layouts/simple';
 import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
-import Page404 from './pages/Page404';
 import Lost112Page from './pages/Lost112Page';
 import DollidoPage from './pages/DollidoPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import Agreement from './pages/Agreement';
 import SignUp from './pages/SignupPage';
+import About from './pages/About';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -26,6 +26,7 @@ export default function Router() {
         { path: 'lost112', element: <Lost112Page /> },
         { path: 'dollido', element: <DollidoPage /> },
         { path: 'blog', element: <BlogPage /> },
+        { path: 'about', element: <About /> },
       ],
     },
     {
@@ -44,7 +45,7 @@ export default function Router() {
       element: <SimpleLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: '404', element: <Page404 /> },
+        { path: 'about', element: <About /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
