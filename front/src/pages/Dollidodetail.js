@@ -13,12 +13,17 @@ import Fab from '@mui/material/Fab';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
+// import jwt from 'jsonwebtoken';
+import jwt_decode from "jwt-decode";
 
 export default function Dollidodetail() {
   const [tasks, setTasks] = useState([]);
   const [status, setStatus] = useState(false);
+  const [idstatus, setIdstatus] = useState(false);
   var dollidoimage = tasks.lstFilePathImg
   var dollidoimage2 = 'images/' + (dollidoimage || '').split("/").pop();
+
+
 
   useEffect(() => {
     const code2 = localStorage.getItem("code2");
@@ -30,6 +35,12 @@ export default function Dollidodetail() {
         setTasks(response.data);
         setStatus(response.data.find_status)
         delete axios.defaults.headers.common['Authorization'];
+        var writer = localStorage.getItem("writer");
+        const token = localStorage.getItem("token") // jwt token";
+        var decoded = jwt_decode(token);
+        if (parseInt(writer) === decoded.user_id) {
+          setIdstatus(true)
+        }
       });
   }, []);
 
@@ -64,6 +75,8 @@ export default function Dollidodetail() {
   };
 
 
+
+
   return (
 
     <Box
@@ -75,7 +88,7 @@ export default function Dollidodetail() {
     >
       <Card
         sx={{
-          maxWidth: '100%',
+          maxWidth: '500px',
         }}
       >
         <CardHeader
@@ -103,18 +116,19 @@ export default function Dollidodetail() {
             <br />
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={10}>
+            <Grid item xs={8}>
               <Button target='_blank' variant="contained" href={tasks.lstPlace}>
                 위치 보기
               </Button>
             </Grid>
-            <Grid item xs={1}>
-              <Button href='/editdollido' variant="contained">
+            <Grid item xs={2}>
+              <Button disabled={!idstatus} href='/editdollido' variant="contained">
                 수정
               </Button>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <Button
+                disabled={!idstatus}
                 onClick={handleSubmit2}
                 variant="contained"
                 color='error'

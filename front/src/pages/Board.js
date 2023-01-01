@@ -39,7 +39,7 @@ export default function MyDataGrid() {
     >
       <Card
         sx={{
-          maxWidth: '100%',
+          maxWidth: '500px',
         }}
       >
         <CardHeader
