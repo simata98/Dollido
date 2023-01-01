@@ -172,12 +172,13 @@ def PostList(request):
       new_serializer_data['lstcontent'] = product + '을 습득하여 해당 위치에 보관중입니다. 찾으시려면 찾기 버튼을 눌러주세요.'
       
       # !작성자 관련
-      # access = request.COOKIES.get('access')
-      # payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
-      # pk = payload.get('user_id')
-      # user = get_object_or_404(User, pk=pk)
-      # serializer = UserSerializer(instance=user)
-      # new_serializer_data['writer'] = serializer.data['email']
+      access = request.COOKIES.get('access')
+      payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+      pk = payload.get('user_id')
+      user = get_object_or_404(User, pk=pk)
+      serializer = UserSerializer(instance=user)
+      new_serializer_data['writer'] = serializer.data['email']
+      new_serializer_data['writer_id'] = serializer.data['id']
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)

@@ -4,8 +4,6 @@ import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { useMediaQuery } from "react-responsive";
-// import imgA from 'C:/bigproject/dollido/media/lost_image/halloween-g8058b6ce3_640.png';
-// DataGrid의 컬럼을 하나하나씩 만들어준다
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -26,13 +24,10 @@ const columns = [
     field: 'lstFilePathImg',
     headerName: 'Image',
     width: 200,
-    // headerAlign: 'center',
     align: 'center',
     // renderCell를 통해서 <img 이미지링크>를 받아준다
     renderCell: (params) =>
       < img src={'images/' + params.value.split('/').pop()} height="100" alt='lstFilePathImg' />
-    // <img src={params.value.split("/").pop()} height="100" alt = 'lstFilePathImg'/>
-    // renderCell: (params) => <img src='/halloween-g8058b6ce3_640.png' height="100" alt = 'lstFilePathImg'/>
   },
   {
     field: 'lstcontent',
@@ -49,11 +44,6 @@ const columns = [
     headerName: 'Date',
     width: 150,
   },
-  // {
-  //     field: 'category',
-  //     headerName: 'Category',
-  //     width: 200,
-  // },
   {
     field: 'create_date',
     headerName: 'create_date',
@@ -168,7 +158,6 @@ export default function MyDataGrid({ children }) {
     window.location.href = '/dollidodetail';
   };
 
-  // load tasks from the backend when the component is rendered
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
@@ -179,10 +168,8 @@ export default function MyDataGrid({ children }) {
         setTasks(response.data);
       });
   }, []);
-  //   console.log(data)
+
   return (
-    // display 
-    // <Box>
     <Box style={{ position: 'relative', marginTop: '7%', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
       <DataGrid
         components={{

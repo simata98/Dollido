@@ -13,13 +13,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import { Mobile, Pc } from '../pages/responsive';
 import cookies from 'react-cookies';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://aivle.kt.co.kr/">
         DOLLIDO
       </Link>{' '}
       {new Date().getFullYear()}
@@ -51,14 +52,22 @@ export default function SignIn() {
           cookies.save("refresh", res.data.token.access)
           localStorage.setItem("token", res.data.token.access)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-          window.location.href = "/mydataGrid";
+          toast.success("Success!" + "😍", {
+            position: "top-center",
+            autoClose: 1000,
+          })
+          setTimeout(() => window.location.href = "/mydataGrid", 1000);
         }
       })
       .catch((err) => {
-        alert("없는 계정이거나, 이메일 인증이 필요합니다.");
+        toast.error("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭", {
+          position: "top-center",
+          autoClose:3000,
+        })
+        // alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
-        window.location.reload();
+        // window.location.reload();
       });
   };
 
@@ -90,6 +99,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
+          <ToastContainer/>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               value={inputEmail}
@@ -148,6 +158,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
+          <ToastContainer/>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               value={inputEmail}

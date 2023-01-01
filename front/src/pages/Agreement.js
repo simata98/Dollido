@@ -53,7 +53,6 @@ export default function Agreement() {
                 <CssBaseline />
                 <Box
                 sx={{
-                    marginTop: 30,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

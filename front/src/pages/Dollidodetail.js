@@ -19,7 +19,7 @@ export default function Dollidodetail() {
   const [status, setStatus] = useState(false);
   var dollidoimage = tasks.lstFilePathImg
   var dollidoimage2 = 'images/' + (dollidoimage || '').split("/").pop();
-  //   var workList= (data||'').split('.');
+
   useEffect(() => {
     const code2 = localStorage.getItem("code2");
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
@@ -32,25 +32,38 @@ export default function Dollidodetail() {
         delete axios.defaults.headers.common['Authorization'];
       });
   }, []);
-  // console.log(tasks.id)
-  //   const dollidoimage = tasks.lstFilePathImg.split("/").pop();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = {
       find_status: true,
     };
-    // console.log(tasks.id)
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(`http://localhost:8000/post/${tasks.id}/`, user)
       .then(response => {
-        console.log(response.data);
         setStatus(response.find_status)
-        console.log(response.find_status);
         // form 초기화
         alert('회수요청');
         window.location.reload();
       });
   };
+
+  const handleSubmit2 = (event) => {
+    event.preventDefault();
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+    axios
+      .delete(`http://localhost:8000/post/${tasks.id}/`)
+      .then(response => {
+        // form 초기화
+        alert('삭제완료')
+        window.location.href = "/dollidolist";
+      }
+      );
+  };
+
+
   return (
 
     <Box
@@ -82,7 +95,6 @@ export default function Dollidodetail() {
         <CardMedia
           component="img"
           height='100%'
-          // image="/static/images/cards/paella.jpg"
           image={dollidoimage2} // 사진이미지
           alt="Paella dish"
         />
@@ -103,7 +115,12 @@ export default function Dollidodetail() {
               </Button>
             </Grid>
             <Grid item xs={1}>
-              <Button variant="contained">
+              <Button
+                onClick={handleSubmit2}
+                variant="contained"
+                color='error'
+                href='/dollidolist'
+              >
                 삭제
               </Button>
             </Grid>
