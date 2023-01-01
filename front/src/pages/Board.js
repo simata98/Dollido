@@ -32,7 +32,6 @@ export default function MyDataGrid() {
   return (
     <Box
       sx={{
-        marginTop: 15,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

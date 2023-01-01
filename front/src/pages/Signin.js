@@ -87,7 +87,6 @@ export default function SignIn() {
         <CssBaseline />
         <Pc><Box
           sx={{
-            marginTop: 30,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -146,7 +145,6 @@ export default function SignIn() {
 
         <Mobile><Box
           sx={{
-            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
