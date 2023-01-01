@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'mainpage.apps.MainpageConfig',
     'corsheaders',
-
     'api',
 ]
 
