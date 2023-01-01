@@ -37,7 +37,7 @@
 
 개인 정보 제공 동의 후 회원가입이 가능하며,  모든 동의를 받으면 회원가입 페이지로 진입할 수 있습니다.
 
-![Untitled](/markdown/signup.gif)
+<center>![Untitled](/markdown/signup.gif)
 
 회원가입 진행시 유효성 검사를 실시간으로 진행하며, 모든 유효성 검사를 충족시 회원가입을 진행합니다.
 
