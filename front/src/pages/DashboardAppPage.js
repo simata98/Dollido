@@ -44,7 +44,7 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-  console.log(tasks.data)
+  console.log(tasks)
 
   return (
     <>
