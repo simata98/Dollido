@@ -24,7 +24,7 @@ const contentStyle = {
   border: "none"
 };
 
-const Header = ({children, open, ...props}) => {
+const Header = ({ children, open, ...props }) => {
   const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
 
@@ -54,70 +54,70 @@ const Header = ({children, open, ...props}) => {
   }
   return (
     <>
-    <Pc>
-    <ToastContainer/>
-      <div className="header-wrapper">
-        <div className="header-title">
-          <Link to="/">
-            <img
-              src = {`/title.png`}
-              width = '50%'
-              alt = 'title'
-            />
-          </Link>
-        </div>
-        <div className="header-menu">
-          {isAuth ? (
-            <>
-              <Link to="/mydatagrid">Lost112</Link>
-              <Link to="/dollidolist">Dollido</Link>
-              <Link to="#" onClick={onLogout}>로그아웃</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/signin">로그인</Link>
-              <Link to="/agreement">회원가입</Link>
-            </>
-          )}
+      <Pc>
+        <ToastContainer />
+        <div className="header-wrapper">
+          <div className="header-title">
+            <Link to="/">
+              <img
+                src={`/title.png`}
+                width='50%'
+                alt='title'
+              />
+            </Link>
+          </div>
+          <div className="header-menu">
+            {isAuth ? (
+              <>
+                <Link to="/mydatagrid">Lost112</Link>
+                <Link to="/dollidolist">Dollido</Link>
+                <Link to="#" onClick={onLogout}>로그아웃</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/signin">로그인</Link>
+                <Link to="/agreement">회원가입</Link>
+              </>
+            )}
 
-          <Link to="/about">about</Link>
-        </div>
+            <Link to="/about">about</Link>
+          </div>
         </div>
       </Pc>
-      
+
       {/* https://codesandbox.io/s/k2x7l5jy27?file=/src/Menu.js */}
       <Mobile>
-        <ToastContainer/>
-      {isAuth ? (
-            <>
-              <div style={styles}>
-                <Popup
-                  modal
-                  overlayStyle={{ background: "rgba(255,255,255,0.98)" }}
-                  contentStyle={contentStyle}
-                  closeOnDocumentClick={false}
-                  trigger={open => <BurgerIcon open={open} />}
-                >
-                  {close => <AuthMenubar close={close} />}
+        <ToastContainer />
+        {isAuth ? (
+          <>
+            <div style={styles}>
+              <Popup
+                modal
+                overlayStyle={{ background: "rgba(255,255,255,0.98)" }}
+                contentStyle={contentStyle}
+                closeOnDocumentClick={false}
+                trigger={open => <BurgerIcon open={open} />}
+              >
+                {close => <AuthMenubar close={close} />}
               </Popup>
             </div>
-            
-            </>
-          ) : (
-            <>
-              <div style={styles}>
-                <Popup
-                  modal
-                  overlayStyle={{ background: "rgba(255,255,255,0.98)" }}
-                  contentStyle={contentStyle}
-                  closeOnDocumentClick={false}
-                  trigger={open => <BurgerIcon open={open} />}
-                >
-                  {close => <NoAuthMenubar close={close} />}
-                </Popup>
-              </div>
-            </>
-          )}
+
+          </>
+        ) : (
+          <>
+            <div style={styles}>
+              <Popup
+                modal
+                overlayStyle={{ background: "rgba(255,255,255,0.98)" }}
+                contentStyle={contentStyle}
+                closeOnDocumentClick={false}
+                trigger={open => <BurgerIcon open={open} />}
+              >
+                {close => <NoAuthMenubar close={close} />}
+              </Popup>
+            </div>
+          </>
+        )}
 
       </Mobile>
     </>

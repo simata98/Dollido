@@ -5,7 +5,7 @@ import { Mobile, Pc } from './responsive';
 export default function About({children}) {
     return (
     <>
-        <Pc><Box sx={{marginTop: 10,}}>
+        <Pc><Box>
             <html lang="en">
                 <head>
                     <meta charset="utf-8" />
@@ -159,7 +159,7 @@ export default function About({children}) {
             </html>
             </Box></Pc>
 
-            <Mobile><Box sx={{marginTop: -5,}}>
+            <Mobile><Box>
             <html lang="en">
                 <head>
                     <meta charset="utf-8" />
