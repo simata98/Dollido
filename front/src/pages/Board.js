@@ -21,12 +21,12 @@ export default function MyDataGrid() {
       .get(`http://127.0.0.1:8000/lost112/${code}`)
       .then(response => {
         setTasks(response.data);
-        console.log(code)
+        // console.log(code)
       });
   }, []);
-  console.log(tasks)
-  console.log(tasks.atcId)
-  console.log(tasks.fdPrdtNm)
+  // console.log(tasks)
+  // console.log(tasks.atcId)
+  // console.log(tasks.fdPrdtNm)
   console.log(tasks.fdFilePathImg)
 
   return (
