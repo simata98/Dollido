@@ -173,6 +173,7 @@ export default function MyDataGrid({ children }) {
 
   const handleRowClick = (params) => {
     localStorage.setItem("code2", params.row.id);
+    localStorage.setItem("writer", params.row.writer);
     window.location.href = '/dollidodetail';
   };
 
