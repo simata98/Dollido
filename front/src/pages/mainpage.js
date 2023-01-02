@@ -7,6 +7,10 @@ import ReactCardSlider from 'react-card-slider-component';
 
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { Stack } from '@mui/system';
+import Box from '@mui/material/Box';
+import CountUp from 'react-countup';
+import { blueGrey, red } from '@mui/material/colors';
+
 
 export default function App() {
 
@@ -29,8 +33,9 @@ export default function App() {
     }, []);
 
     console.log(tasks)
+    console.log(tasks.length)
 
-   
+
 
     // ------------ map 함수 어떻게 쓸 지 내일 물어보기 ---------------------------
 
@@ -226,20 +231,81 @@ export default function App() {
 
     return (
         <Stack>
-            <div className='body'>
+            <Box
+                sx={{
+
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'left',
+                }}
+            >
+
+                <div className='body'>
+                    <h2 className='title'>돌리도 최근 게시물</h2>
+                    <br></br>
+                    <ReactCardSlider slides={slides} />
+
+                </div>
+            </Box>
+            {/* <div className='body'>
                 <h2 className='title'>돌리도 최근 게시물</h2>
                 <br></br>
                 <ReactCardSlider slides={slides} />
 
-            </div>
-            <h2 className="title2">수거함 위치</h2>
-            <Map className="map"
-                center={{lat: 36.3452698, lng: 127.3842685}}
-                style={{width: "40%", height: "360px"}}>
-                    <MapMarker position={{lat: 36.3452698, lng: 127.3842685}}>
-                        <div style={{color: "#000"}}>kt 탄방타워</div>
+            </div> */}
+            <Box 
+                sx={{
+
+
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'left',
+                   
+                }}
+            >
+                <div>
+                    <h2 className="title2">수거함 위치</h2>
+                    <Map className="map"
+                        center={{ lat: 36.3452698, lng: 127.3842685 }}
+                        style={{ width: "40%", height: "360px" }}>
+                        <MapMarker position={{ lat: 36.3452698, lng: 127.3842685 }}>
+                            <div style={{ color: "#000" }}>kt 탄방타워</div>
                         </MapMarker>
+                    </Map>
+                </div>
+
+            </Box>
+
+            {/* <div>
+                <h2 className="title2">수거함 위치</h2>
+                <Map className="map"
+                    center={{ lat: 36.3452698, lng: 127.3842685 }}
+                    style={{ width: "40%", height: "360px" }}>
+                    <MapMarker position={{ lat: 36.3452698, lng: 127.3842685 }}>
+                        <div style={{ color: "#000" }}>kt 탄방타워</div>
+                    </MapMarker>
                 </Map>
+            </div> */}
+            <Box
+                sx={{
+
+
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'left',
+                   
+                }}
+            >
+                <div className="count">
+                    <h2>오늘의 돌리도 건수는?</h2>
+                    <h1 className="count_content">
+                        <CountUp
+                            end={tasks.length}
+                            duration={3}>
+                        </CountUp>
+                    </h1>
+                </div>
+            </Box>
         </Stack>
 
     );
