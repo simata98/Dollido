@@ -1,6 +1,6 @@
 ***
 # Dollido KT AIVLE Big Project
-<center><img width="400" alt="image" src="/markdown/logo.png"></center>  
+<p align="center"><img width="400" alt="image" src="/markdown/logo.png"></center></p>  
 </br>
 
 [![license](https://img.shields.io/github/license/simata98/Dollido?color=green)](LICENSE) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme) [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg)](#Contributors)
@@ -83,19 +83,19 @@
 ## 프론트엔드(FrontEnd)
 
 ### 회원가입 및 로그인
-<center><img width="500" alt="image" src="/markdown/Untitled.png"></center>  
+<p align="center"><img width="500" alt="image" src="/markdown/Untitled.png"></center></p>  
 </br>
 
 개인 정보 제공 동의 후 회원가입이 가능하며,  모든 동의를 받으면 회원가입 페이지로 진입할 수 있습니다.
-</br>
+</br></br>
 
-<center><img width="500" alt="image" src="/markdown/signup.png"></center>  
+<p align="center"><img width="500" alt="image" src="/markdown/signup.png">  
 </br>
 
 회원가입 진행시 유효성 검사를 실시간으로 진행하며, 모든 유효성 검사를 충족시 회원가입을 진행합니다.
 </br>
 
-<center><img width="500" alt="image" src="/markdown/Untitled%201.png"></center> 
+<p align="center"><img width="500" alt="image" src="/markdown/Untitled%201.png"></center></p> 
 </br>
 
 데이터베이스에 저장되어 있는 계정이 유효한 계정일 때 메인페이지로 이동합니다.
@@ -110,7 +110,7 @@
 <p align="center">
 <img width="300" height="200" alt="image" src="/markdown/Untitled%202.png">
 <img width="300" height="200" alt="image" src="/markdown/detail.png">
-</p>
+
 </br>
 
 경찰청 분실물 API를 사용하여 Dollido 서비스에 등록되지 않은 물건들의 정보도 확인할 수 있는 페이지입니다.
@@ -122,14 +122,14 @@
 <p align="center">
 <img width="300" height="200" alt="image" src="/markdown/dollido_list.png">
 <img width="300" height="200" alt="image" src="/markdown/dollido_detail.png">
-</p>
+
 </br>
 
 돌리도 서비스에 자동 분류되어 업로드된 분실물들의 목록을 볼 수 있습니다. 해당 게시물을 클릭하면 상세 정보를 볼 수 있으며, 작성자의 경우 수정 및 삭제가 가능합니다. 왼쪽 아래 회수 버튼을 누르면 찾기가 완료됩니다.
 사진으로부터 가져온 위치 메타데이터를 기반으로 구글 지도와 연동되어 클릭시 분실품을 찾으러 갈 수 있도록 구글 지도에 맵핀을 자동으로 찍어줍니다.
 </br>
 
-<center><img width="500" alt="image" src="/markdown/map.png"></center>  
+<p align="center"><img width="500" alt="image" src="/markdown/map.png"></center></p>  
 </br>
 경로 버튼을 입력하면 현재위치에서 분실물이 있는 목적지까지 찾아갈 수 있고 위치를 공유할 수도 있습니다.
 </br></br>
@@ -139,7 +139,7 @@
 <img width="180" height="300" alt="image" src="/markdown/mobile_header.png">&nbsp;&nbsp;&nbsp;
 <img width="180" height="300" alt="image" src="/markdown/mobile_list.png">&nbsp;&nbsp;&nbsp;
 <img width="180" height="300" alt="image" src="/markdown/mobile_detail.png">
-</p>
+
 모바일 환경에서도 돌리도 서비스를 이용할 수 있도록 반응형 웹을 구현하였습니다.
 </br></br></br>
 
@@ -154,13 +154,13 @@ apscheduler 라이브러리를 사용하여 일정 시간 마다 경찰청에 �
 <p align="center">
 <img width="350" height="200" alt="image" src="/markdown/token_error.png">&nbsp;&nbsp;&nbsp;&nbsp;
 <img width="200" height="100" alt="image" src="/markdown/JWT.png">
-</p>
+
 
 [accounts](accounts/ "계정")
 JWT Token을 사용하여 로그인 시 access와 refresh토큰을 발급받습니다. 발급된 토큰은 5분간 유효하며, 시간이 지나면 만료되어 돌리도 서비스를 이용하기 위해서 다시 로그인해야합니다. 이 기능은 오프라인 보관함 서비스를 이용하는 사용자의 계정의 보안을 위함입니다.
 </br>
 
-<center><img width="500" alt="image" src="/markdown/JWT_decode.png"></center>  
+<p align="center"><img width="500" alt="image" src="/markdown/JWT_decode.png"></center></p>  
 </br>
 JWT 토큰을 디코딩(Decoding)하면 만료시간 및 사용자 pk값 등 필요한 정보만 있고, 민감한 정보는 들어있지않아 토큰이 탈취되어도 보안문제가 발생하지 않게하였습니다. 또한 이 pk값을 통해 프론트에서 자격증명을 할 때 사용되었습니다.
 </br></br>
@@ -180,14 +180,14 @@ JSON형태로 응답하기 위해 Serializer, 즉 직렬화를 하여 시리얼 
 [AI Pipeline](post/views.py "ai")
 
 물건의 종류 및 색상을 객체탐지(Object Detection)와 분류(Classification)하기 위해 총 2개의 모델을 사용하였습니다.
-<center><img width="500" alt="image" src="/markdown/roboflow.png"></center> 
+<p align="center"><img width="500" alt="image" src="/markdown/roboflow.png"></center></p> 
 </br>
 
 [roboflow](https://app.roboflow.com/ "roboflow") 에서 수집한 지갑, 스마트폰 데이터셋의 Annotation을 생성하고, 증강하여 총 1800개의 train set, 163개의 test set, 80개의 validation set을 사용했습니다.
 물건의 종류와 물건의 브랜드를 객체 인식하여 결과를 리턴합니다.
 </br>
 
-<center><img width="400" alt="image" src="/markdown/EfficientNet.png"></center>  
+<p align="center"><img width="400" alt="image" src="/markdown/EfficientNet.png"></center></p>  
 색상 분류를 위해서 처음에는 CNN모델을 사용하여 분류하였습니다. 하지만 모델의 성능이 좋지않아 Parameter의 개수는 적으면서 최대의 성능을 이끌어내기 위해 EfficientNetB3 모델을 사용하였습니다.
 </br>
 
@@ -218,5 +218,5 @@ def metadata(img_path=IMAGE_PATH):
 
   return "https://www.google.com/maps/place/"+str(Lat)+"+"+str(Lon), taglabel['DateTimeOriginal']
 ~~~
-<center><img width="600" alt="image" src="/markdown/GPS.png"></center> 
+<p align="center"><img width="600" alt="image" src="/markdown/GPS.png"></center></p> 
 PIL의 ExifTags 라이브러리를 사용하였습니다. 내부 연산으로 경도와 위도를 뽑아낸 후 구글 맵스 URL과 결합하여 링크를 생성하여 응답하도록 하였습니다.
