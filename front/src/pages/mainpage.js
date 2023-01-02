@@ -5,6 +5,8 @@ import './css/App.css';
 import ReactCardSlider from 'react-card-slider-component';
 // a slide object contains the image link, title and function/click event for when a user clicks on a card
 
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Stack } from '@mui/system';
 
 export default function App() {
 
@@ -28,11 +30,7 @@ export default function App() {
 
     console.log(tasks)
 
-    const sliderClick = (slider) => {
-        alert("상세페이지로 이동하시겠습니까?")
-        localStorage.setItem("code2", tasks[0].id);
-        window.location.href = '/dollidodetail';
-    }
+   
 
     // ------------ map 함수 어떻게 쓸 지 내일 물어보기 ---------------------------
 
@@ -48,66 +46,201 @@ export default function App() {
     // });
     // ---------------------------------------------------------------------------
 
+    var dollidoimage10_1 = tasks[tasks.length - 10]?.lstFilePathImg
+    var dollidoimage10_2 = 'images/' + (dollidoimage10_1 || '').split("/").pop();
 
-    var dollidoimage = tasks[0]?.lstFilePathImg
-    var dollidoimage2 = 'images/' + (dollidoimage || '').split("/").pop();
+    var dollidoimage9_1 = tasks[tasks.length - 9]?.lstFilePathImg
+    var dollidoimage9_2 = 'images/' + (dollidoimage9_1 || '').split("/").pop();
 
-    var dollidoimage_1 = tasks[5]?.lstFilePathImg
-    var dollidoimage3 = 'images/' + (dollidoimage_1 || '').split("/").pop();
+
+    var dollidoimage8_1 = tasks[tasks.length - 8]?.lstFilePathImg
+    var dollidoimage8_2 = 'images/' + (dollidoimage8_1 || '').split("/").pop();
+
+
+    var dollidoimage7_1 = tasks[tasks.length - 7]?.lstFilePathImg
+    var dollidoimage7_2 = 'images/' + (dollidoimage7_1 || '').split("/").pop();
+
+    var dollidoimage6_1 = tasks[tasks.length - 6]?.lstFilePathImg
+    var dollidoimage6_2 = 'images/' + (dollidoimage6_1 || '').split("/").pop();
+
+    var dollidoimage5_1 = tasks[tasks.length - 5]?.lstFilePathImg
+    var dollidoimage5_2 = 'images/' + (dollidoimage5_1 || '').split("/").pop();
+
+    var dollidoimage4_1 = tasks[tasks.length - 4]?.lstFilePathImg
+    var dollidoimage4_2 = 'images/' + (dollidoimage4_1 || '').split("/").pop();
+
+    var dollidoimage3_1 = tasks[tasks.length - 3]?.lstFilePathImg
+    var dollidoimage3_2 = 'images/' + (dollidoimage3_1 || '').split("/").pop();
+
+    var dollidoimage2_1 = tasks[tasks.length - 2]?.lstFilePathImg
+    var dollidoimage2_2 = 'images/' + (dollidoimage2_1 || '').split("/").pop();
+
+    var dollidoimage1_1 = tasks[tasks.length - 1]?.lstFilePathImg
+    var dollidoimage1_2 = 'images/' + (dollidoimage1_1 || '').split("/").pop();
+
+
 
     // console.log('돌리도 테스트 : ', dollidoimage2);
 
 
     const slides = [
         {
-            image: dollidoimage2,
-            title: tasks[0]?.lstPrdtNm,
-            description: tasks[0]?.lstYmd, clickEvent: sliderClick,
-        },
-        {
-            image: dollidoimage3,
-            title: tasks[5]?.lstPrdtNm,
-            description: tasks[5]?.lstYmd, clickEvent: sliderClick,
-        },
-        {
-            image: dollidoimage2,
-            title: tasks[2]?.lstPrdtNm,
-            description: tasks[2]?.lstYmd, clickEvent: sliderClick,
-        },
-        {
-            image: dollidoimage2,
-            title: tasks[3]?.lstPrdtNm,
-            description: tasks[3]?.lstYmd, clickEvent: sliderClick,
-        },
-        {
-            image: dollidoimage2,
-            title: tasks[4]?.lstPrdtNm,
-            description: tasks[4]?.lstYmd, clickEvent: sliderClick,
-        },
-        {
-            image: dollidoimage2,
-            title: tasks[4]?.lstPrdtNm,
-            description: tasks[4]?.lstYmd, clickEvent: sliderClick,
+            image: dollidoimage10_2,
+            title: tasks[tasks.length - 10]?.lstPrdtNm,
+            description: tasks[tasks.length - 10]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 10].id);
+                window.open(slides[0].link);
+
+            }
+
         },
 
+        {
+            image: dollidoimage9_2,
+            title: tasks[tasks.length - 9]?.lstPrdtNm,
+            description: tasks[tasks.length - 9]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
 
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 9].id);
+                window.open(slides[1].link);
 
+            }
 
-        // { image: "https://picsum.photos/600/500", title: "This is a second title", description: "This is a second description", clickEvent: sliderClick },
-        // { image: "https://picsum.photos/700/600", title: "This is a third title", description: "This is a third description", clickEvent: sliderClick },
-        // { image: "https://picsum.photos/500/400", title: "This is a fourth title", description: "This is a fourth description", clickEvent: sliderClick },
-        // { image: "https://picsum.photos/200/300", title: "This is a fifth title", description: "This is a fifth description", clickEvent: sliderClick },
-        // { image: "https://picsum.photos/800/700", title: "This is a sixth title", description: "This is a sixth description", clickEvent: sliderClick },
-        // { image: "https://picsum.photos/300/400", title: "This is a seventh title", description: "This is a seventh description", clickEvent: sliderClick },
+        },
+
+        {
+            image: dollidoimage8_2,
+            title: tasks[tasks.length - 8]?.lstPrdtNm,
+            description: tasks[tasks.length - 8]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 8].id);
+                window.open(slides[2].link);
+
+            }
+
+        },
+
+        {
+            image: dollidoimage7_2,
+            title: tasks[tasks.length - 7]?.lstPrdtNm,
+            description: tasks[tasks.length - 7]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 7].id);
+                window.open(slides[3].link);
+
+            }
+
+        },
+
+        {
+            image: dollidoimage6_2,
+            title: tasks[tasks.length - 6]?.lstPrdtNm,
+            description: tasks[tasks.length - 6]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 6].id);
+                window.open(slides[4].link);
+
+            }
+
+        },
+
+        {
+            image: dollidoimage5_2,
+            title: tasks[tasks.length - 5]?.lstPrdtNm,
+            description: tasks[tasks.length - 5]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 5].id);
+                window.open(slides[5].link);
+
+            }
+
+        },
+
+        {
+            image: dollidoimage4_2,
+            title: tasks[tasks.length - 4]?.lstPrdtNm,
+            description: tasks[tasks.length - 4]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 4].id);
+                window.open(slides[6].link);
+            }
+
+        },
+
+        {
+            image: dollidoimage3_2,
+            title: tasks[tasks.length - 3]?.lstPrdtNm,
+            description: tasks[tasks.length - 3]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 3].id);
+                window.open(slides[7].link);
+
+            }
+
+        },
+
+        {
+            image: dollidoimage2_2,
+            title: tasks[tasks.length - 2]?.lstPrdtNm,
+            description: tasks[tasks.length - 2]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 2].id);
+                window.open(slides[8].link);
+            }
+
+        },
+
+        {
+            image: dollidoimage1_2,
+            title: tasks[tasks.length - 1]?.lstPrdtNm,
+            description: tasks[tasks.length - 1]?.lstYmd,
+            link: `http://localhost:3000/dollidodetail`,
+
+            clickEvent: () => {
+                localStorage.setItem("code2", tasks[tasks.length - 1].id);
+                window.open(slides[9].link);
+
+            }
+
+        },
+
     ]
+
     return (
+        <Stack>
+            <div className='body'>
+                <h2 className='title'>돌리도 최근 게시물</h2>
+                <br></br>
+                <ReactCardSlider slides={slides} />
 
-        <div className='body'>
-            <h2 className='title'>돌리도 최근 게시물</h2>
-            <br></br>
-            <ReactCardSlider slides={slides} />
-
-        </div>
+            </div>
+            <h2 className="title2">수거함 위치</h2>
+            <Map className="map"
+                center={{lat: 36.3452698, lng: 127.3842685}}
+                style={{width: "40%", height: "360px"}}>
+                    <MapMarker position={{lat: 36.3452698, lng: 127.3842685}}>
+                        <div style={{color: "#000"}}>kt 탄방타워</div>
+                        </MapMarker>
+                </Map>
+        </Stack>
 
     );
 }
