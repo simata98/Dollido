@@ -74,7 +74,7 @@
   - [Django](https://www.djangoproject.com/)
   - [Django RestFramework](https://www.django-rest-framework.org/)
 - **Device**
-  - Ipad Air 5th Generation
+  - ipad Air 5th Generation
 
 
 ***
@@ -87,6 +87,7 @@
 </br>
 
 개인 정보 제공 동의 후 회원가입이 가능하며,  모든 동의를 받으면 회원가입 페이지로 진입할 수 있습니다.
+
 </br></br></br></br>
 
 <p align="center"><img width="500" alt="image" src="/markdown/signup.png">  
@@ -99,6 +100,7 @@
 </br>
 
 데이터베이스에 저장되어 있는 계정이 유효한 계정일 때 메인페이지로 이동합니다.
+
 </br></br></br></br></br>
 
 ### 메인페이지
@@ -132,6 +134,7 @@
 <p align="center"><img width="500" alt="image" src="/markdown/map.png"></center></p>  
 </br>
 경로 버튼을 입력하면 현재위치에서 분실물이 있는 목적지까지 찾아갈 수 있고 위치를 공유할 수도 있습니다.
+
 </br></br></br></br>
 
 ### 모바일 반응
@@ -142,6 +145,7 @@
 </p>
 
 모바일 환경에서도 돌리도 서비스를 이용할 수 있도록 반응형 웹을 구현하였습니다.
+
 </br></br></br>
 
 ***
@@ -159,11 +163,13 @@ apscheduler 라이브러리를 사용하여 일정 시간 마다 경찰청에 �
 
 [accounts](accounts/ "계정")
 JWT Token을 사용하여 로그인 시 access와 refresh토큰을 발급받습니다. 발급된 토큰은 5분간 유효하며, 시간이 지나면 만료되어 돌리도 서비스를 이용하기 위해서 다시 로그인해야합니다. 이 기능은 오프라인 보관함 서비스를 이용하는 사용자의 계정의 보안을 위함입니다.
+
 </br></br></br></br>
 
 <p align="center"><img width="500" alt="image" src="/markdown/JWT_decode.png"></center></p>  
 </br>
 JWT 토큰을 디코딩(Decoding)하면 만료시간 및 사용자 pk값 등 필요한 정보만 있고, 민감한 정보는 들어있지않아 토큰이 탈취되어도 보안문제가 발생하지 않게하였습니다. 또한 이 pk값을 통해 프론트에서 자격증명을 할 때 사용되었습니다.
+
 </br></br></br></br>
 
 ### REST API
@@ -197,6 +203,7 @@ JSON형태로 응답하기 위해 Serializer, 즉 직렬화를 하여 시리얼 
 | :---------: | :---------: |
 [CNN](post/color_classification/color_detection.ipynb "CNN") | 0.5764
 [EfficientNetB3](post/color_classification/color_tag_fashion2.ipynb "EfficientNetB3") | **<span style="color:red">0.6741</span>**
+
 </br></br></br></br>
 
 ### 사진 메타데이터 자동 크롤링
@@ -221,4 +228,6 @@ def metadata(img_path=IMAGE_PATH):
 ~~~
 <p align="center"><img width="600" alt="image" src="/markdown/GPS.png"></center></p> 
 PIL의 ExifTags 라이브러리를 사용하였습니다. 내부 연산으로 경도와 위도를 뽑아낸 후 구글 맵스 URL과 결합하여 링크를 생성하여 응답하도록 하였습니다.
+
 </br></br></br></br>
+
