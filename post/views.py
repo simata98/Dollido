@@ -76,10 +76,7 @@ def PostList(request):
         color_result_list = [classes[i] for i in np.where(np.ravel(y_prob)>thrs)[0]]
         confident_result_list = [np.ravel(y_prob)[i] for i in list(np.where(np.ravel(y_prob)>thrs)[0])]
         classification_result = color_result_list[confident_result_list.index(max(confident_result_list))]
-        
-        print('color', color_result_list)
-        print('values', confident_result_list)
-        print('results', classification_result)
+
         return classification_result
       
       # !yolo 파이프라인
