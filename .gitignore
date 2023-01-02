@@ -1,3 +1,4 @@
+front/
 # SECRET_KEY 깃에 올라가지 않게 설정
 secrets.json
 
