@@ -241,14 +241,14 @@ PIL의 ExifTags 라이브러리를 사용하였습니다. 내부 연산으로 �
 <table>
   <tr>
     <td align="center"><img src="markdown/ljh.jpg" width="100px;" alt=""/><br /><b>이정형</b><br/>BE, Modeling</td>
-    <td align="center"><img src="markdown/유현주.jpg" width="100px;" alt=""/><br /><b>유현주</b><br/>FE</td>
-    <td align="center"><img src="markdown/송병섭.jpg" width="100px;" alt=""/><br /><b>송병섭</b><br/>FE</td>
-    <td align="center"><img src="markdown/황순규.jpg" width="100px;" alt=""/><br /><b>황순규</b><br/>FE, BE</td>
+    <td align="center"><img src="markdown/hhj.jpg" width="100px;" alt=""/><br /><b>유현주</b><br/>FE</td>
+    <td align="center"><img src="markdown/sbs.jpg" width="100px;" alt=""/><br /><b>송병섭</b><br/>FE</td>
+    <td align="center"><img src="markdown/hsk.jpg" width="100px;" alt=""/><br /><b>황순규</b><br/>FE, BE</td>
 </tr>
   <tr>
-    <td align="center"><img src="markdown/윤소이.png" width="100px;" alt=""/><br /><b>윤소이</b><br/>Modeling</td>
-    <td align="center"><img src="markdown/임희건.jpg" width="100px;" alt=""/><br /><b>임희건</b><br/>FE</td>
-    <td align="center"><img src="markdown/최세영.jpg" width="100px;" alt=""/><br /><b>최세영</b><br/>FE</td>
+    <td align="center"><img src="markdown/ysi.png" width="100px;" alt=""/><br /><b>윤소이</b><br/>Modeling</td>
+    <td align="center"><img src="markdown/lhk.jpg" width="100px;" alt=""/><br /><b>임희건</b><br/>FE</td>
+    <td align="center"><img src="markdown/csy.jpg" width="100px;" alt=""/><br /><b>최세영</b><br/>FE</td>
   <tr>
   </tr>
 <table>
