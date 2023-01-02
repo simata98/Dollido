@@ -32,6 +32,7 @@ export default function ProductsPage() {
     setOpenFilter(false);
   };
 
+  const link = '/dashboard/dollido/addPost'
   return (
     <>
       <Helmet>
@@ -43,7 +44,7 @@ export default function ProductsPage() {
           <Typography variant="h4" sx={{ mb: 5 }}>
             Products
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button href={link} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             새 게시물
           </Button>
         </Stack>

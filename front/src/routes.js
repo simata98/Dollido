@@ -13,6 +13,8 @@ import Agreement from './pages/Agreement';
 import SignUp from './pages/SignupPage';
 import About from './pages/About';
 import Lost112Detail from './pages/Lost112DetailPage'
+import DollidoDetail from './pages/DollidoDetailPage'
+import DollidoAddPostPage from './pages/DollidoAddPostPage'
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -25,11 +27,12 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
         { path: 'lost112', element: <Lost112Page /> },
+        { path: 'lost112/*', element: <Lost112Detail/>},
         { path: 'dollido', element: <DollidoPage /> },
+        { path: 'dollido/addPost', element: <DollidoAddPostPage /> },
+        { path: 'dollido/*', element: <DollidoDetail /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'about', element: <About /> },
-        { path: 'lost112/*', element: <Lost112Detail/>,
-        },
       ],
     },
     {
