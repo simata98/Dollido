@@ -231,3 +231,24 @@ PIL의 ExifTags 라이브러리를 사용하였습니다. 내부 연산으로 �
 
 </br></br></br></br>
 
+# API
+<img width="300" alt="rss_api" src="markdown/public_portal.png">
+</br>
+공공데이터포털의 경찰청 분실물정보 조회 서비스 API를 사용하였습니다.
+</br></br></br></br>
+
+# Contributors
+<table>
+  <tr>
+    <td align="center"><img src="front/public/assets/이정형.jpg" width="100px;" alt=""/><br /><b>이정형</b><br/>BE, Modeling</td>
+    <td align="center"><img src="front/public/assets/유현주.jpg" width="100px;" alt=""/><br /><b>유현주</b><br/>FE</td>
+    <td align="center"><img src="front/public/assets/송병섭.jpg" width="100px;" alt=""/><br /><b>송병섭</b><br/>FE</td>
+    <td align="center"><img src="front/public/assets/황순규.jpg" width="100px;" alt=""/><br /><b>황순규</b><br/>FE, BE</td>
+</tr>
+  <tr>
+    <td align="center"><img src="front/public/assets/윤소이.png" width="100px;" alt=""/><br /><b>윤소이</b><br/>Modeling</td>
+    <td align="center"><img src="front/public/assets/임희건.jpg" width="100px;" alt=""/><br /><b>임희건</b><br/>FE</td>
+    <td align="center"><img src="front/public/assets/최세영.jpg" width="100px;" alt=""/><br /><b>최세영</b><br/>FE</td>
+  <tr>
+  </tr>
+<table>
