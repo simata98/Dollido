@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useState } from 'react';
+import cookies from 'react-cookies';
+import { toast, ToastContainer } from 'react-toastify';
+
 // @mui
 import { Link, Stack, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -36,17 +39,27 @@ export default function LoginForm() {
       .then((res) => {
         if (res.data.token.access && res.data.user.is_active) {
           localStorage.clear();
-          localStorage.setItem("token", res.data.token.access);
-          localStorage.setItem("is_active", res.data.user.is_active);
-          console.log(res.data.token.access)
+          delete axios.defaults.headers.common.Authorization
+          cookies.save("access", res.data.token.access)
+          cookies.save("refresh", res.data.token.access)
+          localStorage.setItem("token", res.data.token.access)
+          axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
+          toast.success("Success!".concat("😍"), {
+            position: "top-center",
+            autoClose: 1000,
+          })
           window.location.href = "/";
-          // navigate('/dashboard', { replace: true });
         }
       })
       .catch((err) => {
-        alert("없는 계정이거나, 이메일 인증이 필요합니다.");
+        toast.error("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다".concat("😭"), {
+          position: "top-center",
+          autoClose:3000,
+        })
+        // alert("없는 계정이거나, 이메일 인증이 필요합니다.");
         setInputEmail("");
         setInputPw("");
+        // window.location.reload();
       });
   };
 
@@ -63,6 +76,7 @@ export default function LoginForm() {
   return (
     <>
       <Stack spacing={3}>
+      <ToastContainer/>
         <TextField
           value={inputEmail}
           onChange={handleInputEmail}
@@ -99,6 +113,7 @@ export default function LoginForm() {
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
         Login
       </LoadingButton>
+      
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </>
   );

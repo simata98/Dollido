@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import cookies from 'react-cookies';
+import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios';
+
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+
 // mocks_
 import account from '../../../_mock/account';
 
@@ -26,6 +31,37 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
+  const token = cookies.load('access');
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [token]);
+
+
+  const onLogout = () => {
+    <ToastContainer/>
+    const token = cookies.load('access');
+    if (token) {
+      cookies.remove('access');
+      cookies.remove('refresh');
+      localStorage.clear();
+      delete axios.defaults.headers.common.Authorization;
+      toast.success("로그아웃 되었습니다😎", {
+        position: "top-center",
+        autoClose: 2000,
+      })
+      window.location.href = "/";
+      // setTimeout(() => window.location.href = "/Signin", 2000);
+      // alert("로그아웃 되었습니다😎");
+      // window.location.href = "/Signin";
+      // setOpen(null);
+    }
+  }
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -97,7 +133,7 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={onLogout} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </Popover>
