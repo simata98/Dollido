@@ -3,6 +3,7 @@
     "axios": "^1.2.2",
     "react-device-detect": "^2.2.2",
     "react-kakao-maps-sdk": "^1.1.5",
+    "react-router": "^6.6.1",
     "react-toastify": "^9.1.1"
   }
 }
