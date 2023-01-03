@@ -6,6 +6,8 @@
 [![license](https://img.shields.io/github/license/simata98/Dollido?color=green)](LICENSE) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme) [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg)](#Contributors)
 </br>
 
+[Github](https://github.com/simata98/Dollido)에서 마크다운을 더 깔끔하게 보실 수 있습니다.
+
 ## 목차
 - [소개](#소개)
 - [기존 사례 분석](#기존-사례-분석)
