@@ -6,6 +6,6 @@ class ApiConfig(AppConfig):
     def ready(self):
         from post.models import ApiListId
         from .broker import sched_lost, get_lost112, count_rows
-        # get_lost112()
+        get_lost112()
         count_rows()
         sched_lost()

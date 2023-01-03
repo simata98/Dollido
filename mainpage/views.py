@@ -20,7 +20,7 @@ def Mainpage_info(request):
     
     wallet_cnt = 0
     phone_cnt = 0
-    for i in range(19,0,-1):
+    for i in range(9,-1,-1):
         day = date.today() - timedelta(i)
         day = day.strftime('%Y-%m-%d')
         temp = Stat_info.objects.get(date=day)
@@ -35,7 +35,7 @@ def Mainpage_info(request):
     res['wallet_cnt'] = wallet_cnt
     res['phone_cnt'] = phone_cnt
     
-    data = ApiListId.objects.all().order_by('-fdYmd')[:20]
+    data = ApiListId.objects.all().order_by('-fdYmd')[:10]
     serializer = ApiSerializer(data, many=True)
     res['current_lost'] = serializer.data
     return Response(res)
