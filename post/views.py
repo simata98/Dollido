@@ -28,6 +28,9 @@ from PIL.ExifTags import TAGS
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
+# 메일 관련
+from django.core.mail import EmailMessage
+
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -176,6 +179,13 @@ def PostList(request):
       serializer = UserSerializer(instance=user)
       new_serializer_data['writer'] = serializer.data['email']
       new_serializer_data['writer_id'] = serializer.data['id']
+      
+      # !찾기 비밀번호 이메일 관련
+      mail_title = "돌리도 보관함 비밀번호 안내 메일입니다."
+      password_data = "돌리도 보관함 비밀번호는 2023입니다."
+      email = EmailMessage(mail_title, password_data, to=[user])
+      email.content_subtype = "html"
+      email.send()
       
       return Response(new_serializer_data, status=status.HTTP_201_CREATED)
     return Response(new_serializer_data.errors, status=404)
