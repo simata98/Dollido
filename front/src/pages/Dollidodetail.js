@@ -15,6 +15,8 @@ import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 // import jwt from 'jsonwebtoken';
 import jwt_decode from "jwt-decode";
+import { toast, ToastContainer } from 'react-toastify';
+import { Mobile, Pc } from '../pages/responsive';
 
 export default function Dollidodetail() {
   const [tasks, setTasks] = useState([]);
@@ -23,7 +25,10 @@ export default function Dollidodetail() {
   var dollidoimage = tasks.lstFilePathImg
   var dollidoimage2 = 'images/' + (dollidoimage || '').split("/").pop();
 
-
+  // toast.error("오류발생! 위치정보가 제공되지 않아요!" + "😭", {
+  //   position: "top-center",
+  //   autoClose: 1000,
+  // })
 
   useEffect(() => {
     const code2 = localStorage.getItem("code2");
@@ -32,6 +37,7 @@ export default function Dollidodetail() {
       // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
       .get(`http://127.0.0.1:8000/post/${code2}/`)
       .then(response => {
+        console.log(response.data)
         setTasks(response.data);
         setStatus(response.data.find_status)
         delete axios.defaults.headers.common['Authorization'];
@@ -56,8 +62,14 @@ export default function Dollidodetail() {
       .then(response => {
         setStatus(response.find_status)
         // form 초기화
-        alert('회수요청');
-        window.location.reload();
+        // alert('회수요청');
+        // window.location.reload();
+        toast.success("😎찾기요청이 완료되었습니다.😎", {
+          position: "top-center",
+          autoClose: 2000,
+        })
+        setTimeout(() => window.location.reload(), 2000);
+        // window.location.reload();
       });
   };
 
@@ -74,7 +86,13 @@ export default function Dollidodetail() {
       );
   };
 
-
+  console.log(tasks.lstPlace)
+  const handleClick = () => {
+    toast.error("오류발생! 위치보기가 제공되지 않아요!" + "😭", {
+      position: "top-center",
+      autoClose: 1000,
+    })
+  };
 
 
   return (
@@ -86,6 +104,7 @@ export default function Dollidodetail() {
         alignItems: 'center',
       }}
     >
+      <ToastContainer />
       <Card
         sx={{
           maxWidth: '500px',
@@ -105,6 +124,7 @@ export default function Dollidodetail() {
           subheader={'습득일자 : ' + tasks.lstYmd}// 년-월-일
         />
         <CardMedia
+          // style="filter:grayscale(100%)"
           component="img"
           height='100%'
           image={dollidoimage2} // 사진이미지
@@ -116,17 +136,27 @@ export default function Dollidodetail() {
             <br />
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={8}>
-              <Button target='_blank' variant="contained" href={tasks.lstPlace}>
+            <Grid item xs={6} md={8}>
+              {
+                tasks.lstPlace == '탐지되지 않은 위치' ?
+                  // <Button onClick={handleClick} target='_blank' variant="contained" href={tasks.lstPlace}>
+                  <Button onClick={handleClick} target='_blank' variant="contained">
+                    위치 보기
+                  </Button> :
+                  <Button target='_blank' variant="contained" href={tasks.lstPlace}>
+                    위치 보기
+                  </Button>
+              }
+              {/* <Button target='_blank' variant="contained" href={tasks.lstPlace}>
                 위치 보기
-              </Button>
+              </Button> */}
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3} md={2}>
               <Button disabled={!idstatus} href='/editdollido' variant="contained">
                 수정
               </Button>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3} md={2}>
               <Button
                 disabled={!idstatus}
                 onClick={handleSubmit2}
@@ -140,12 +170,22 @@ export default function Dollidodetail() {
           </Grid>
         </CardContent>
       </Card>
-      <Box component="form" onSubmit={handleSubmit}
-        sx={{ position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column' }}>
-        <Fab disabled={status} type="submit" size='medium' color="primary" aria-label="add">
-          <AutorenewIcon />
-        </Fab>
-      </Box>
+      <Pc>
+        <Box component="form" onSubmit={handleSubmit}
+          sx={{ position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column' }}>
+          <Fab sx={{ width: 100, height: 100 }} disabled={status} type="submit" color='primary' aria-label="add">
+            <AutorenewIcon sx={{ fontSize: 50 }} />
+          </Fab>
+        </Box>
+      </Pc>
+      <Mobile>
+        <Box component="form" onSubmit={handleSubmit}
+          sx={{ position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column' }}>
+          <Fab disabled={status} type="submit" size='medium' color='primary' aria-label="add">
+            <AutorenewIcon />
+          </Fab>
+        </Box>
+      </Mobile>
     </Box >
   );
 }

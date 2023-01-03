@@ -83,7 +83,7 @@ const columns2 = [
     flex: 1,
     // renderCell를 통해서 <img 이미지링크>를 받아준다
     renderCell: (params) =>
-      < img src={'images/' + params.value.split('/').pop()} height="100" alt='lstFilePathImg' />
+      < img src={'images/' + params.value.split('/').pop()} width="100" height="100" alt='lstFilePathImg' />
   },
   {
     field: 'create_date',
@@ -167,6 +167,7 @@ function CustomNoRowsOverlay() {
   );
 }
 
+
 export default function MyDataGrid({ children }) {
   // response.data의 값을 tasks 안에 넣을려고 useState를 설정해줌
   const [tasks, setTasks] = useState([]);
@@ -191,36 +192,48 @@ export default function MyDataGrid({ children }) {
   return (
     <Box style={{ position: 'relative', height: 800, width: '100%', display: 'flex', flexDirection: 'column' }}>
       <Pc>
-      <DataGrid
-        components={{
-          NoRowsOverlay: CustomNoRowsOverlay,
-        }}
-        getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
-        rows={tasks}
-        columns={columns}
-        getRowId={getRowId}
-        onRowClick={handleRowClick}
-      />
+        <DataGrid
+          components={{
+            NoRowsOverlay: CustomNoRowsOverlay,
+          }}
+          pageSize={20}
+          getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
+          rows={tasks}
+          columns={columns}
+          getRowId={getRowId}
+          onRowClick={handleRowClick}
+          autoHeight
+        />
+        <Box sx={{
+          position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column'
+        }}>
+          <Fab sx={{ width: 100, height: 100 }} href='/adddollido' color='primary' aria-label="add">
+            <AddIcon sx={{ fontSize: 50 }} />
+          </Fab>
+        </Box>
       </Pc>
       <Mobile>
-      <DataGrid
-        components={{
-          NoRowsOverlay: CustomNoRowsOverlay,
-        }}
-        getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
-        rows={tasks}
-        columns={columns2}
-        getRowId={getRowId}
-        onRowClick={handleRowClick}
-      />
+        <DataGrid
+          components={{
+            NoRowsOverlay: CustomNoRowsOverlay,
+          }}
+          pageSize={20}
+          getRowHeight={() => 'auto'} // 자동으로 높이조절을 하는코드
+          rows={tasks}
+          columns={columns2}
+          getRowId={getRowId}
+          onRowClick={handleRowClick}
+          autoHeight
+        />
+        <Box sx={{
+          position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column'
+        }}>
+          <Fab href='/adddollido' size='medium' color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </Box>
       </Mobile>
-      <Box sx={{
-        position: 'fixed', left: 20, bottom: 35, display: 'flex', flexDirection: 'column'
-      }}>
-        <Fab href='/adddollido' size='medium' color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-      </Box>
+
     </Box >
 
   );
