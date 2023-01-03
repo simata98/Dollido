@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Container, Stack, Typography, Menu, Button, MenuItem } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
-import { ProductSort, ProductList, ProductFilterSidebar } from '../sections/@dashboard/products';
+import { ProductSort, Lost112List, ProductFilterSidebar } from '../sections/@dashboard/products';
 
 // ----------------------------------------------------------------------
 
@@ -112,8 +112,8 @@ export default function ProductsPage() {
             </Menu>
           </Stack>
         </Stack>
-        {/* <ProductList products={tasks} /> */}
-        <ProductList products={tasks.slice(0,32)} />
+        {/* <Lost112List products={tasks} /> */}
+        <Lost112List products={tasks.slice(0,32)} />
       </Container>
     </>
   );

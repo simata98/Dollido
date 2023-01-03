@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Container, Stack, Typography, Button } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
-import { ProductSort, ProductList, ProductFilterSidebar } from '../sections/@dashboard/products';
+import { ProductSort, DollidoList, ProductFilterSidebar } from '../sections/@dashboard/products';
 import PRODUCTS from '../_mock/products';
 
 // ----------------------------------------------------------------------
@@ -59,8 +59,8 @@ export default function ProductsPage() {
             <ProductSort />
           </Stack>
         </Stack>
-        {/* <ProductList products={tasks} /> */}
-        <ProductList products={tasks.slice(0,10)} />
+        {/* <DollidoList products={tasks} /> */}
+        <DollidoList products={tasks.slice(0,10)} />
       </Container>
     </>
   );
