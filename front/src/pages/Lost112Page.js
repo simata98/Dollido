@@ -1,6 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+
+import './css/paging.css';
+import SweetPagination from "sweetpagination";
+import Pagination from "react-js-pagination";
+
 // @mui
 import { Container, Stack, Typography, Menu, Button, MenuItem } from '@mui/material';
 // components
@@ -16,7 +21,7 @@ const SORT_BY_OPTIONS = [
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
 
-export default function ProductsPage() {
+export default function ProductsPage({products}) {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -26,8 +31,9 @@ export default function ProductsPage() {
       setTasks(response.data);
     };
     getData();
-  },[]);
-  console.log('list')
+  }, []);
+  console.log(tasks)
+
   // 필터 사이드바 ---------------------------------
 
   const [openFilter, setOpenFilter] = useState(false);
@@ -61,60 +67,76 @@ export default function ProductsPage() {
       setTasks(tasks.sort((a, b) => b.fdYmd - a.fdYmd));
     }
   };
+  // 페이지 ---------------------------------------
+    const [page, setPage] = useState(1);
 
-  return (
-    <>
-      <Helmet>
-        <title> Dashboard: Products | Minimal UI </title>
-      </Helmet>
+    const handlePageChange = (page) => {
+      setPage(page);
+    };
 
-      <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Products
-        </Typography>
+    return (
+      <>
+        <Helmet>
+          <title> Dashboard: Products | Minimal UI </title>
+        </Helmet>
 
-        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ProductFilterSidebar
-              openFilter={openFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
-            />
-            <Button
-              color="inherit"
-              disableRipple
-              onClick={handleOpen}
-              endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
-            >
-              Sort By:&nbsp;
-              <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-                {cur}
-              </Typography>
-            </Button>
-            <Menu
-              keepMounted
-              anchorEl={open}
-              open={Boolean(open)}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            >
-              {SORT_BY_OPTIONS.map((option) => (
-                <MenuItem
-                  key={option.value}
-                  selected={option.value === 'newest'}
-                  onClick={handleClose}
-                  sx={{ typography: 'body2' }}
-                >
-                  {option.label}
-                </MenuItem>
-              ))}
-            </Menu>
+        <Container>
+          <Typography variant="h4" sx={{ mb: 5 }}>
+            Products
+          </Typography>
+
+          <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+            <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+              <ProductFilterSidebar
+                openFilter={openFilter}
+                onOpenFilter={handleOpenFilter}
+                onCloseFilter={handleCloseFilter}
+              />
+              <Button
+                color="inherit"
+                disableRipple
+                onClick={handleOpen}
+                endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
+              >
+                Sort By:&nbsp;
+                <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                  {cur}
+                </Typography>
+              </Button>
+              <Menu
+                keepMounted
+                anchorEl={open}
+                open={Boolean(open)}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+              >
+                {SORT_BY_OPTIONS.map((option) => (
+                  <MenuItem
+                    key={option.value}
+                    selected={option.value === 'newest'}
+                    onClick={handleClose}
+                    sx={{ typography: 'body2' }}
+                  >
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Stack>
           </Stack>
-        </Stack>
-        {/* <ProductList products={tasks} /> */}
-        <ProductList products={tasks.slice(0,32)} />
-      </Container>
-    </>
-  );
-}
+          <ProductList products={tasks.slice(0, 20)} />
+          {/* <ProductList products={tasks} /> */}
+          <Pagination>
+          activePage={page}
+          itemsCountPerPage={10}
+          totalItemsCount={<ProductList products={tasks.slice(0, 20)} />}
+          pageRangeDisplayed={5}
+          prevPageText={"‹"}
+          nextPageText={"›"}
+          onChange={handlePageChange}
+          {/* <ProductList products={tasks.slice(0, 100)} /> */}
+          </Pagination>
+        </Container>
+      </>
+    );
+  }
