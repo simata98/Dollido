@@ -139,9 +139,9 @@
 
 ### 모바일 반응
 <p align="center">
-<img width="180" height="300" alt="image" src="/markdown/mobile_header.png">&nbsp;&nbsp;&nbsp;
-<img width="180" height="300" alt="image" src="/markdown/mobile_list.png">&nbsp;&nbsp;&nbsp;
-<img width="180" height="300" alt="image" src="/markdown/mobile_detail.png">
+<img width="170" height="300" alt="image" src="/markdown/mobile_header.png">
+<img width="170" height="300" alt="image" src="/markdown/mobile_list.png">
+<img width="170" height="300" alt="image" src="/markdown/mobile_detail.png">
 </p>
 
 모바일 환경에서도 돌리도 서비스를 이용할 수 있도록 반응형 웹을 구현하였습니다.
@@ -234,6 +234,7 @@ PIL의 ExifTags 라이브러리를 사용하였습니다. 내부 연산으로 �
 # API
 <img width="300" alt="rss_api" src="markdown/public_portal.png">
 </br>
+
 공공데이터포털의 경찰청 분실물정보 조회 서비스 API를 사용하였습니다.
 </br></br>
 
