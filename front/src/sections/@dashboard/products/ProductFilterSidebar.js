@@ -14,6 +14,8 @@ import {
   Typography,
   RadioGroup,
   FormControlLabel,
+  Autocomplete,
+  TextField,
 } from '@mui/material';
 // components
 import Iconify from '../../../components/iconify';
@@ -28,24 +30,26 @@ export const SORT_BY_OPTIONS = [
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const FILTER_GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const FILTER_CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
-export const FILTER_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
-export const FILTER_PRICE_OPTIONS = [
-  { value: 'below', label: 'Below $25' },
-  { value: 'between', label: 'Between $25 - $75' },
-  { value: 'above', label: 'Above $75' },
-];
+export const FILTER_CATEGORY_OPTIONS = ['휴대폰', '지갑'];
 export const FILTER_COLOR_OPTIONS = [
-  '#00AB55',
-  '#000000',
-  '#FFFFFF',
-  '#FFC0CB',
-  '#FF4842',
-  '#1890FF',
-  '#94D82D',
-  '#FFC107',
-];
+  { label: '베이지색', id: 1 },
+  { label: '검정색', id: 2 },
+  { label: '파랑색', id: 3 },
+  { label: '갈색', id: 4 },
+  { label: '금색', id: 5 },
+  { label: '초록색', id: 6 },
+  { label: '회색', id: 7 },
+  { label: '밤색', id: 8 },
+  { label: '네이비색', id: 9 },
+  { label: '올리브색', id: 10 },
+  { label: '오렌지색', id: 11 },
+  { label: '핑크색', id: 12 },
+  { label: '보라색', id: 13 },
+  { label: '빨간색', id: 14 },
+  { label: '은색', id: 15 },
+  { label: '하얀색', id: 16 },
+  { label: '노란색', id: 17 }
+]
 
 // ----------------------------------------------------------------------
 
@@ -56,6 +60,13 @@ ShopFilterSidebar.propTypes = {
 };
 
 export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFilter }) {
+  // const [color, setColor] = useState('');
+  // const [category, setCategory] = useState('');
+
+  // const handleRadioChange = (e) => {
+  //   console.log(e)
+  //   setState(e);
+  // }
   return (
     <>
       <Button disableRipple color="inherit" endIcon={<Iconify icon="ic:round-filter-list" />} onClick={onOpenFilter}>
@@ -85,17 +96,6 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
           <Stack spacing={3} sx={{ p: 3 }}>
             <div>
               <Typography variant="subtitle1" gutterBottom>
-                Gender
-              </Typography>
-              <FormGroup>
-                {FILTER_GENDER_OPTIONS.map((item) => (
-                  <FormControlLabel key={item} control={<Checkbox />} label={item} />
-                ))}
-              </FormGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
                 Category
               </Typography>
               <RadioGroup>
@@ -109,55 +109,18 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
               <Typography variant="subtitle1" gutterBottom>
                 Colors
               </Typography>
-              <ColorMultiPicker
-                name="colors"
-                selected={[]}
-                colors={FILTER_COLOR_OPTIONS}
-                onChangeColor={(color) => [].includes(color)}
-                sx={{ maxWidth: 38 * 4 }}
-              />
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Price
-              </Typography>
-              <RadioGroup>
-                {FILTER_PRICE_OPTIONS.map((item) => (
-                  <FormControlLabel key={item.value} value={item.value} control={<Radio />} label={item.label} />
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Rating
-              </Typography>
-              <RadioGroup>
-                {FILTER_RATING_OPTIONS.map((item, index) => (
-                  <FormControlLabel
-                    key={item}
-                    value={item}
-                    control={
-                      <Radio
-                        disableRipple
-                        color="default"
-                        icon={<Rating readOnly value={4 - index} />}
-                        checkedIcon={<Rating readOnly value={4 - index} />}
-                        sx={{
-                          '&:hover': { bgcolor: 'transparent' },
-                        }}
-                      />
-                    }
-                    label="& Up"
-                    sx={{
-                      my: 0.5,
-                      borderRadius: 1,
-                      '&:hover': { opacity: 0.48 },
-                    }}
-                  />
-                ))}
-              </RadioGroup>
+              <Autocomplete
+              // onChange={(event, newValue) => {
+              //   setClrNm(newValue);
+              // }}
+              // value={clrNm}
+              disablePortal
+              id="combo-box-demo"
+              options={FILTER_COLOR_OPTIONS.map((option) => option.label)}
+              sx={{ width: 250}}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              renderInput={(params) => <TextField {...params} label="색깔" />}
+            />
             </div>
           </Stack>
         </Scrollbar>
