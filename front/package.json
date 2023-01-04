@@ -1,5 +1,4 @@
 {
-<<<<<<< Updated upstream
   "name": "front",
   "version": "0.1.0",
   "private": true,
@@ -28,13 +27,11 @@
     "reactjs-popup": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
-=======
   "name": "@minimal/material-kit-react",
   "author": "minimals.cc",
   "licence": "MIT",
   "version": "1.6.0",
   "private": false,
->>>>>>> Stashed changes
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

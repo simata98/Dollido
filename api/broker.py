@@ -9,7 +9,7 @@ from post.models import ApiListId, DollidoLstId, Stat_info
 from django.db.models import Q
 
 CATEGORY = ['PRH000', 'PRJ000']
-START_YMD = '20221120'
+START_YMD = '20221220'
 # END_YMD = '20221215'
 today = date.today()
 END_YMD = today.strftime('%Y%m%d')
