@@ -1,12 +1,29 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import cookies from 'react-cookies';
+import axios from 'axios';
+import Pagination from "react-js-pagination";
+// import './Paging.css';
+const Paging = () => {
 
-const Home = () => {
+    const [page, setPage] = useState(1);
+
+    const handlePageChange = (page) => {
+        setPage(page);
+        console.log(page)
+    };
+
     return (
-        <div className="App">
-            메인 화면 입니다.
-        </div>
-    )
+        <Pagination
+            activePage={page}
+            itemsCountPerPage={10}
+            totalItemsCount={450}
+            pageRangeDisplayed={5}
+            prevPageText={"‹"}
+            nextPageText={"›"}
+            onChange={handlePageChange}
+        />
+    );
 };
 
-export default Home;
-
+export default Paging;
