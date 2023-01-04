@@ -6,10 +6,7 @@ import {
   Stack,
   Button,
   Drawer,
-  Rating,
   Divider,
-  Checkbox,
-  FormGroup,
   IconButton,
   Typography,
   RadioGroup,
@@ -28,14 +25,7 @@ export const SORT_BY_OPTIONS = [
   { value: 'priceDesc', label: 'Price: High-Low' },
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
-export const FILTER_GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const FILTER_CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
-export const FILTER_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
-export const FILTER_PRICE_OPTIONS = [
-  { value: 'below', label: 'Below $25' },
-  { value: 'between', label: 'Between $25 - $75' },
-  { value: 'above', label: 'Above $75' },
-];
+export const FILTER_CATEGORY_OPTIONS = ['Wallet', 'Phone'];
 export const FILTER_COLOR_OPTIONS = [
   '#00AB55',
   '#000000',
@@ -85,17 +75,6 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
           <Stack spacing={3} sx={{ p: 3 }}>
             <div>
               <Typography variant="subtitle1" gutterBottom>
-                Gender
-              </Typography>
-              <FormGroup>
-                {FILTER_GENDER_OPTIONS.map((item) => (
-                  <FormControlLabel key={item} control={<Checkbox />} label={item} />
-                ))}
-              </FormGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
                 Category
               </Typography>
               <RadioGroup>
@@ -116,48 +95,6 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
                 onChangeColor={(color) => [].includes(color)}
                 sx={{ maxWidth: 38 * 4 }}
               />
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Price
-              </Typography>
-              <RadioGroup>
-                {FILTER_PRICE_OPTIONS.map((item) => (
-                  <FormControlLabel key={item.value} value={item.value} control={<Radio />} label={item.label} />
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Rating
-              </Typography>
-              <RadioGroup>
-                {FILTER_RATING_OPTIONS.map((item, index) => (
-                  <FormControlLabel
-                    key={item}
-                    value={item}
-                    control={
-                      <Radio
-                        disableRipple
-                        color="default"
-                        icon={<Rating readOnly value={4 - index} />}
-                        checkedIcon={<Rating readOnly value={4 - index} />}
-                        sx={{
-                          '&:hover': { bgcolor: 'transparent' },
-                        }}
-                      />
-                    }
-                    label="& Up"
-                    sx={{
-                      my: 0.5,
-                      borderRadius: 1,
-                      '&:hover': { opacity: 0.48 },
-                    }}
-                  />
-                ))}
-              </RadioGroup>
             </div>
           </Stack>
         </Scrollbar>
