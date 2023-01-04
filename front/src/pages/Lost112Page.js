@@ -29,7 +29,6 @@ export default function Lost112Page({ products }) {
     };
     getData();
   }, []);
-  // console.log(tasks)
 
   // 필터 사이드바 ---------------------------------
 

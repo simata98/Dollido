@@ -54,14 +54,6 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-  // if (tasks.current_lost) {
-  //   console.log(tasks.current_lost[0]?.atcId)
-  // }
-  // console.log(tasks.current_lost[0])
-  // console.log(Object.keys(tasks.api_cnt))
-  // console.log(Object.values(tasks.current_lost?.[0])?.[0]);
-  // console.log(tasks.current_lost[0]?.atcId)
-  // console.log((tasks.current_lost[0])[6])
 
   if (tasks.current_lost) {
     return (
