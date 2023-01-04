@@ -18,7 +18,7 @@ const SORT_BY_OPTIONS = [
   { value: 'newest', label: '오래된 순' },
 ];
 
-export default function ProductsPage({ products }) {
+export default function Lost112Page({ products }) {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
     const getData = async () => {

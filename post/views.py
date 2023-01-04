@@ -30,8 +30,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-@login_required(login_url='/accounts/auth/')
+# @permission_classes([IsAuthenticated])
+# @login_required(login_url='/accounts/auth/')
 def PostList(request):
   # if not request.session.get('writer'):
   #   return redirect('http://localhost:3000/Signin')
