@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useMediaQuery } from "react-responsive"
 import React from "react"
 
