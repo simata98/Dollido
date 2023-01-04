@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect, useState } from "react";
 import cookies from 'react-cookies';
 import { toast, ToastContainer } from 'react-toastify';
@@ -18,12 +17,19 @@ const MENU_OPTIONS = [
     label: 'Home',
     icon: 'eva:home-fill',
   },
+  {
+    label: 'Profile',
+    icon: 'eva:person-fill',
+  },
+  {
+    label: 'Settings',
+    icon: 'eva:settings-2-fill',
+  },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
-  const username = localStorage.getItem("username");
   const [open, setOpen] = useState(null);
   const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
@@ -44,7 +50,6 @@ export default function AccountPopover() {
       cookies.remove('access');
       cookies.remove('refresh');
       localStorage.clear();
-      localStorage.setItem("username", '로그인 해주세요')
       delete axios.defaults.headers.common.Authorization;
       toast.success("로그아웃 되었습니다😎", {
         position: "top-center",
@@ -109,7 +114,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {username}
+            {account.displayName}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+            {account.email}
           </Typography>
         </Box>
 
@@ -122,6 +130,8 @@ export default function AccountPopover() {
             </MenuItem>
           ))}
         </Stack>
+
+        <Divider sx={{ borderStyle: 'dashed' }} />
 
         <MenuItem onClick={onLogout} sx={{ m: 1 }}>
           Logout

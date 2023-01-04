@@ -18,14 +18,14 @@ import uploadImg from '../images/upload.png';
 const DollidoAddPostPage = () => {
   const navigate = useNavigate();
   // 게시판 제목, 내용, 사진
-  const [dollidoId, setDollidoId] = useState(0);
+  const [dollido_id, setDollido_id] = useState(0);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [lstYmd, setLstYmd] = useState("");
   const [lstPlace, setLstPlace] = useState("");
   const [clrNm, setClrNm] = useState("");
-  const [findStatus, setFindStatus] = useState(false);
-  const [writerId, setWriter] = useState("");
+  const [find_status, setFind_status] = useState(false);
+  const [writer_id, setWriter] = useState("");
   const [loading, setLoading] = useState(null);
   const [image, setImage] = useState({
     image_file: "",
@@ -56,29 +56,24 @@ const DollidoAddPostPage = () => {
     try {
       const formData = new FormData();
       formData.append("lstFilePathImg", image.image_file);
-      console.log(image.image_file)
-      console.log(formData)
-      for (var key of formData.entries()) {
-        console.log(key);
-      }
       setLoading(true);
 
-      axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       axios.defaults.withCredentials = true
       const response = await axios.post("http://localhost:8000/post/", formData);
 
-      setDollidoId(response.data.id);
+      setDollido_id(response.data.id);
       setTitle(response.data.lstPrdtNm);
       setContent(response.data.lstcontent);
       setLstYmd(response.data.lstYmd);
       setLstPlace(response.data.lstPlace);
       setClrNm(response.data.clrNm);
-      // setFindStatus(response.data.findStatus);
-      setWriter(response.data.writerId);
-      toast.success("😎예측이 완료되었습니다😎", {
-        position: "top-center",
-        autoClose: 1000,
-      })
+      // setFind_status(response.data.find_status);
+      setWriter(response.data.writer_id);
+      // toast.success("😎예측이 완료되었습니다😎", {
+      //   position: "top-center",
+      //   autoClose: 1000,
+      // })
       setTimeout(() => 1000);
       // window.alert("😎예측이 완료되었습니다😎");
 
@@ -106,12 +101,12 @@ const DollidoAddPostPage = () => {
     formData2.append("lstYmd", lstYmd);
     formData2.append("lstPlace", lstPlace);
     formData2.append("clrNm", clrNm);
-    formData2.append("findStatus", findStatus);
-    formData2.append("writer", writerId);
+    formData2.append("find_status", find_status);
+    formData2.append("writer", writer_id);
 
-    axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
-      .put(`http://localhost:8000/post/${dollidoId}/`, formData2)
+      .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
     window.alert("😎등록이 완료되었습니다😎");
     navigate(-1)
   }

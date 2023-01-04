@@ -55,9 +55,9 @@ class DollidoLstId(models.Model):
         return self.lstPrdtNm
 
 class Stat_info(models.Model):
-  date = models.CharField(max_length=10, null=True, blank=True)
-  lost112_wallet_cnt = models.IntegerField(null=True, blank=True)
-  lost112_phone_cnt = models.IntegerField(null=True, blank=True)
-  dollido_wallet_cnt = models.IntegerField(null=True, blank=True)
-  dollido_phone_cnt = models.IntegerField(null=True, blank=True)
-  total_cnt = models.IntegerField(null=True, blank=True)
+  date = models.CharField(primary_key=True, max_length=10)
+  lost112_wallet_cnt = models.IntegerField()
+  lost112_phone_cnt = models.IntegerField()
+  dollido_wallet_cnt = models.IntegerField()
+  dollido_phone_cnt = models.IntegerField()
+  total_cnt = models.IntegerField()

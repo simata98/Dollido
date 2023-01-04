@@ -20,11 +20,11 @@ const StyledProductImg = styled('img')({
 
 // ----------------------------------------------------------------------
 
-ShopProductCard.propTypes = {
+Lost112Card.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product }) {
+export default function Lost112Card({ product }) {
   const { atcId, category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
   const link = '/dashboard/lost112/'.concat(atcId)
   console.log(link)
