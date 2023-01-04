@@ -45,7 +45,6 @@ export default function LoginForm() {
           cookies.save("access", res.data.token.access)
           cookies.save("refresh", res.data.token.access)
           localStorage.setItem("token", res.data.token.access)
-          localStorage.setItem("username", res.data.user.username.slice(0,-1) + '*')
           axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
           toast.success("Success!".concat("😍"), {
             position: "top-center",

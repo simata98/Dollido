@@ -40,8 +40,8 @@ def Mainpage_info(request):
         res['current_lost'] = serializer.data
         return Response(res)
     except:
-        return Response(res, status=status.HTTP_204_NO_CONTENT)
-
+        return Response(Status=status.HTTP_204_NO__CONTENT)
+    
 @api_view(['GET'])
 def Mainpage_detail(request, pk):
     data = get_object_or_404(ApiListId, pk=pk)
