@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Box from '@mui/material/Box';
 import sty from "./css/styles.css";
 import { Mobile, Pc } from './responsive';

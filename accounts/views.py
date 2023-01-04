@@ -53,7 +53,7 @@ class RegisterAPIView(APIView):
                 user = serializer.save()
                 
                 # 인증 이메일
-                current_site = get_current_site(request)
+                # current_site = get_current_site(request)
                 domain = self.request.META['HTTP_HOST']
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk)).encode().decode()
                 token = account_activation_token.make_token(user)

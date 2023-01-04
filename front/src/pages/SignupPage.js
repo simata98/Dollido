@@ -46,12 +46,12 @@ const StyledContent = styled('div')(({ theme }) => ({
 export default function Sinup() {
   const mdUp = useResponsive('up', 'md');
 
-  const [inputName, setInputName] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPw, setInputPw] = useState("");
-  const [inputPwValidate, setInputPwValidate] = useState("");
-  const [inputTel, setInputTel] = useState("");
-  const [inputAddress, setInputAddress] = useState("");
+  let [inputName, setInputName] = useState("");
+  let [inputEmail, setInputEmail] = useState("");
+  let [inputPw, setInputPw] = useState("");
+  let [inputPwValidate, setInputPwValidate] = useState("");
+  let [inputTel, setInputTel] = useState("");
+  let [inputAddress, setInputAddress] = useState("");
 
   // 오류메시지 상태저장
   const [nameMessage, setNameMessage] = useState('')
@@ -61,7 +61,7 @@ export default function Sinup() {
   const [telMessage, setTelMessage] = useState("")
   const [addressMessage, setAddressMessage] = useState('')
 
-  
+
   // 유효성 검사
   const [isName, setIsName] = useState(true)
   const [isEmail, setIsEmail] = useState(true)
@@ -144,7 +144,7 @@ export default function Sinup() {
     }
   };
 
-  // address 입력값
+  // address 입력값-
   const handleInputAddress = (e) => {
     setInputAddress(e.target.value);
     console.log(e.target.value);
@@ -171,37 +171,42 @@ export default function Sinup() {
 
     // register API 호출
     axios
-    .post('http://localhost:8000/accounts/register/', user)
-    .then((res) => {
+      .post('http://localhost:8000/accounts/register/', user)
+      .then((res) => {
         if (res.data.token.access) {
-            console.log(res.data.token.access);
-            toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
-                position: "top-center",
-                autoClose: 2000,
-            })
-            setTimeout(() => window.location.href = "/Login", 2000);
-            // alert("가입을 축하드립니다!");
-            // window.location.href = "/Signin";
+          console.log(res.data)
+          // console.log(res.data.token.access);
+          alert("가입을 축하드립니다!");
+          // toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
+          //   position: "top-center",
+          //   autoClose: 2000,
+          // })
+          setTimeout(() => window.location.href = "/login", 2000);
+          // alert("가입을 축하드립니다!");
+          // window.location.href = "/Signin";
         } else {
-            setInputName("");
-            setInputEmail("");
-            setInputPw("");
-            setInputPwValidate("");
-            setInputTel("");
-            setInputAddress("");
-            localStorage.clear();
+          console.log(failed);
+          alert("failed!");
+          setInputName("");
+          setInputEmail("");
+          setInputPw("");
+          setInputPwValidate("");
+          setInputTel("");
+          setInputAddress("");
+          localStorage.clear();
         }
-    })
+      })
       .catch((err) => {
         console.log(user);
-                console.log(err);
-                toast.error("이미 존재하는 아이디 입니다." + "😭", {
-                    position: "top-center",
-                    autoClose: 2000,
-                })
+        console.log(err);
+        alert("이미 존재하는 아이디 입니다.");
+        // toast.error("이미 존재하는 아이디 입니다." + "😭", {
+        //   position: "top-center",
+        //   autoClose: 2000,
+        // })
       });
 
-      window.location.href = "/";
+    // window.location.href = "/";
   };
   return (
     <>

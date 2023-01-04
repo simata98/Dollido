@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useState, useEffect } from 'react';

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import axios from "axios";
 import { useState } from 'react';
 import cookies from 'react-cookies';
