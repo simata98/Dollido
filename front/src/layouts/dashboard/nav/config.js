@@ -53,11 +53,6 @@ if (token) {
       icon: icon('ic_home'),
     },
     {
-      title: 'user',
-      path: '/dashboard/user',
-      icon: icon('ic_user'),
-    },
-    {
       title: 'lost112',
       path: '/dashboard/lost112',
       icon: icon('ic_police'),
@@ -66,11 +61,6 @@ if (token) {
       title: 'Dollido',
       path: '/dashboard/dollido',
       icon: icon('ic_D'),
-    },
-    {
-      title: 'blog',
-      path: '/dashboard/blog',
-      icon: icon('ic_blog'),
     },
     {
       title: 'about',
