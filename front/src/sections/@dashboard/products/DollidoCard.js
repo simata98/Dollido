@@ -29,7 +29,7 @@ DollidoCard.propTypes = {
 export default function DollidoCard({ product }) {
   const { id, lstPrdtNm, lstFilePathImg, lstcontent, lstYmd, lstPlace, find_status, clrNm, writer_id, create_date } = product;
   const link = '/dashboard/dollido/'.concat(id)
-  console.log(link)
+  const src ='../../../images/' + lstFilePathImg.split('/').pop()
   return (
     <Card id={id}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -49,7 +49,7 @@ export default function DollidoCard({ product }) {
             {status}
           </Label>
         )} */}
-        <StyledProductImg alt={id} src={'../../../images/' + lstFilePathImg.split('/').pop()} />
+        <StyledProductImg alt={id} src={src} />
 
       </Box>
       

@@ -2,7 +2,7 @@
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -15,110 +15,55 @@ import Iconify from '../components/iconify';
 import uploadImg from '../images/upload.png';
 
 // ---------------------------------------s-------------------------------
-const DollidoAddPostPage = () => {
+const DollidoEditPostPage = () => {
   const navigate = useNavigate();
   // 게시판 제목, 내용, 사진
-  const [dollido_id, setDollido_id] = useState(0);
+  const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [lstYmd, setLstYmd] = useState("");
   const [lstPlace, setLstPlace] = useState("");
   const [clrNm, setClrNm] = useState("");
   const [find_status, setFind_status] = useState(false);
-  const [writer_id, setWriter] = useState("");
-  const [loading, setLoading] = useState(null);
-  const [image, setImage] = useState({
-    image_file: "",
-    preview_URL: uploadImg,
-  });
-  const canSubmit = useCallback(() => {
-    return image.image_file;
-  }, [image]);
 
-  let inputRef;
+  var dollidoimage = tasks.lstFilePathImg
+  var dollidoimage2 = '../../../images/' + (dollidoimage || '').split("/").pop();
 
-  const saveImage = (e) => {
-    e.preventDefault();
-    const fileReader = new FileReader();
-    if (e.target.files[0]) {
-      fileReader.readAsDataURL(e.target.files[0]);
-    }
-    fileReader.onload = () => {
-      setImage({
-        image_file: e.target.files[0],
-        preview_URL: fileReader.result,
-      });
-    };
-  };
+  const link = 'http://127.0.0.1:8000/post/'.concat(localStorage.getItem('postId'))
+  console.log(link)
 
-
-  const handleSubmit = useCallback(async () => {
-    try {
-      const formData = new FormData();
-      formData.append("lstFilePathImg", image.image_file);
-      setLoading(true);
-
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-      axios.defaults.withCredentials = true
-      const response = await axios.post("http://localhost:8000/post/", formData);
-
-      setDollido_id(response.data.id);
-      setTitle(response.data.lstPrdtNm);
-      setContent(response.data.lstcontent);
-      setLstYmd(response.data.lstYmd);
-      setLstPlace(response.data.lstPlace);
-      setClrNm(response.data.clrNm);
-      // setFind_status(response.data.find_status);
-      setWriter(response.data.writer_id);
-      // toast.success("😎예측이 완료되었습니다😎", {
-      //   position: "top-center",
-      //   autoClose: 1000,
-      // })
-      setTimeout(() => 1000);
-      // window.alert("😎예측이 완료되었습니다😎");
-
-    } catch (e) {
-      // 서버에서 받은 에러 메시지 출력
-      console.log(e)
-      toast.error("오류발생! 로그아웃 후 재로그인 해주세요!".concat("😭"), {
-        position: "top-center",
-        autoClose: 1000,
-      })
-      // alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
-    } finally {
-      setLoading(false);
-    }
-  }, [canSubmit]);
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+    axios
+        // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
+        .get(link)
+        .then(response => {
+            setTasks(response.data);
+            setTitle(response.data.lstPrdtNm);
+            setContent(response.data.lstcontent);
+            setLstYmd(response.data.lstYmd);
+            setLstPlace(response.data.lstPlace);
+            setClrNm(response.data.clrNm);
+            setFind_status(response.data.find_status);
+            delete axios.defaults.headers.common['Authorization'];
+        });
+}, []);
 
   const handleSubmit2 = () => {
-    console.log(clrNm)
-    console.log(clrNm.label)
-    delete axios.defaults.headers.common.Authorization;
-    const formData2 = new FormData();
-    formData2.append("lstPrdtNm", title);
-    formData2.append("lstFilePathImg", image.image_file);
-    formData2.append("lstcontent", content);
-    formData2.append("lstYmd", lstYmd);
-    formData2.append("lstPlace", lstPlace);
-    formData2.append("clrNm", clrNm);
-    formData2.append("find_status", find_status);
-    formData2.append("writer", writer_id);
+    delete axios.defaults.headers.common['Authorization'];
+        const formData2 = new FormData();
+        formData2.append("lstPrdtNm", title);
+        formData2.append("lstcontent", content);
+        formData2.append("clrNm", clrNm);
+        formData2.append("find_status", find_status);
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
-      .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
-    window.alert("😎등록이 완료되었습니다😎");
+      .put(link + '/', formData2)
+    window.alert("😎수정 완료되었습니다😎");
     // navigate(-1)
     window.location.href = "/dashboard/dollido";
   }
-
-  const StyledProductImg = styled('img')({
-    top: 0,
-    width: '100%',
-    height: '40vh',
-    objectFit: 'contain',
-    // position: 'cover',
-  });
 
   return (
     <>
@@ -128,54 +73,18 @@ const DollidoAddPostPage = () => {
 
       <Container maxWidth="xl">
         <ToastContainer />
-        {loading &&
-          <Box sx={{ // 화면 스크롤해도 가운데 고정
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-          }}>
-            <CircularProgress />
-          </Box>
-        }
         <Typography variant="h4" sx={{ mb: 5 }}>
           AddPOST
         </Typography>
         <Card>
           <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs={12} sm={6} md={6} p={5}>
-              <Stack direction="row" alignItems="center" justifyContent="space-around">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => inputRef.click()}
-                >
-                  업로드
-                </Button>
-                <Button
-                  onClick={handleSubmit}
-                  className="success-button"
-                  variant="contained"
-                >
-                  예측
-                  &nbsp;
-                </Button>
-              </Stack>
-              {/* <img alt="img" src={uploadImg} /> */}
-              
               <Box height="xs" mt={2} sx={{ p: 1, border: '1px dashed grey' }}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={saveImage}
-                // eslint-disable-next-line
-                ref={(refParam) => (inputRef = refParam)}
-                style={{ display: "none" }}
-              />
               <CardMedia
                   component="img"
                   width='100%'
                   height='100%'
-                  image={image.preview_URL} // 사진이미지
+                  image={dollidoimage2} // 사진이미지
                 />
               </Box>
             </Grid>
@@ -251,26 +160,15 @@ const DollidoAddPostPage = () => {
                   &nbsp;&nbsp;&nbsp;취소
                   &nbsp;&nbsp;
                 </Button>
-                {canSubmit() ? (
-                      <Button
+                <Button
                         onClick={handleSubmit2}
                         type="submit"
                         variant="contained"
                       // href='dollido'
                       >
-                        &nbsp;&nbsp;&nbsp;등록
+                        &nbsp;&nbsp;&nbsp;수정
                         &nbsp;&nbsp;
                       </Button>
-                ) : (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disabled
-                  >
-                    &nbsp;&nbsp;&nbsp;등록
-                    &nbsp;&nbsp;
-                  </Button>
-                )}
 
               </Stack>
             </Grid>
@@ -278,7 +176,7 @@ const DollidoAddPostPage = () => {
         </Card>
       </Container>
     </>
-  );
+  );    
 }
 
 const categorical = [
@@ -301,4 +199,4 @@ const categorical = [
   { label: '노란색', id: 17 }
 ]
 
-export default DollidoAddPostPage;
+export default DollidoEditPostPage;
