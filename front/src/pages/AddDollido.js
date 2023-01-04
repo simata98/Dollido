@@ -41,6 +41,8 @@ const AddDollido = () => {
   let inputRef;
 
   const saveImage = (e) => {
+      // console.log('Bearer '.localStorage.getItem("token"))
+      console.log('Bearer '+localStorage.getItem("token"))
     e.preventDefault();
     const fileReader = new FileReader();
     if (e.target.files[0]) {
@@ -109,7 +111,6 @@ const AddDollido = () => {
     formData2.append("clrNm", clrNm);
     formData2.append("find_status", find_status);
     formData2.append("writer", writer_id);
-
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
