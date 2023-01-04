@@ -1,40 +1,9 @@
 {
-<<<<<<< Updated upstream
-  "name": "front",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.16",
-    "@mui/material": "^5.11.0",
-    "@mui/x-data-grid": "^5.17.16",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.2.1",
-    "core-js": "^3.26.1",
-    "jwt-decode": "^3.1.2",
-    "react": "^18.2.0",
-    "react-cookies": "^0.1.1",
-    "react-dom": "^18.2.0",
-    "react-js-pagination": "^3.0.3",
-    "react-paginate": "^8.1.4",
-    "react-resize-detector": "^7.1.2",
-    "react-responsive": "^9.0.2",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "react-toastify": "^9.1.1",
-    "reactjs-popup": "^2.0.5",
-    "web-vitals": "^2.1.4"
-  },
-=======
   "name": "@minimal/material-kit-react",
   "author": "minimals.cc",
   "licence": "MIT",
   "version": "1.6.0",
   "private": false,
->>>>>>> Stashed changes
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

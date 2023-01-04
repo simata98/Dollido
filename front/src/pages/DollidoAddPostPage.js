@@ -56,9 +56,9 @@ const DollidoAddPostPage = () => {
     try {
       const formData = new FormData();
       formData.append("lstFilePathImg", image.image_file);
-      // console.log(image.image_file)
+      console.log(image.image_file)
       console.log(formData)
-      for (var key of formData.lstFilePathImg()) {
+      for (var key of formData.entries()) {
         console.log(key);
       }
       setLoading(true);
