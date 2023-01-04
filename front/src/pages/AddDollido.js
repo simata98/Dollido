@@ -42,7 +42,7 @@ const AddDollido = () => {
 
   const saveImage = (e) => {
       // console.log('Bearer '.localStorage.getItem("token"))
-      console.log('Bearer '+localStorage.getItem("token"))
+      // console.log('Bearer '+localStorage.getItem("token"))
     e.preventDefault();
     const fileReader = new FileReader();
     if (e.target.files[0]) {
@@ -99,8 +99,8 @@ const AddDollido = () => {
 
 
   const handleSubmit2 = () => {
-    console.log(clrNm)
-    console.log(clrNm.label)
+    // console.log(clrNm)
+    // console.log(clrNm.label)
     delete axios.defaults.headers.common['Authorization'];
     const formData2 = new FormData();
     formData2.append("lstPrdtNm", title);
