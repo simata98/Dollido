@@ -1,11 +1,13 @@
-import sty from "./css/styles.css";
+/* eslint-disable */
+
 import Box from '@mui/material/Box';
+import sty from "./css/styles.css";
 import { Mobile, Pc } from './responsive';
 
 export default function About({children}) {
     return (
     <>
-        <Pc><Box>
+        <Pc><Box sx={{marginTop: 10,}}>
             <html lang="en">
                 <head>
                     <meta charset="utf-8" />
@@ -153,13 +155,13 @@ export default function About({children}) {
                             </div>
                         </div>
                     </footer>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="{% static 'js/scripts.js' %}"></script>
+                    {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> */}
+                    {/* <script src="{% static 'js/scripts.js' %}"></script> */}
                 </body>
             </html>
             </Box></Pc>
 
-            <Mobile><Box>
+            <Mobile><Box sx={{marginTop: -5,}}>
             <html lang="en">
                 <head>
                     <meta charset="utf-8" />
@@ -307,8 +309,8 @@ export default function About({children}) {
                             </div>
                         </div>
                     </footer>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="{% static 'js/scripts.js' %}"></script>
+                    {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> */}
+                    {/* <script src="{% static 'js/scripts.js' %}"></script> */}
                 </body>
             </html>
             </Box></Mobile>
