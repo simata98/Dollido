@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
