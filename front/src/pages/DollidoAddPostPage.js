@@ -70,45 +70,52 @@ const DollidoAddPostPage = () => {
       setClrNm(response.data.clrNm);
       // setFind_status(response.data.find_status);
       setWriter(response.data.writer_id);
-      // toast.success("😎예측이 완료되었습니다😎", {
-      //   position: "top-center",
-      //   autoClose: 1000,
-      // })
-      setTimeout(() => 1000);
-      // window.alert("😎예측이 완료되었습니다😎");
-
-    } catch (e) {
-      // 서버에서 받은 에러 메시지 출력
-      console.log(e)
-      toast.error("오류발생! 로그아웃 후 재로그인 해주세요!".concat("😭"), {
+      toast.success("😎예측이 완료되었습니다😎", {
         position: "top-center",
         autoClose: 1000,
       })
-      // alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
+      setTimeout(() => 1000);
+    } catch (e) {
+      // 서버에서 받은 에러 메시지 출력
+      console.log(e)
+      toast.error("예측이 불가능합니다!".concat("😭"), {
+        position: "top-center",
+        autoClose: 1000,
+      })
     } finally {
       setLoading(false);
     }
   }, [canSubmit]);
 
   const handleSubmit2 = () => {
-    console.log(clrNm)
-    console.log(clrNm.label)
-    delete axios.defaults.headers.common.Authorization;
-    const formData2 = new FormData();
-    formData2.append("lstPrdtNm", title);
-    formData2.append("lstFilePathImg", image.image_file);
-    formData2.append("lstcontent", content);
-    formData2.append("lstYmd", lstYmd);
-    formData2.append("lstPlace", lstPlace);
-    formData2.append("clrNm", clrNm);
-    formData2.append("find_status", find_status);
-    formData2.append("writer", writer_id);
-
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-    axios
-      .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
-    window.alert("😎등록이 완료되었습니다😎");
-    navigate(-1)
+    try {
+      console.log(clrNm)
+      console.log(clrNm.label)
+      delete axios.defaults.headers.common.Authorization;
+      const formData2 = new FormData();
+      formData2.append("lstPrdtNm", title);
+      formData2.append("lstFilePathImg", image.image_file);
+      formData2.append("lstcontent", content);
+      formData2.append("lstYmd", lstYmd);
+      formData2.append("lstPlace", lstPlace);
+      formData2.append("clrNm", clrNm);
+      formData2.append("find_status", find_status);
+      formData2.append("writer", writer_id);
+  
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+      axios
+        .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
+        toast.success("😎등록이 완료되었습니다😎", {
+          position: "top-center",
+          autoClose: 1000,
+        })
+        setTimeout(() => navigate(-1), 2000);
+    } catch (e) {
+      toast.error("등록이 불가능합니다!".concat("😭"), {
+        position: "top-center",
+        autoClose: 1000,
+      })
+    }
   }
 
   const StyledProductImg = styled('img')({

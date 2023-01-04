@@ -47,15 +47,15 @@ export default function LoginForm() {
           localStorage.setItem("token", res.data.token.access)
           localStorage.setItem("username", res.data.user.username.slice(0,-1) + '*')
           axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
-          toast.success("Success!".concat("😍"), {
+          toast.success("로그인성공!".concat("😍"), {
             position: "top-center",
             autoClose: 1000,
           })
-          window.location.href = "/";
+          setTimeout(()=>{window.location.href = "/"}, 2000);
         }
       })
       .catch((err) => {
-        toast.error("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다".concat("😭"), {
+        toast.error("등록되지 않은 계정이거나 유효하지 않은 계정입니다.".concat("😭"), {
           position: "top-center",
           autoClose:3000,
         })
@@ -78,8 +78,8 @@ export default function LoginForm() {
 
   return (
     <>
-      <Stack spacing={3}>
       <ToastContainer/>
+      <Stack spacing={3}>
         <TextField
           value={inputEmail}
           onChange={handleInputEmail}
