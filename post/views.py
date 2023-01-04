@@ -181,8 +181,8 @@ def PostList(request):
     return Response(new_serializer_data.errors, status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
-@login_required(login_url='/accounts/auth/')
+# @permission_classes([IsAuthenticated])
+# @login_required(login_url='/accounts/auth/')
 def PostDetail(request, pk):
   # pk에 해당하는 Post가 존재하는지 확인
   try:
