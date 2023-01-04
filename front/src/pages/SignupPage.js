@@ -1,3 +1,6 @@
+/* eslint-disable */
+import { toast, ToastContainer } from 'react-toastify';
+
 import { Helmet } from 'react-helmet-async';
 import React, { useState } from 'react';
 import axios from "axios";
@@ -58,6 +61,7 @@ export default function Sinup() {
   const [telMessage, setTelMessage] = useState("")
   const [addressMessage, setAddressMessage] = useState('')
 
+  
   // 유효성 검사
   const [isName, setIsName] = useState(true)
   const [isEmail, setIsEmail] = useState(true)
@@ -167,26 +171,34 @@ export default function Sinup() {
 
     // register API 호출
     axios
-      .post('http://localhost:8000/accounts/register/', user)
-      .then((res) => {
+    .post('http://localhost:8000/accounts/register/', user)
+    .then((res) => {
         if (res.data.token.access) {
-          console.log(res.data.token.access);
-          alert("가입을 축하드립니다!");
-          window.location.href = "/Signin";
+            console.log(res.data.token.access);
+            toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
+                position: "top-center",
+                autoClose: 2000,
+            })
+            setTimeout(() => window.location.href = "/Login", 2000);
+            // alert("가입을 축하드립니다!");
+            // window.location.href = "/Signin";
         } else {
-          setInputName("");
-          setInputEmail("");
-          setInputPw("");
-          setInputPwValidate("");
-          setInputTel("");
-          setInputAddress("");
-          localStorage.clear();
+            setInputName("");
+            setInputEmail("");
+            setInputPw("");
+            setInputPwValidate("");
+            setInputTel("");
+            setInputAddress("");
+            localStorage.clear();
         }
-      })
+    })
       .catch((err) => {
         console.log(user);
-        console.log(err);
-        alert("이미 존재하는 아이디 입니다.");
+                console.log(err);
+                toast.error("이미 존재하는 아이디 입니다." + "😭", {
+                    position: "top-center",
+                    autoClose: 2000,
+                })
       });
 
       window.location.href = "/";
