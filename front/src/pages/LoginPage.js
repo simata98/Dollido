@@ -63,7 +63,8 @@ export default function LoginPage() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
+              돌리도 서비스에 오신 것을<p></p>
+              환영합니다!
             </Typography>
             <img src="/assets/illustrations/illustration_login.png" alt="login" />
           </StyledSection>
@@ -72,12 +73,12 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Dollido
+              로그인하기
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link href="agreement" variant="subtitle2">Get started</Link>
+              아직 계정이 없으신가요? {''}
+              <Link href="agreement" variant="subtitle2">돌리도 서비스 회원가입</Link>
             </Typography>
 
             <Divider sx={{ my: 3 }}>
