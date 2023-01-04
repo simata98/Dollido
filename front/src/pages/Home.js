@@ -10,7 +10,6 @@ const Paging = () => {
 
     const handlePageChange = (page) => {
         setPage(page);
-        console.log(page)
     };
 
     return (

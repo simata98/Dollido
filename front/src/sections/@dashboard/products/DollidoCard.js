@@ -27,7 +27,6 @@ ShopProductCard.propTypes = {
 export default function ShopProductCard({ product }) {
   const { atcId, category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
   const link = '/dashboard/dollido/'.concat(atcId)
-  console.log(link)
   return (
     <Card id={atcId}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
