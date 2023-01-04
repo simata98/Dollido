@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
@@ -13,7 +13,6 @@ import { styled } from '@mui/material/styles';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Iconify from '../components/iconify';
 import uploadImg from '../images/upload.png';
-
 // ---------------------------------------s-------------------------------
 const DollidoAddPostPage = () => {
   const navigate = useNavigate();
@@ -121,22 +120,13 @@ const DollidoAddPostPage = () => {
   });
 
   return (
-    <>
+    <React.Fragment>
       <Helmet>
         <title> Dashboard | Minimal UI </title>
       </Helmet>
 
       <Container maxWidth="xl">
         <ToastContainer />
-        {loading &&
-          <Box sx={{ // 화면 스크롤해도 가운데 고정
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-          }}>
-            <CircularProgress />
-          </Box>
-        }
         <Typography variant="h4" sx={{ mb: 5 }}>
           AddPOST
         </Typography>
@@ -161,17 +151,17 @@ const DollidoAddPostPage = () => {
                 </Button>
               </Stack>
               {/* <img alt="img" src={uploadImg} /> */}
-              
+
               <Box height="xs" mt={2} sx={{ p: 1, border: '1px dashed grey' }}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={saveImage}
-                // eslint-disable-next-line
-                ref={(refParam) => (inputRef = refParam)}
-                style={{ display: "none" }}
-              />
-              <CardMedia
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={saveImage}
+                  // eslint-disable-next-line
+                  ref={(refParam) => (inputRef = refParam)}
+                  style={{ display: "none" }}
+                />
+                <CardMedia
                   component="img"
                   width='100%'
                   height='100%'
@@ -180,6 +170,15 @@ const DollidoAddPostPage = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={6} p={5}>
+              {loading &&
+                <Box sx={{ // 화면 스크롤해도 가운데 고정
+                  position: 'fixed',
+                  top: '50%',
+                  left: '50%',
+                }}>
+                  <CircularProgress size='5rem'/>
+                </Box>
+              }
               <TextField
                 onChange={(e) => {
                   setTitle(e.target.value);
@@ -252,15 +251,15 @@ const DollidoAddPostPage = () => {
                   &nbsp;&nbsp;
                 </Button>
                 {canSubmit() ? (
-                      <Button
-                        onClick={handleSubmit2}
-                        type="submit"
-                        variant="contained"
-                      // href='dollido'
-                      >
-                        &nbsp;&nbsp;&nbsp;등록
-                        &nbsp;&nbsp;
-                      </Button>
+                  <Button
+                    onClick={handleSubmit2}
+                    type="submit"
+                    variant="contained"
+                  // href='dollido'
+                  >
+                    &nbsp;&nbsp;&nbsp;등록
+                    &nbsp;&nbsp;
+                  </Button>
                 ) : (
                   <Button
                     type="submit"
@@ -277,7 +276,7 @@ const DollidoAddPostPage = () => {
           </Grid>
         </Card>
       </Container>
-    </>
+    </React.Fragment>
   );
 }
 

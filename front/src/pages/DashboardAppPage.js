@@ -44,6 +44,7 @@ const StyledProductImg = styled('img')({
 export default function DashboardAppPage() {
   const theme = useTheme();
   const [tasks, setTasks] = useState({});
+
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
