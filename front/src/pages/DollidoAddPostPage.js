@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
@@ -55,7 +56,11 @@ const DollidoAddPostPage = () => {
     try {
       const formData = new FormData();
       formData.append("lstFilePathImg", image.image_file);
-
+      // console.log(image.image_file)
+      console.log(formData)
+      for (var key of formData.lstFilePathImg()) {
+        console.log(key);
+      }
       setLoading(true);
 
       axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
@@ -79,6 +84,7 @@ const DollidoAddPostPage = () => {
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
+      console.log(e)
       toast.error("오류발생! 로그아웃 후 재로그인 해주세요!".concat("😭"), {
         position: "top-center",
         autoClose: 1000,
@@ -107,8 +113,17 @@ const DollidoAddPostPage = () => {
     axios
       .put(`http://localhost:8000/post/${dollidoId}/`, formData2)
     window.alert("😎등록이 완료되었습니다😎");
-
+    navigate(-1)
   }
+
+  const StyledProductImg = styled('img')({
+    top: 0,
+    width: '100%',
+    height: '40vh',
+    objectFit: 'contain',
+    // position: 'cover',
+  });
+
   return (
     <>
       <Helmet>
@@ -116,71 +131,59 @@ const DollidoAddPostPage = () => {
       </Helmet>
 
       <Container maxWidth="xl">
-
+        <ToastContainer />
+        {loading &&
+          <Box sx={{ // 화면 스크롤해도 가운데 고정
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+          }}>
+            <CircularProgress />
+          </Box>
+        }
         <Typography variant="h4" sx={{ mb: 5 }}>
           AddPOST
         </Typography>
         <Card>
-          <Grid container direction="row" justifyContent="space-around" alignItems="center">
+          <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs={12} sm={6} md={6} p={5}>
-              <Button variant="contained" component="label">
-                Upload
-                <input hidden accept="image/*" type="file" ref={(refParam) => (inputRef === refParam)} style={{ display: "none" }} />
-              </Button>
-              {/* <IconButton color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" ref={(refParam) => (inputRef === refParam)} style={{ display: "none" }} />
-                <PhotoCamera />
-              </IconButton> */}
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => inputRef.click()}
-              >
-                😎사진 고르기😎
-              </Button>
-              <Button
-                onClick={handleSubmit}
-                className="success-button"
-                variant="outlined"
-              >
-                예측하기😃
-              </Button>
+              <Stack direction="row" alignItems="center" justifyContent="space-around">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => inputRef.click()}
+                >
+                  업로드
+                </Button>
+                <Button
+                  onClick={handleSubmit}
+                  className="success-button"
+                  variant="contained"
+                >
+                  예측
+                  &nbsp;
+                </Button>
+              </Stack>
               {/* <img alt="img" src={uploadImg} /> */}
+              
+              <Box height="xs" mt={2} sx={{ p: 1, border: '1px dashed grey' }}>
               <input
                 type="file"
                 accept="image/*"
                 onChange={saveImage}
-                ref={(refParam) => (inputRef === refParam)}
+                // eslint-disable-next-line
+                ref={(refParam) => (inputRef = refParam)}
                 style={{ display: "none" }}
               />
-
-              <img alt='' src={image.preview_URL} />
+              <CardMedia
+                  component="img"
+                  width='100%'
+                  height='100%'
+                  image={image.preview_URL} // 사진이미지
+                />
+              </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={6} p={5}>
-              <div className="submitButton">
-                {canSubmit() ? (
-                  <Grid container spacing={2}>
-                    <Grid item xs={4}>
-                      <Button
-                        onClick={handleSubmit2}
-                        className="upload-button"
-                        variant="outlined"
-                        href='dollidolist'
-                      >
-                        등록하기😃
-                      </Button>
-                    </Grid>
-                  </Grid>
-                ) : (
-                  <Button
-                    className="disable-button"
-                    variant="outlined"
-                    size="large"
-                  >
-                    사진을 넣어주세요😭
-                  </Button>
-                )}
-              </div>
               <TextField
                 onChange={(e) => {
                   setTitle(e.target.value);
@@ -189,6 +192,7 @@ const DollidoAddPostPage = () => {
                 className="title"
                 placeholder="물품명"
                 value={title}
+                margin="normal"
               />
               <Autocomplete
                 onChange={(event, newValue) => {
@@ -202,6 +206,7 @@ const DollidoAddPostPage = () => {
                 sx={{ width: 300 }}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 renderInput={(params) => <TextField {...params} label="색깔" />}
+                margin="dense"
               />
               <TextField
                 onChange={(e) => {
@@ -213,6 +218,7 @@ const DollidoAddPostPage = () => {
                 className="text"
                 placeholder="습득물 상세설명"
                 value={content}
+                margin="dense"
               />
               <TextField
                 onChange={(e) => {
@@ -223,6 +229,7 @@ const DollidoAddPostPage = () => {
                 className="text"
                 placeholder="습득일자"
                 value={lstYmd}
+                margin="dense"
               />
               <TextField
                 onChange={(e) => {
@@ -233,26 +240,9 @@ const DollidoAddPostPage = () => {
                 className="text"
                 placeholder="습득장소"
                 value={lstPlace}
+                margin="dense"
               />
-              {/* <Typography align="center" variant="h4" sx={{ mb: 3 }}>
-                AddPOST
-              </Typography> */}
-              
-              <TextField
-                // error={!isName}
-                // value={inputName}
-                // onChange={handleInputName}
-                margin="normal"
-                label="user_Name"
-                required
-                fullWidth
-                name="name"
-                placeholder="홍길동"
-                autoFocus
-              />
-              {/* <Typography variant="h4" sx={{ mb: 3 }}>
-                &nbsp;
-              </Typography> */}
+
               <Stack direction="row" alignItems="center" justifyContent="space-around">
                 <Button
                   type="submit"
@@ -264,16 +254,28 @@ const DollidoAddPostPage = () => {
                 >
                   &nbsp;&nbsp;&nbsp;취소
                   &nbsp;&nbsp;
+                </Button>
+                {canSubmit() ? (
+                      <Button
+                        onClick={handleSubmit2}
+                        type="submit"
+                        variant="contained"
+                      // href='dollido'
+                      >
+                        &nbsp;&nbsp;&nbsp;등록
+                        &nbsp;&nbsp;
+                      </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disabled
+                  >
+                    &nbsp;&nbsp;&nbsp;등록
+                    &nbsp;&nbsp;
+                  </Button>
+                )}
 
-                </Button>
-                <Button
-                  type="submit"
-                  variant="contained"
-                // sx={{ mt: 3, mb: 2 }}
-                >
-                  &nbsp;&nbsp;&nbsp;등록
-                  &nbsp;&nbsp;
-                </Button>
               </Stack>
             </Grid>
           </Grid>

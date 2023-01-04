@@ -70,6 +70,8 @@ class RegisterAPIView(APIView):
                 email = EmailMessage(mail_title, message_data_2, to=[mail_to])
                 email.content_subtype = "html"
                 email.send()
+                print('email success')
+
                 
                 # jwt 토큰 접근
                 token = TokenObtainPairSerializer.get_token(user)
