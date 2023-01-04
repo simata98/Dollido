@@ -423,16 +423,6 @@ export default function DashboardAppPage() {
               />
             </Grid>
             <Grid item xs={12} md={6} lg={12}>
-              {/* <AppNewsUpdate
-                title="News Update"
-                list={[...Array(5)].map((_, index) => ({
-                  id: faker.datatype.uuid(),
-                  title: faker.name.jobTitle(),
-                  description: faker.name.jobTitle(),
-                  image: `/assets/images/covers/cover_${index + 1}.jpg`,
-                  postedAt: faker.date.recent(),
-                }))}
-              /> */}
               <Typography variant="h4" sx={{ mb: 2 }}>
                 Dollido 보관함 위치
               </Typography>
