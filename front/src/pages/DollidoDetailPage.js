@@ -23,7 +23,7 @@ export default function DashboardAppPage() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const link = 'http://127.0.0.1:8000/d'.concat(location.pathname.split('/').at(-1))
+  const link = 'http://127.0.0.1:8000/post/'.concat(location.pathname.split('/').at(-1))
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
@@ -34,8 +34,7 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-  console.log(tasks)
-
+  const src ='../../../images/' + tasks.lstFilePathImg.split('/').pop()
   return (
     <>
       <Helmet>
@@ -50,33 +49,39 @@ export default function DashboardAppPage() {
           <Grid container direction="row" justifyContent="space-around" alignItems="center">
 
             <Grid item xs={12} sm={6} md={6} p={5}>
-              <StyledProductImg alt={tasks.atcId} src={tasks.fdFilePathImg} />
+              <StyledProductImg alt={tasks.id} src={src} />
             </Grid>
 
             <Grid item xs={12} sm={6} md={6} p={5}>
               <Typography variant="h5" sx={{ mb: 3 }}>
-                {tasks.fdSbjt}
+                {tasks.lstcontent}
               </Typography>
               <Typography variant="h6" sx={{ mb: 2 }}>
-                분류: {tasks.category}
+                분류: {tasks.lstPrdtNm}
               </Typography>
               <Typography variant="h6" sx={{ mb: 2 }}>
-                습득일자: {tasks.fdYmd}
+                습득일자: {tasks.lstYmd}
               </Typography>
               <Typography variant="h6" sx={{ mb: 2 }}>
                 색상:{tasks.clrNm}
               </Typography>
-              <Typography variant="h6" sx={{ mb: 5 }}>
-                보관장소: {tasks.depPlace}
-              </Typography>
-              <Button
-                variant="contained"
-                fullWidth
-                onClick={() => {
-                  navigate(-1)
-                }}
-              >
+              <Button variant="outlined" sx={{ mb: 5 }} href={tasks.lstPlace}>
+                보관장소 확인
+              </Button>
+
+              <Stack direction="row" alignItems="center" justifyContent="space-around"  sx={{ mb: 3 }}>
+                <Button variant="outlined" color="success" fullWidth >
+                  수정
+                </Button>
+                <Button variant="outlined" color="error" fullWidth >
+                  삭제
+                </Button>
+              </Stack>
+              <Button variant="contained" fullWidth>
                 뒤로 가기
+              </Button>
+              <Button variant="outlined">
+                회수
               </Button>
             </Grid>
           </Grid>
