@@ -175,7 +175,6 @@ export default function Sinup() {
       .then((res) => {
         if (res.data.token.access) {
           console.log(res.data)
-          // console.log(res.data.token.access);
           alert("가입을 축하드립니다!");
           // toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
           //   position: "top-center",
@@ -226,7 +225,8 @@ export default function Sinup() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
+              돌리도 서비스에 오신 것을<p></p>
+              환영합니다!
             </Typography>
             <img src="/assets/illustrations/illustration_login.png" alt="login" />
           </StyledSection>

@@ -3,7 +3,6 @@ import cookies from 'react-cookies';
 import SvgColor from '../../../components/svg-color';
 
 // ----------------------------------------------------------------------
-// console.log(1)
 const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 // const navConfig = [
 //       {
@@ -43,7 +42,6 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 //       },
 //     ];
 const token = cookies.load('access');
-// console.log(token)
 let elements = [];
 if (token) {
   elements = [

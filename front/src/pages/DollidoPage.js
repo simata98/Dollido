@@ -71,7 +71,6 @@ export default function DollidoPage({ products }) {
     };
     getData();
   }, []);
-  // console.log(tasks)
 
   // 필터 사이드바 ---------------------------------
 
