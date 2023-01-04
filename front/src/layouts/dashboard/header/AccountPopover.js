@@ -38,11 +38,10 @@ export default function AccountPopover() {
 
 
   const onLogout = () => {
-    <ToastContainer/>
     const token = cookies.load('access');
     if (token) {
-      cookies.remove('access');
-      cookies.remove('refresh');
+      cookies.remove('access', { path: '/' });
+      cookies.remove('refresh', { path: '/' });
       localStorage.clear();
       localStorage.setItem("username", '로그인 해주세요')
       delete axios.defaults.headers.common.Authorization;
@@ -125,6 +124,7 @@ export default function AccountPopover() {
 
         <MenuItem onClick={onLogout} sx={{ m: 1 }}>
           Logout
+          <ToastContainer/>
         </MenuItem>
       </Popover>
     </>
