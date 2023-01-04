@@ -15,6 +15,7 @@ import About from './pages/About';
 import Lost112Detail from './pages/Lost112DetailPage'
 import DollidoDetail from './pages/DollidoDetailPage'
 import DollidoAddPostPage from './pages/DollidoAddPostPage'
+import DollidoEditPostPage from './pages/DollidoEditPostPage'
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -33,6 +34,7 @@ export default function Router() {
         { path: 'dollido/*', element: <DollidoDetail /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'about', element: <About /> },
+        { path: 'dollido/editPost', element: <DollidoEditPostPage /> },
       ],
     },
     {
