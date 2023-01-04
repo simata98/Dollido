@@ -27,15 +27,26 @@ const contentStyle = {
 const Header = ({ children, open, ...props }) => {
   const token = cookies.load('access');
   const [isAuth, setIsAuth] = useState(false);
-
+  // const [myname, setMyname] = useState('');
 
   useEffect(() => {
+  //   axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+  //   axios
+  //     // lost112의 listitem를 받을려고 axios.get(url주소)로 요청함
+  //     .get('http://127.0.0.1:8000/accounts/auth/')
+  //     .then(response => {
+  //       delete axios.defaults.headers.common['Authorization'];
+  //       setMyname(response.data.username);
+  //     });
     if (token) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
   }, [token]);
+  // console.log(myname)
+
+
   const onLogout = () => {
     const token = cookies.load('access');
     if (token) {
@@ -50,8 +61,10 @@ const Header = ({ children, open, ...props }) => {
       setTimeout(() => window.location.href = "/Signin", 2000);
       // alert("로그아웃 되었습니다😎");
       // window.location.href = "/Signin";
+      
     }
   }
+
   return (
     <>
       <Pc>
@@ -66,9 +79,11 @@ const Header = ({ children, open, ...props }) => {
               />
             </Link>
           </div>
+          {/* <div>{myname}</div> */}
           <div className="header-menu">
             {isAuth ? (
               <>
+                {/* <Link to="#">{myname}</Link> */}
                 <Link to="/mydatagrid">Lost112</Link>
                 <Link to="/dollidolist">Dollido</Link>
                 <Link to="#" onClick={onLogout}>로그아웃</Link>
