@@ -74,8 +74,6 @@ const DollidoAddPostPage = () => {
   }, [canSubmit]);
 
   const handleSubmit2 = () => {
-    console.log(clrNm)
-    console.log(clrNm.label)
     delete axios.defaults.headers.common['Authorization'];
     const formData2 = new FormData();
     formData2.append("lstPrdtNm", title);

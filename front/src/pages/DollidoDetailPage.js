@@ -32,8 +32,6 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-  console.log(tasks)
-
   return (
     <>
       <Helmet>

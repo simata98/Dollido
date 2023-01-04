@@ -77,7 +77,6 @@ const DollidoAddPostPage = () => {
       setTimeout(() => 1000);
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
-      console.log(e)
       toast.error("예측이 불가능합니다!".concat("😭"), {
         position: "top-center",
         autoClose: 1000,
@@ -89,8 +88,6 @@ const DollidoAddPostPage = () => {
 
   const handleSubmit2 = () => {
     try {
-      console.log(clrNm)
-      console.log(clrNm.label)
       delete axios.defaults.headers.common.Authorization;
       const formData2 = new FormData();
       formData2.append("lstPrdtNm", title);

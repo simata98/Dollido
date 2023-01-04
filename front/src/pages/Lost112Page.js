@@ -29,7 +29,6 @@ export default function ProductsPage({ products }) {
     };
     getData();
   }, []);
-  // console.log(tasks)
 
   // 필터 사이드바 ---------------------------------
 
@@ -83,7 +82,6 @@ export default function ProductsPage({ products }) {
           return new Date(b.fdYmd) - new Date(a.fdYmd);
         })
       );
-      console.log('오래된 순',control)
     }
     else {
       setControl(
@@ -91,7 +89,6 @@ export default function ProductsPage({ products }) {
           return new Date(a.fdYmd) - new Date(b.fdYmd);
         })
       );
-      console.log('최신순',control)
     }
 
   };

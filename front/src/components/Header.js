@@ -44,8 +44,6 @@ const Header = ({ children, open, ...props }) => {
       setIsAuth(false);
     }
   }, [token]);
-  // console.log(myname)
-
 
   const onLogout = () => {
     const token = cookies.load('access');
