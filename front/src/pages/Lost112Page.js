@@ -109,12 +109,11 @@ export default function ProductsPage({ products }) {
         <Typography variant="h4" sx={{ mb: 5 }}>
           Products
         </Typography>
-
         <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
           <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
             <ProductFilterSidebar
               openFilter={openFilter}
-              // onOpenFilter={handleOpenFilter}
+              onOpenFilter={handleOpenFilter}
               onCloseFilter={handleCloseFilter}
             />
             <Button
@@ -148,18 +147,21 @@ export default function ProductsPage({ products }) {
               ))}
             </Menu>
           </Stack>
+          
         </Stack>
         <Lost112List products={control.slice(parseInt(page, 10) * 20 - 20, parseInt(page * 20, 10))} />
+        <Stack  flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mt: 6 }}>
         <Pagination
           showFirstButton showLastButton
-          size="medium"
+          size="small"
           color="primary"
           count={parseInt(tasks.length / 20, 10)}
           // eslint-disable-next-line
           onChange={(_, page) => {
             setPage(page);
           }}
-        />
+        />  
+        </Stack>      
       </Container>
     </>
   );
