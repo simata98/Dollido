@@ -38,23 +38,18 @@ export default function AccountPopover() {
 
 
   const onLogout = () => {
-    <ToastContainer/>
     const token = cookies.load('access');
     if (token) {
-      cookies.remove('access');
-      cookies.remove('refresh');
+      cookies.remove('access', { path: '/' });
+      cookies.remove('refresh', { path: '/' });
       localStorage.clear();
       localStorage.setItem("username", '로그인 해주세요')
       delete axios.defaults.headers.common.Authorization;
       toast.success("로그아웃 되었습니다😎", {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 1000,
       })
-      window.location.href = "/";
-      // setTimeout(() => window.location.href = "/Signin", 2000);
-      // alert("로그아웃 되었습니다😎");
-      // window.location.href = "/Signin";
-      // setOpen(null);
+      setTimeout(() => window.location.href = "/login", 2000);
     }
   }
 
@@ -68,6 +63,7 @@ export default function AccountPopover() {
 
   return (
     <>
+      <ToastContainer/>
       <IconButton
         onClick={handleOpen}
         sx={{
@@ -122,10 +118,18 @@ export default function AccountPopover() {
             </MenuItem>
           ))}
         </Stack>
+        {isAuth ? (
+          <>
+            <MenuItem onClick={onLogout} sx={{ m: 1 }}>
+              Logout
+            </MenuItem>
+          </>
+        ) : (
+          <>
+            
+          </>
+        )}
 
-        <MenuItem onClick={onLogout} sx={{ m: 1 }}>
-          Logout
-        </MenuItem>
       </Popover>
     </>
   );

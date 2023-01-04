@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import PropTypes from 'prop-types';
 // @mui
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
@@ -20,16 +22,16 @@ const StyledProductImg = styled('img')({
 
 // ----------------------------------------------------------------------
 
-ShopProductCard.propTypes = {
+DollidoCard.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product }) {
-  const { atcId, category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
-  const link = '/dashboard/dollido/'.concat(atcId)
+export default function DollidoCard({ product }) {
+  const { id, lstPrdtNm, lstFilePathImg, lstcontent, lstYmd, lstPlace, find_status, clrNm, writer_id, create_date } = product;
+  const link = '/dashboard/dollido/'.concat(id)
   console.log(link)
   return (
-    <Card id={atcId}>
+    <Card id={id}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {/* {status && (
 
@@ -47,21 +49,21 @@ export default function ShopProductCard({ product }) {
             {status}
           </Label>
         )} */}
-        <StyledProductImg alt={category} src={fdFilePathImg} />
+        <StyledProductImg alt={id} src={'../../../images/' + lstFilePathImg.split('/').pop()} />
 
       </Box>
       
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link href={link} color="inherit" underline="hover">
           <Typography variant="h6" noWrap>
-            {category}
+            {lstPrdtNm}
           </Typography>
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
-            {fdYmd}
+            {lstYmd}
           </Typography>
           <Typography variant="subtitle1">
             &nbsp;

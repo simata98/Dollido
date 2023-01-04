@@ -21,9 +21,11 @@ const StyledProductImg = styled('img')({
 export default function DashboardAppPage() {
   const [tasks, setTasks] = useState([]);
   const location = useLocation();
-  const link = 'http://127.0.0.1:8000/'.concat(location.pathname.split('/').at(-1))
+  const link = 'http://127.0.0.1:8000/post/'.concat(location.pathname.split('/').at(-1))
+  console.log(link)
   useEffect(() => {
     const getData = async () => {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       const response = await axios.get(
         link
       );
