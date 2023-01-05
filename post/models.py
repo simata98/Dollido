@@ -41,11 +41,12 @@ class DollidoLstId(models.Model):
     lstcontent = models.CharField('특이사항', max_length=500, default='', blank=True, null=True)
     # 습득일자
     # lstYmd = models.DateField(max_length=10, auto_now=False, auto_now_add=False, blank=True, null=True)
-    lstYmd = models.CharField('습득일자', max_length=200, blank=True, null=True)
+    # lstYmd = models.CharField('습득일자', blank=True, max_length=200, null=True)
+    lstYmd = models.DateField('습득일자', blank=True, max_length=10, null=True)
     # 보관장소 (수거함)
     lstPlace = models.CharField(blank=True, max_length=200, null=True)
     # 게시일자
-    create_date = models.DateTimeField(default=dateformat.format(timezone.now(), 'Y-m-d H:i:s'))
+    create_date = models.DateField(max_length=10, null = True)
     # 물건을 찾았는지
     find_status = models.BooleanField(default=False)
     # 분류된 색상 결과
@@ -53,3 +54,11 @@ class DollidoLstId(models.Model):
 
     def __str__(self):
         return self.lstPrdtNm
+
+class Stat_info(models.Model):
+  date = models.CharField(primary_key=True, max_length=10)
+  lost112_wallet_cnt = models.IntegerField()
+  lost112_phone_cnt = models.IntegerField()
+  dollido_wallet_cnt = models.IntegerField()
+  dollido_phone_cnt = models.IntegerField()
+  total_cnt = models.IntegerField()

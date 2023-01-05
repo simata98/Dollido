@@ -12,4 +12,5 @@ urlpatterns = [
     path('activate/<str:uidb64>/<str:token>/', views.Activate.as_view(), name='activate'),
     path("auth/refresh/", TokenRefreshView.as_view()),
     path('auth/', views.AuthAPIView.as_view()),
+    path('passmail/', views.Password.as_view()),
 ]
