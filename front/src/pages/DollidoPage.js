@@ -70,6 +70,7 @@ export default function DollidoPage({ products }) {
         category: category
       };
       console.log(attr)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
       const response = await axios.post(
         'http://127.0.0.1:8000/post/filter/', attr
       );
