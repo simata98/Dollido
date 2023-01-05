@@ -91,7 +91,6 @@ export default function Sinup() {
   const handleInputEmail = (e) => {
     const emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
     setInputEmail(e.target.value);
-    console.log(e.target.value);
     if (!emailRegex.test(e.target.value)) {
       setEmailMessage('이메일 형식이 틀렸어요! 다시 확인해주세요 ㅜ ㅜ')
       setIsEmail(false)
@@ -106,7 +105,6 @@ export default function Sinup() {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-~])(?=.*[0-9]).{8,25}$/
     setInputPw(e.target.value);
-    console.log(e.target.value);
     if (!passwordRegex.test(e.target.value)) {
       setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!')
       setIsPassword(false)
@@ -119,7 +117,6 @@ export default function Sinup() {
   // pw 입력값 (유효성검사용)
   const handleInputPwValidate = (e) => {
     setInputPwValidate(e.target.value);
-    console.log(e.target.value);
     if (inputPw === e.target.value) {
       setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )')
       setIsPasswordConfirm(true)
@@ -134,7 +131,6 @@ export default function Sinup() {
     const telRegex =
       /^(?:(010-\d{4})|(01[1|6|7|8|9]-\d{3,4}))-(\d{4})$/;
     setInputTel(e.target.value);
-    console.log(e.target.value);
     if (!telRegex.test(e.target.value) && e.target.value.length === 11) {
       setTelMessage('숫자를 정확히 입력했어요 : )')
       setIsTel(true)
@@ -147,7 +143,6 @@ export default function Sinup() {
   // address 입력값-
   const handleInputAddress = (e) => {
     setInputAddress(e.target.value);
-    console.log(e.target.value);
     if (e.target.value.length === 0) {
       setAddressMessage('주소를 입력해주세요')
       setIsAddress(false)
@@ -174,18 +169,12 @@ export default function Sinup() {
       .post('http://localhost:8000/accounts/register/', user)
       .then((res) => {
         if (res.data.token.access) {
-          console.log(res.data)
-          alert("가입을 축하드립니다!");
-          // toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
-          //   position: "top-center",
-          //   autoClose: 2000,
-          // })
+          toast.success("가입을 축하드립니다! 😎", {
+            position: "top-center",
+            autoClose: 1000,
+          })
           setTimeout(() => window.location.href = "/login", 2000);
-          // alert("가입을 축하드립니다!");
-          // window.location.href = "/Signin";
         } else {
-          console.log(failed);
-          alert("failed!");
           setInputName("");
           setInputEmail("");
           setInputPw("");
@@ -196,13 +185,10 @@ export default function Sinup() {
         }
       })
       .catch((err) => {
-        console.log(user);
-        console.log(err);
-        alert("이미 존재하는 아이디 입니다.");
-        // toast.error("이미 존재하는 아이디 입니다." + "😭", {
-        //   position: "top-center",
-        //   autoClose: 2000,
-        // })
+        toast.error("가입에 실패했습니다. 다시 시도해주세요!" + "😭", {
+          position: "top-center",
+          autoClose: 2000,
+        })
       });
 
     // window.location.href = "/";
@@ -225,8 +211,8 @@ export default function Sinup() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              돌리도 서비스에 오신 것을<p></p>
-              환영합니다!
+            돌리도 서비스에 오신 것을<p></p>
+            환영합니다!
             </Typography>
             <img src="/assets/illustrations/illustration_login.png" alt="login" />
           </StyledSection>
@@ -244,6 +230,7 @@ export default function Sinup() {
               <Typography component="h1" variant="h5">
                 회원가입
               </Typography>
+              <ToastContainer />
               <TextField
                 error={!isName}
                 value={inputName}

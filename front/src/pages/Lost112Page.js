@@ -82,7 +82,6 @@ export default function Lost112Page({ products }) {
           return new Date(b.fdYmd) - new Date(a.fdYmd);
         })
       );
-      console.log('오래된 순',control)
     }
     else {
       setControl(
@@ -90,7 +89,6 @@ export default function Lost112Page({ products }) {
           return new Date(a.fdYmd) - new Date(b.fdYmd);
         })
       );
-      console.log('최신순',control)
     }
 
   };

@@ -27,7 +27,6 @@ Lost112Card.propTypes = {
 export default function Lost112Card({ product }) {
   const { atcId, category, clrNm, depPlace, fdFilePathImg, fdPrdNm, fdSbjt, fdYmd } = product;
   const link = '/dashboard/lost112/'.concat(atcId)
-  console.log(link)
   return (
     <Card id={atcId}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
