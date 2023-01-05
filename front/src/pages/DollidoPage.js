@@ -134,7 +134,6 @@ export default function DollidoPage({ products }) {
       );
       console.log('최신순', control)
     }
-
   };
 
   // 페이지 ---------------------------------------
