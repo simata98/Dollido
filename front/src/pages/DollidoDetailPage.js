@@ -2,8 +2,10 @@
 
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+
 // @mui
 import { Container, Typography, Box, Card, Link, Stack, Grid, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -19,7 +21,6 @@ const StyledProductImg = styled('img')({
   objectFit: 'cover',
   // position: 'absolute',
 });
-
 
 export default function DashboardAppPage() {
   const [tasks, setTasks] = useState([]);
@@ -67,13 +68,28 @@ export default function DashboardAppPage() {
     };
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+    axios.defaults.withCredentials = true
+    axios
+      .post('http://localhost:8000/accounts/passmail/')
+      toast.success("돌리도 보관함 비밀번호 전송 완료!".concat("😍"), {
+        position: "top-right",
+        autoClose: 1000,
+      })
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(`http://localhost:8000/post/${tasks.id}/`, user)
       .then(response => {
         setStatus(response.find_status)
+        
         // form 초기화
-        alert('회수요청');
-        window.location.reload();
+        toast.success("😎회수요청이 완료되었습니다😎", {
+          position: "top-right",
+          autoClose: 2000,
+          toastId: "get success"
+        })
+
+        setTimeout(() => window.location.reload(), 1000);
       });
   };
 
@@ -86,9 +102,16 @@ export default function DashboardAppPage() {
         // form 초기화
         toast.success("😎삭제가 완료되었습니다😎", {
           position: "top-right",
+<<<<<<< Updated upstream
           autoClose: 1000,
         })
         setTimeout(() =>window.location.href = "/dashboard/dollido", 2000);
+=======
+          autoClose: 2000,
+          toastId: "remove success"
+        })
+        setTimeout(() => window.location.href = "/dashboard/dollido",  1000);
+>>>>>>> Stashed changes
       }
       );
   };
@@ -105,7 +128,11 @@ export default function DashboardAppPage() {
 
   return (
     <>
+<<<<<<< Updated upstream
       <ToastContainer />
+=======
+      <ToastContainer/>
+>>>>>>> Stashed changes
       <Helmet>
         <title> Dashboard | Minimal UI </title>
       </Helmet>

@@ -62,10 +62,16 @@ const DollidoEditPostPage = () => {
       .put(link + '/', formData2)
       toast.success("😎수정이 완료되었습니다😎", {
         position: "top-right",
+<<<<<<< Updated upstream
         autoClose: 1000,
       })
       setTimeout(() =>window.location.href = "/dashboard/dollido", 2000);
     // navigate(-1)
+=======
+        autoClose: 2000,
+      })    // navigate(-1)
+      setTimeout(() => window.location.href = "/dashboard/dollido",  1000);
+>>>>>>> Stashed changes
   }
 
   return (
