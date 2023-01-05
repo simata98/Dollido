@@ -54,12 +54,9 @@ const Header = ({ children, open, ...props }) => {
       delete axios.defaults.headers.common['Authorization'];
       toast.success("로그아웃 되었습니다😎", {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 1000,
       })
       setTimeout(() => window.location.href = "/Signin", 2000);
-      // alert("로그아웃 되었습니다😎");
-      // window.location.href = "/Signin";
-      
     }
   }
 

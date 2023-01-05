@@ -35,8 +35,8 @@ def Mainpage_info(request):
         res['wallet_cnt'] = wallet_cnt
         res['phone_cnt'] = phone_cnt
         
-        data = ApiListId.objects.all().order_by('-fdYmd')[:20]
-        serializer = ApiSerializer(data, many=True)
+        data = DollidoLstId.objects.all().order_by('-lstYmd')[:20]
+        serializer = DollidoSerializer(data, many=True)
         res['current_lost'] = serializer.data
         return Response(res)
     except:
@@ -45,5 +45,5 @@ def Mainpage_info(request):
 @api_view(['GET'])
 def Mainpage_detail(request, pk):
     data = get_object_or_404(ApiListId, pk=pk)
-    serializer = ApiSerializer(data)
+    serializer = DollidoSerializer(data)
     return Response(serializer.data)
