@@ -11,7 +11,6 @@ import { Container, Typography, Box, Card, Link, Stack, Grid, Button } from '@mu
 import { styled } from '@mui/material/styles';
 import Iconify from '../components/iconify';
 import jwt_decode from "jwt-decode";
-import { toast, ToastContainer } from 'react-toastify';
 
 // ---------------------------------------s-------------------------------
 const StyledProductImg = styled('img')({
@@ -102,16 +101,10 @@ export default function DashboardAppPage() {
         // form 초기화
         toast.success("😎삭제가 완료되었습니다😎", {
           position: "top-right",
-<<<<<<< Updated upstream
-          autoClose: 1000,
-        })
-        setTimeout(() =>window.location.href = "/dashboard/dollido", 2000);
-=======
           autoClose: 2000,
           toastId: "remove success"
         })
         setTimeout(() => window.location.href = "/dashboard/dollido",  1000);
->>>>>>> Stashed changes
       }
       );
   };
@@ -128,11 +121,7 @@ export default function DashboardAppPage() {
 
   return (
     <>
-<<<<<<< Updated upstream
-      <ToastContainer />
-=======
       <ToastContainer/>
->>>>>>> Stashed changes
       <Helmet>
         <title> Dashboard | Minimal UI </title>
       </Helmet>

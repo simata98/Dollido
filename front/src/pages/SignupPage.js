@@ -169,16 +169,10 @@ export default function Sinup() {
       .post('http://localhost:8000/accounts/register/', user)
       .then((res) => {
         if (res.data.token.access) {
-<<<<<<< Updated upstream
-          toast.success("가입을 축하드립니다! 😎", {
-            position: "top-center",
-            autoClose: 1000,
-=======
           console.log(res.data)
           toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
             position: "top-right",
             autoClose: 2000,
->>>>>>> Stashed changes
           })
           setTimeout(() => window.location.href = "/login", 2000);
         } else {
