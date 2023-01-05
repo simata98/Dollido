@@ -5,6 +5,7 @@ class ApiConfig(AppConfig):
     name = 'api'
     def ready(self):
         from post.models import ApiListId
-        from .broker import sched_lost, get_lost112
-        # get_lost112()
-        # sched_lost()
+        from .broker import sched_lost, get_lost112, count_rows
+        get_lost112()
+        count_rows()
+        sched_lost()
