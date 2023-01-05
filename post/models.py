@@ -46,7 +46,7 @@ class DollidoLstId(models.Model):
     # 보관장소 (수거함)
     lstPlace = models.CharField(blank=True, max_length=200, null=True)
     # 게시일자
-    create_date = models.DateField(max_length=10, null = True)
+    create_date = models.DateField(default=dateformat.format(timezone.now(), 'Y-m-d'))
     # 물건을 찾았는지
     find_status = models.BooleanField(default=False)
     # 분류된 색상 결과

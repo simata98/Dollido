@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 // @mui
 import { styled } from '@mui/material/styles';
-import { Container, Typography, Button, TextField, Box } from '@mui/material';
+import { Container, Typography, Button, TextField, Box, TableContainer } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
@@ -201,6 +201,7 @@ export default function Sinup() {
   };
   return (
     <>
+      <ToastContainer />
       <Helmet>
         <title> Login | Minimal UI </title>
       </Helmet>
