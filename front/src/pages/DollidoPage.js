@@ -121,7 +121,7 @@ export default function DollidoPage({ products }) {
     if (cur === "오래된 순") {
       setControl(
         [...projects].sort((a, b) => {
-          return new Date(b.fdYmd) - new Date(a.fdYmd);
+          return new Date(b.lstYmd) - new Date(a.lstYmd);
         })
       );
       console.log('오래된 순', control)
@@ -129,7 +129,7 @@ export default function DollidoPage({ products }) {
     else {
       setControl(
         [...projects].sort((a, b) => {
-          return new Date(a.fdYmd) - new Date(b.fdYmd);
+          return new Date(a.lstYmd) - new Date(b.lstYmd);
         })
       );
       console.log('최신순', control)

@@ -55,7 +55,12 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-
+  console.log('tasks.wallet_cnt',tasks.wallet_cnt)
+  console.log('tasks.phone_cnt',tasks.phone_cnt)
+  console.log('tasks.current_lost',tasks.current_lost)
+  console.log('tasks.dollido_cnt',tasks.dollido_cnt)
+  console.log('tasks.api_cnt',tasks.api_cnt)
+  console.log('tasks.total_cnt',tasks.total_cnt)
   if (tasks.current_lost) {
     return (
       <>
