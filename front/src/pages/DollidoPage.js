@@ -104,7 +104,7 @@ export default function DollidoPage({ products }) {
 
     useEffect(() => {
       const getData = async () => {
-        const response = await axios.put(
+        const response = await axios.post(
           'http://127.0.0.1:8000/post/filter/', attr
         );
         setTasks(response.data);
@@ -168,7 +168,7 @@ export default function DollidoPage({ products }) {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" sx={{ mb: 5 }}>
-            Dollido 게시판
+            Dollido
           </Typography>
           <Button href={link} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             새 게시물
