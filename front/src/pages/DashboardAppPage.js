@@ -87,7 +87,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[0])[6]}
+                        {Object.values(tasks.current_lost[0])[1]}
 
                       </Typography>
                     </Link>
@@ -99,7 +99,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[0])[1]}
+                        {Object.values(tasks.current_lost[0])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -117,7 +117,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[1])[6]}
+                        {Object.values(tasks.current_lost[1])[1]}
 
                       </Typography>
                     </Link>
@@ -129,7 +129,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[1])[1]}
+                        {Object.values(tasks.current_lost[1])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -147,7 +147,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[2])[6]}
+                        {Object.values(tasks.current_lost[2])[1]}
 
                       </Typography>
                     </Link>
@@ -159,7 +159,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[2])[1]}
+                        {Object.values(tasks.current_lost[2])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -177,7 +177,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[3])[6]}
+                        {Object.values(tasks.current_lost[3])[1]}
 
                       </Typography>
                     </Link>
@@ -189,7 +189,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[3])[1]}
+                        {Object.values(tasks.current_lost[3])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -207,7 +207,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[4])[6]}
+                        {Object.values(tasks.current_lost[4])[1]}
 
                       </Typography>
                     </Link>
@@ -219,7 +219,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[4])[1]}
+                        {Object.values(tasks.current_lost[4])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -237,7 +237,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[5])[6]}
+                        {Object.values(tasks.current_lost[5])[1]}
 
                       </Typography>
                     </Link>
@@ -249,7 +249,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[5])[1]}
+                        {Object.values(tasks.current_lost[5])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -267,7 +267,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[6])[6]}
+                        {Object.values(tasks.current_lost[6])[1]}
 
                       </Typography>
                     </Link>
@@ -279,7 +279,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[6])[1]}
+                        {Object.values(tasks.current_lost[6])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -297,7 +297,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[7])[6]}
+                        {Object.values(tasks.current_lost[7])[1]}
 
                       </Typography>
                     </Link>
@@ -309,7 +309,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[7])[1]}
+                        {Object.values(tasks.current_lost[7])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -327,7 +327,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[8])[6]}
+                        {Object.values(tasks.current_lost[8])[1]}
 
                       </Typography>
                     </Link>
@@ -339,7 +339,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[8])[1]}
+                        {Object.values(tasks.current_lost[8])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -357,7 +357,7 @@ export default function DashboardAppPage() {
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[9])[6]}
+                        {Object.values(tasks.current_lost[9])[1]}
 
                       </Typography>
                     </Link>
@@ -369,7 +369,7 @@ export default function DashboardAppPage() {
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[9])[1]}
+                        {Object.values(tasks.current_lost[9])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
