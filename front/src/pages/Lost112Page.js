@@ -35,23 +35,16 @@ import { ProductSort, Lost112List, ProductFilterSidebar } from '../sections/@das
 // ----------------------------------------------------------------------
 const FILTER_CATEGORY_OPTIONS = ['휴대폰', '지갑'];
 const FILTER_COLOR_OPTIONS = [
-  { label: '베이지색', id: 1 },
-  { label: '검정색', id: 2 },
-  { label: '파랑색', id: 3 },
-  { label: '갈색', id: 4 },
-  { label: '금색', id: 5 },
-  { label: '초록색', id: 6 },
-  { label: '회색', id: 7 },
-  { label: '밤색', id: 8 },
-  { label: '네이비색', id: 9 },
-  { label: '올리브색', id: 10 },
-  { label: '오렌지색', id: 11 },
-  { label: '핑크색', id: 12 },
-  { label: '보라색', id: 13 },
-  { label: '빨간색', id: 14 },
-  { label: '은색', id: 15 },
-  { label: '하얀색', id: 16 },
-  { label: '노란색', id: 17 }
+  { label: '흰', id: 1 },
+  { label: '빨강', id: 2 },
+  { label: '검정', id: 3 },
+  { label: '파랑', id: 4 },
+  { label: '갈', id: 5 },
+  { label: '주황', id: 6 },
+  { label: '분홍', id: 7 },
+  { label: '초록', id: 8 },
+  { label: '보라', id: 9 },
+  { label: '노랑', id: 10 },
 ]
 const SORT_BY_OPTIONS = [
   { value: 'featured', label: '최신순' },
@@ -104,8 +97,8 @@ export default function DollidoPage({ products }) {
 
     useEffect(() => {
       const getData = async () => {
-        const response = await axios.put(
-          'http://127.0.0.1:8000/post/filter/', attr
+        const response = await axios.post(
+          'http://127.0.0.1:8000/lost112/', attr
         );
         setTasks(response.data);
         console.log(tasks)
@@ -156,8 +149,6 @@ export default function DollidoPage({ products }) {
 
   // 페이지 ---------------------------------------
   const [page, setPage] = useState(1);
-  const link = '/dashboard/dollido/addPost'
-
 
   return (
     <>
@@ -166,14 +157,10 @@ export default function DollidoPage({ products }) {
       </Helmet>
 
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" sx={{ mb: 5 }}>
             Products
           </Typography>
-          <Button href={link} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            새 게시물
-          </Button>
-        </Stack>
+
 
 
         <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
