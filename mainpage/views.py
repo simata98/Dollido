@@ -45,5 +45,5 @@ def Mainpage_info(request):
 @api_view(['GET'])
 def Mainpage_detail(request, pk):
     data = get_object_or_404(ApiListId, pk=pk)
-    serializer = DollidoSerializer(data)
+    serializer = ApiSerializer(data)
     return Response(serializer.data)
