@@ -86,27 +86,6 @@ const DollidoAddPostPage = () => {
   }, [canSubmit]);
 
   const handleSubmit2 = () => {
-<<<<<<< HEAD
-    console.log(clrNm)
-    console.log(clrNm.label)
-    delete axios.defaults.headers.common.Authorization;
-    const formData2 = new FormData();
-    formData2.append("lstPrdtNm", title);
-    formData2.append("lstFilePathImg", image.image_file);
-    formData2.append("lstcontent", content);
-    formData2.append("lstYmd", lstYmd);
-    formData2.append("lstPlace", lstPlace);
-    formData2.append("clrNm", clrNm);
-    formData2.append("find_status", find_status);
-    formData2.append("writer", writer_id);
-
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-    axios
-      .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
-    window.alert("😎등록이 완료되었습니다😎");
-    // navigate(-1)
-    window.location.href = "/dashboard/dollido";
-=======
     try {
       delete axios.defaults.headers.common.Authorization;
       const formData2 = new FormData();
@@ -133,7 +112,6 @@ const DollidoAddPostPage = () => {
         autoClose: 1000,
       })
     }
->>>>>>> 958ce79772ea230c60602369f1fcd377d5ad7431
   }
 
   const StyledProductImg = styled('img')({

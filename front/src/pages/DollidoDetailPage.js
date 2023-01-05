@@ -9,6 +9,7 @@ import { Container, Typography, Box, Card, Link, Stack, Grid, Button } from '@mu
 import { styled } from '@mui/material/styles';
 import Iconify from '../components/iconify';
 import jwt_decode from "jwt-decode";
+import { toast, ToastContainer } from 'react-toastify';
 
 // ---------------------------------------s-------------------------------
 const StyledProductImg = styled('img')({
@@ -83,8 +84,11 @@ export default function DashboardAppPage() {
       .delete(`http://localhost:8000/post/${tasks.id}/`)
       .then(response => {
         // form 초기화
-        alert('삭제완료')
-        window.location.href = "/dashboard/dollido";
+        toast.success("😎삭제가 완료되었습니다😎", {
+          position: "top-right",
+          autoClose: 1000,
+        })
+        setTimeout(() =>window.location.href = "/dashboard/dollido", 2000);
       }
       );
   };
@@ -101,6 +105,7 @@ export default function DashboardAppPage() {
 
   return (
     <>
+      <ToastContainer />
       <Helmet>
         <title> Dashboard | Minimal UI </title>
       </Helmet>
@@ -141,7 +146,9 @@ export default function DashboardAppPage() {
                   삭제
                 </Button>
               </Stack>
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={() => {
+                  navigate(-1)
+                }}>
                 뒤로 가기
               </Button>
               <Button
