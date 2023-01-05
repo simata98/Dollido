@@ -69,10 +69,17 @@ const DollidoAddPostPage = () => {
       setClrNm(response.data.clrNm);
       // setFind_status(response.data.find_status);
       setWriter(response.data.writer_id);
+      // toast.configure();
       // toast.success("😎예측이 완료되었습니다😎", {
       //   position: "top-center",
       //   autoClose: 1000,
       // })
+      // setTimeout(() =>  2000);
+    
+      toast.success("😎예측이 완료되었습니다😎", {
+        position: "top-right",
+        autoClose: 1000,
+      })
       setTimeout(() => 1000);
       // window.alert("😎예측이 완료되었습니다😎");
 
@@ -80,7 +87,7 @@ const DollidoAddPostPage = () => {
       // 서버에서 받은 에러 메시지 출력
       console.log(e)
       toast.error("오류발생! 로그아웃 후 재로그인 해주세요!".concat("😭"), {
-        position: "top-center",
+        position: "top-right",
         autoClose: 1000,
       })
       // alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
@@ -106,9 +113,11 @@ const DollidoAddPostPage = () => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(`http://localhost:8000/post/${dollido_id}/`, formData2)
-    window.alert("😎등록이 완료되었습니다😎");
-    // navigate(-1)
-    window.location.href = "/dashboard/dollido";
+      toast.success("😎등록이 완료되었습니다😎", {
+        position: "top-right",
+        autoClose: 1000,
+      })
+      setTimeout(() => window.location.href = "/dashboard/dollido", 2000);
   }
 
   const StyledProductImg = styled('img')({
@@ -126,10 +135,11 @@ const DollidoAddPostPage = () => {
       </Helmet>
 
       <Container maxWidth="xl">
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Typography variant="h4" sx={{ mb: 5 }}>
           AddPOST
         </Typography>
+        <ToastContainer />
         <Card>
           <Grid container direction="row" justifyContent="center" alignItems="center">
             <Grid item xs={12} sm={6} md={6} p={5}>
