@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -28,7 +29,6 @@ import {
 // components
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
-import { ColorMultiPicker } from '../components/color-utils';
 
 import { ProductSort, DollidoList, ProductFilterSidebar } from '../sections/@dashboard/products';
 
@@ -60,22 +60,28 @@ const SORT_BY_OPTIONS = [
 
 export default function DollidoPage({ products }) {
   const [tasks, setTasks] = useState([]);
+  const [color, setColor] = useState("");
+  const [category, setCategory] = useState("");
+
   useEffect(() => {
     const getData = async () => {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
-      const response = await axios.get(
-        'http://127.0.0.1:8000/post/'
+      const attr = {
+        color: color,
+        category: category
+      };
+      console.log(attr)
+      const response = await axios.post(
+        'http://127.0.0.1:8000/post/filter/', attr
       );
       setTasks(response.data);
-      console.log(tasks)
     };
     getData();
-  }, []);
+  }, [color, category]);
+  // console.log(tasks)
 
   // 필터 사이드바 ---------------------------------
 
   const [openFilter, setOpenFilter] = useState(false);
-
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -83,6 +89,33 @@ export default function DollidoPage({ products }) {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
+
+  const handleCategory = (e) => {
+    console.log(e.target.value)
+    setCategory(e.target.value)
+  };
+
+  const handleColor = (e, value) => {
+    console.log(value)
+    setColor(value)
+  };
+
+  const handleSearch = () => {
+
+    useEffect(() => {
+      const getData = async () => {
+        const response = await axios.post(
+          'http://127.0.0.1:8000/post/filter/', attr
+        );
+        setTasks(response.data);
+        console.log(tasks)
+      };
+      getData();
+    }, []);
+    // setTasks(response.data);
+    console.log(tasks)
+    setOpenFilter(false)
+  }
 
   // 정렬 ---------------------------------------
   const [open, setOpen] = useState(null);
@@ -135,7 +168,7 @@ export default function DollidoPage({ products }) {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" sx={{ mb: 5 }}>
-            Products
+            Dollido
           </Typography>
           <Button href={link} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             새 게시물
@@ -175,49 +208,45 @@ export default function DollidoPage({ products }) {
 
               <Divider />
 
-              <Scrollbar>
-                <Stack spacing={3} sx={{ p: 3 }}>
-                  <div>
-                    <Typography variant="subtitle1" gutterBottom>
-                      Category
-                    </Typography>
-                    <RadioGroup>
-                      {FILTER_CATEGORY_OPTIONS.map((item) => (
-                        <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
-                      ))}
-                    </RadioGroup>
-                  </div>
+              <Stack spacing={3} sx={{ p: 3 }}>
+                <div>
+                  <Typography variant="subtitle1" gutterBottom>
+                    Category
+                  </Typography>
+                  <RadioGroup onChange={handleCategory}>
+                    {FILTER_CATEGORY_OPTIONS.map((item) => (
+                      <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
+                    ))}
+                  </RadioGroup>
+                </div>
 
-                  <div>
-                    <Typography variant="subtitle1" gutterBottom>
-                      Colors
-                    </Typography>
-                    <Autocomplete
-                      // onChange={(event, newValue) => {
-                      //   setClrNm(newValue);
-                      // }}
-                      // value={clrNm}
-                      disablePortal
-                      id="combo-box-demo"
-                      options={FILTER_COLOR_OPTIONS.map((option) => option.label)}
-                      sx={{ width: 250 }}
-                      isOptionEqualToValue={(option, value) => option.id === value.id}
-                      renderInput={(params) => <TextField {...params} label="색깔" />}
-                    />
-                  </div>
-                </Stack>
-              </Scrollbar>
+                <div>
+                  <Typography variant="subtitle1" gutterBottom>
+                    Colors
+                  </Typography>
+                  <Autocomplete
+                    onInputChange={handleColor}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={FILTER_COLOR_OPTIONS.map((option) => option.label)}
+                    sx={{ width: 250 }}
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    renderInput={(params) => <TextField {...params} label="색깔" />}
+                  />
+                </div>
+              </Stack>
 
               <Box sx={{ p: 3 }}>
                 <Button
+                  onClick={handleCloseFilter}
                   fullWidth
                   size="large"
                   type="submit"
                   color="inherit"
                   variant="outlined"
-                  startIcon={<Iconify icon="ic:round-clear-all" />}
+                  startIcon={<Iconify icon="material-symbols:close" />}
                 >
-                  Clear All
+                  닫기
                 </Button>
               </Box>
             </Drawer>

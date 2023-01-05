@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.urls import path
-from .views import PostList, PostDetail
+from .views import PostList, PostDetail, PostFilter
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -14,4 +14,5 @@ urlpatterns = [
     # path('delete_lost/<int:id>', views.delete_lost, name='delete_lost'),
     path('', PostList, name='post_list'),
     path('<int:pk>/', PostDetail, name='post_detail'),
+    path('filter/', PostFilter, name='post_filter')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
