@@ -175,17 +175,12 @@ export default function Sinup() {
       .then((res) => {
         if (res.data.token.access) {
           console.log(res.data)
-          alert("가입을 축하드립니다!");
-          // toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
-          //   position: "top-center",
-          //   autoClose: 2000,
-          // })
+          toast.success("가입을 축하드립니다! 입력한메일주소로 메일인증을 진행해주세요" + "😍", {
+            position: "top-right",
+            autoClose: 1000,
+          })
           setTimeout(() => window.location.href = "/login", 2000);
-          // alert("가입을 축하드립니다!");
-          // window.location.href = "/Signin";
         } else {
-          console.log(failed);
-          alert("failed!");
           setInputName("");
           setInputEmail("");
           setInputPw("");
@@ -196,13 +191,10 @@ export default function Sinup() {
         }
       })
       .catch((err) => {
-        console.log(user);
-        console.log(err);
-        alert("이미 존재하는 아이디 입니다.");
-        // toast.error("이미 존재하는 아이디 입니다." + "😭", {
-        //   position: "top-center",
-        //   autoClose: 2000,
-        // })
+        toast.error("가입에 실패했습니다. 다시 시도해주세요!" + "😭", {
+          position: "top-center",
+          autoClose: 1000,
+        })
       });
 
     // window.location.href = "/";
