@@ -163,7 +163,7 @@ def PostList(request):
         img_gps, img_date = metadata(img_path=IMAGE_PATH)
       except:
         img_gps = '탐지되지 않은 위치'
-        img_date = '탐지되지 않은 날짜'
+        img_date = '1999-01-01'
       
       new_serializer_data['lstPlace'] = img_gps
       new_serializer_data['lstYmd'] = img_date
