@@ -48,7 +48,7 @@ export default function LoginForm() {
           localStorage.setItem("username", res.data.user.username.slice(0,-1) + '*')
           axios.defaults.headers.common.Authorization = 'Bearer '.concat(localStorage.getItem("token"));
           toast.success("로그인성공!".concat("😍"), {
-            position: "top-center",
+            position: "top-right",
             autoClose: 1000,
           })
           setTimeout(()=>{window.location.href = "/"}, 2000);
@@ -56,7 +56,7 @@ export default function LoginForm() {
       })
       .catch((err) => {
         toast.error("등록되지 않은 계정이거나 유효하지 않은 계정입니다.".concat("😭"), {
-          position: "top-center",
+          position: "top-right",
           autoClose:3000,
         })
         setInputEmail("");

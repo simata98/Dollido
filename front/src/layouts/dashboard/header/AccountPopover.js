@@ -46,7 +46,7 @@ export default function AccountPopover() {
       localStorage.setItem("username", '로그인 해주세요')
       delete axios.defaults.headers.common.Authorization;
       toast.success("로그아웃 되었습니다😎", {
-        position: "top-center",
+        position: "top-right",
         autoClose: 1000,
       })
       setTimeout(() => window.location.href = "/login", 2000);

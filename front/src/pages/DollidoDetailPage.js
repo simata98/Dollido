@@ -71,8 +71,11 @@ export default function DashboardAppPage() {
       .then(response => {
         setStatus(response.find_status)
         // form 초기화
-        alert('회수요청');
-        window.location.reload();
+        toast.success("😎회수요청😎", {
+          position: "top-right",
+          autoClose: 1000,
+        })
+        setTimeout(() => window.location.reload(), 2000);
       });
   };
 
@@ -83,8 +86,11 @@ export default function DashboardAppPage() {
       .delete(`http://localhost:8000/post/${tasks.id}/`)
       .then(response => {
         // form 초기화
-        alert('삭제완료')
-        window.location.href = "/dashboard/dollido";
+        toast.success("😎삭제완료😎", {
+          position: "top-right",
+          autoClose: 1000,
+        })
+        setTimeout(() => window.location.href = "/dashboard/dollido", 2000);
       }
       );
   };
