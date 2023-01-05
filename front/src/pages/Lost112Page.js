@@ -93,23 +93,7 @@ export default function DollidoPage({ products }) {
     setColor(value)
   };
 
-  const handleSearch = () => {
 
-    useEffect(() => {
-      const getData = async () => {
-        const response = await axios.post(
-          'http://127.0.0.1:8000/lost112/', attr
-        );
-        setTasks(response.data);
-        console.log(tasks)
-      };
-      getData();
-    }, []);
-    // setTasks(response.data);
-    console.log(tasks)
-    setOpenFilter(false)
-  }
- 
   // 정렬 ---------------------------------------
   const [open, setOpen] = useState(null);
   const [cur, setCur] = useState("오래된 순")
