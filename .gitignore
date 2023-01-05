@@ -201,5 +201,5 @@ front/package-lock.json
 # my_settings.py
 my_settings.py
 
-# uploaded image
-front/public/images
+# # uploaded image
+# front/public/images
