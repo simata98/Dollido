@@ -158,7 +158,9 @@ export default function DashboardAppPage() {
                   삭제
                 </Button>
               </Stack>
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={() => {
+                  navigate(-1)
+                }}>
                 뒤로 가기
               </Button>
               <Button
