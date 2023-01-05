@@ -9,7 +9,6 @@ from rest_framework import status
 
 @api_view(['GET', 'POST'])
 def api_detail_list(request):
-  print(request.data['color'])
   q=Q()
   if request.data['color']=="" and request.data['category']=="":
     post = ApiListId.objects.all()

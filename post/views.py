@@ -212,7 +212,6 @@ def PostDetail(request, pk):
 
 @api_view(['GET', 'POST'])
 def PostFilter(request):
-  print(request.data['color'])
   q=Q()
   if request.data['color']=="" and request.data['category']=="":
     post = DollidoLstId.objects.all()
@@ -221,9 +220,9 @@ def PostFilter(request):
         q &= Q(clrNm__contains = request.data['color'])
     if request.data['category']:
       if request.data['category'] == "휴대폰":
-        q &= Q(category__contains = "스마트폰")
+        q &= Q(lstcontent__contains = "스마트폰")
       elif request.data['category'] == "지갑":
-        q &= Q(category__contains = "지갑")
+        q &= Q(lstcontent__contains = "지갑")
     post = DollidoLstId.objects.filter(q)
   serializer = PostSerializer(post, many=True)
   return Response(serializer.data, status=status.HTTP_200_OK)
