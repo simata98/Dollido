@@ -28,6 +28,7 @@ from PIL.ExifTags import TAGS
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -208,3 +209,21 @@ def PostDetail(request, pk):
   elif request.method == 'DELETE':
     post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def PostFilter(request):
+  print(request.data['color'])
+  q=Q()
+  if request.data['color']=="" and request.data['category']=="":
+    post = DollidoLstId.objects.all()
+  else:
+    if request.data['color']:
+      q &= Q(clrNm__contains = request.data['color'])
+    if request.data['category']:
+      if request.data['category'] == "휴대폰":
+        q &= Q(category__contains = "스마트폰")
+      elif request.data['category'] == "지갑":
+        q &= Q(category__contains = "지갑")
+    post = DollidoLstId.objects.filter(q)
+  serializer = PostSerializer(post, many=True)
+  return Response(serializer.data, status=status.HTTP_200_OK)
