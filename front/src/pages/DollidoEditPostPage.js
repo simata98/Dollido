@@ -77,7 +77,7 @@ const DollidoEditPostPage = () => {
       <Container maxWidth="xl">
         <ToastContainer />
         <Typography variant="h4" sx={{ mb: 5 }}>
-          AddPOST
+          분실물 신고하기
         </Typography>
         <Card>
           <Grid container direction="row" justifyContent="center" alignItems="center">
