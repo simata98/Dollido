@@ -55,12 +55,7 @@ export default function DashboardAppPage() {
     getData();
   }, []);
 
-  console.log('tasks.wallet_cnt',tasks.wallet_cnt)
-  console.log('tasks.phone_cnt',tasks.phone_cnt)
-  console.log('tasks.current_lost',tasks.current_lost)
-  console.log('tasks.dollido_cnt',tasks.dollido_cnt)
-  console.log('tasks.api_cnt',tasks.api_cnt)
-  console.log('tasks.total_cnt',tasks.total_cnt)
+
   if (tasks.current_lost) {
     return (
       <>
@@ -86,13 +81,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[0])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[0])[6]} src={Object.values(tasks.current_lost[0])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[0])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[0])[6]}
+                        {Object.values(tasks.current_lost[0])[1]}
 
                       </Typography>
                     </Link>
@@ -100,11 +95,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[0])[5]}
+                        {Object.values(tasks.current_lost[0])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[0])[7]}
+                        {Object.values(tasks.current_lost[0])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -116,13 +111,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[1])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[1])[6]} src={Object.values(tasks.current_lost[1])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[1])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[1])[6]}
+                        {Object.values(tasks.current_lost[1])[1]}
 
                       </Typography>
                     </Link>
@@ -130,11 +125,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[1])[5]}
+                        {Object.values(tasks.current_lost[1])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[1])[7]}
+                        {Object.values(tasks.current_lost[1])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -146,13 +141,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[2])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[2])[6]} src={Object.values(tasks.current_lost[2])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[2])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[0])[6]}
+                        {Object.values(tasks.current_lost[2])[1]}
 
                       </Typography>
                     </Link>
@@ -160,11 +155,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[2])[5]}
+                        {Object.values(tasks.current_lost[2])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[2])[7]}
+                        {Object.values(tasks.current_lost[2])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -173,16 +168,16 @@ export default function DashboardAppPage() {
               </SwiperSlide>
 
               <SwiperSlide>
-                {/* <Grid item xs={13} sm={6} md={5}> */}
+                {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[3])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[3])[6]} src={Object.values(tasks.current_lost[3])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[3])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[3])[6]}
+                        {Object.values(tasks.current_lost[3])[1]}
 
                       </Typography>
                     </Link>
@@ -190,11 +185,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[3])[5]}
+                        {Object.values(tasks.current_lost[3])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[3])[7]}
+                        {Object.values(tasks.current_lost[3])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -206,13 +201,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[4])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[4])[6]} src={Object.values(tasks.current_lost[4])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[4])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[4])[6]}
+                        {Object.values(tasks.current_lost[4])[1]}
 
                       </Typography>
                     </Link>
@@ -220,11 +215,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[4])[5]}
+                        {Object.values(tasks.current_lost[4])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[4])[7]}
+                        {Object.values(tasks.current_lost[4])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -236,13 +231,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[5])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[5])[6]} src={Object.values(tasks.current_lost[5])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[5])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[5])[6]}
+                        {Object.values(tasks.current_lost[5])[1]}
 
                       </Typography>
                     </Link>
@@ -250,11 +245,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[5])[5]}
+                        {Object.values(tasks.current_lost[5])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[5])[7]}
+                        {Object.values(tasks.current_lost[5])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -266,13 +261,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[6])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[6])[6]} src={Object.values(tasks.current_lost[6])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[6])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[6])[6]}
+                        {Object.values(tasks.current_lost[6])[1]}
 
                       </Typography>
                     </Link>
@@ -280,11 +275,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[6])[5]}
+                        {Object.values(tasks.current_lost[6])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[6])[7]}
+                        {Object.values(tasks.current_lost[6])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -296,13 +291,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[7])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[7])[6]} src={Object.values(tasks.current_lost[7])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[7])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[7])[6]}
+                        {Object.values(tasks.current_lost[7])[1]}
 
                       </Typography>
                     </Link>
@@ -310,11 +305,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[7])[5]}
+                        {Object.values(tasks.current_lost[7])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[7])[7]}
+                        {Object.values(tasks.current_lost[7])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -326,13 +321,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[8])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[8])[6]} src={Object.values(tasks.current_lost[8])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[8])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[8])[6]}
+                        {Object.values(tasks.current_lost[8])[1]}
 
                       </Typography>
                     </Link>
@@ -340,11 +335,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[8])[5]}
+                        {Object.values(tasks.current_lost[8])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[8])[7]}
+                        {Object.values(tasks.current_lost[8])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -356,13 +351,13 @@ export default function DashboardAppPage() {
                 {/* <Grid item xs={12} sm={6} md={5}> */}
                 <Card id={Object.values(tasks.current_lost[9])[0]}>
                   <Box sx={{ pt: '50%', position: 'relative' }}>
-                    <StyledProductImg alt={Object.values(tasks.current_lost[9])[6]} src={Object.values(tasks.current_lost[9])[2]} />
+                    <StyledProductImg src={'../../../images/' + Object.values(tasks.current_lost[9])[2].split("/").pop()} />
                   </Box>
 
                   <Stack spacing={1} sx={{ p: 1 }}>
                     <Link color="inherit" underline="hover">
                       <Typography variant="h6" noWrap>
-                        {Object.values(tasks.current_lost[9])[6]}
+                        {Object.values(tasks.current_lost[9])[1]}
 
                       </Typography>
                     </Link>
@@ -370,11 +365,11 @@ export default function DashboardAppPage() {
                     <Stack direction="row" alignItems="center" justifyContent="space-between">
                       {/* <ColorPreview colors={colors} /> */}
                       <Typography variant="subtitle1">
-                        {Object.values(tasks.current_lost[9])[5]}
+                        {Object.values(tasks.current_lost[9])[4]}
                       </Typography>
                       <Typography variant="subtitle1">
                         &nbsp;
-                        {Object.values(tasks.current_lost[9])[7]}
+                        {Object.values(tasks.current_lost[9])[8]}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -389,7 +384,7 @@ export default function DashboardAppPage() {
                 title="분실물 통계 현황"
                 subheader='최근 10일의 통계량'
                 // subheader={'최근 10일의 통계량' + Object.keys(tasks.api_cnt[0])+ '~'+ Object.keys(tasks.api_cnt[9])}
-                chartLabels={Object.keys(tasks.api_cnt)}
+                chartLabels={Object.keys(tasks.dollido_cnt)}
                 chartData={[
                   {
                     name: 'Lost112',
@@ -409,10 +404,10 @@ export default function DashboardAppPage() {
 
             <Grid item xs={12} md={6} lg={4}>
               <AppCurrentVisits
-                title="lost112 - Category"
+                title="분실물 분포"
                 chartData={[
-                  { label: 'wallet', value: tasks.wallet_cnt },
-                  { label: 'phone', value: tasks.phone_cnt },
+                  { label: '지갑', value: tasks.wallet_cnt },
+                  { label: '스마트폰', value: tasks.phone_cnt },
                 ]}
                 chartColors={[
                   theme.palette.primary.main,
@@ -437,7 +432,8 @@ export default function DashboardAppPage() {
                 Dollido 보관함 위치
               </Typography>
               <Map
-                center={{ lat: 36.3452698, lng: 127.3842685 }}
+                level={6}
+                center={{ lat: 36.3478959, lng: 127.4118545 }}
                 style={{ width: "1150px", height: "500px" }}>
                 <MapMarker position={{ lat: 36.3452698, lng: 127.3842685 }}>
                   <div style={{ color: "#000" }}>kt 탄방타워</div>

@@ -134,6 +134,7 @@ export default function DollidoPage({ products }) {
       );
       console.log('최신순', control)
     }
+
   };
 
   // 페이지 ---------------------------------------
@@ -150,7 +151,7 @@ export default function DollidoPage({ products }) {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" sx={{ mb: 5 }}>
-            Dollido
+            Dollido에 등록된 분실물
           </Typography>
           <Button href={link} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             새 게시물

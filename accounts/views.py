@@ -212,3 +212,18 @@ class Activate(View):
         except KeyError:
             messages.error(request, '메일 인증에 실패했습니다. 키 오류입니다!')
             return JsonResponse({"message" : "INVALID_KEY"}, status=400)
+
+class Password(APIView):
+    permissions_classes = [AllowAny]
+    def post(self, request):
+        # 인증 이메일
+        message_data = '보관함 비밀번호는 2023입니다!'
+        mail_title = "돌리도 보관함 비밀번호 안내입니다."
+        access = request.COOKIES.get('access')
+        payload = jwt.decode(access, SECRET_KEY, algorithms=['HS256'])
+        pk = payload.get('user_id')
+        user = get_object_or_404(User, pk=pk)
+        email = EmailMessage(mail_title, message_data, to=[user])
+        email.content_subtype = "html"
+        email.send()
+        return Response(status=status.HTTP_200_OK)

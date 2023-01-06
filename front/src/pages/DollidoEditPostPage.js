@@ -60,9 +60,12 @@ const DollidoEditPostPage = () => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(link + '/', formData2)
-    window.alert("😎수정 완료되었습니다😎");
-    // navigate(-1)
-    window.location.href = "/dashboard/dollido";
+      toast.success("😎수정이 완료되었습니다😎", {
+        position: "top-right",
+        autoClose: 1000,
+      })    // navigate(-1)
+      setTimeout(() => window.location.href = "/dashboard/dollido",  2000);
+
   }
 
   return (
