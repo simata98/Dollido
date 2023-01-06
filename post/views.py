@@ -163,7 +163,7 @@ def PostList(request):
         img_gps, img_date = metadata(img_path=IMAGE_PATH)
       except:
         img_gps = '탐지되지 않은 위치'
-        img_date = '탐지되지 않은 날짜'
+        img_date = '1999-01-01'
       
       new_serializer_data['lstPlace'] = img_gps
       new_serializer_data['lstYmd'] = img_date
@@ -221,9 +221,9 @@ def PostFilter(request):
       q &= Q(clrNm__contains = request.data['color'])
     if request.data['category']:
       if request.data['category'] == "휴대폰":
-        q &= Q(lstcontent__contains = "스마트폰")
+        q &= Q(lstPrdtNm__contains = "스마트폰")
       elif request.data['category'] == "지갑":
-        q &= Q(lstcontent__contains = "지갑")
+        q &= Q(lstPrdtNm__contains = "지갑")
     post = DollidoLstId.objects.filter(q)
   serializer = PostSerializer(post, many=True)
   return Response(serializer.data, status=status.HTTP_200_OK)

@@ -142,7 +142,7 @@ export default function DollidoPage({ products }) {
 
       <Container>
           <Typography variant="h4" sx={{ mb: 5 }}>
-            Products
+            Lost112에 등록된 분실물
           </Typography>
 
 

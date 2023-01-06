@@ -57,7 +57,7 @@ export default function LoginForm() {
       .catch((err) => {
         toast.error("등록되지 않은 계정이거나 유효하지 않은 계정입니다.".concat("😭"), {
           position: "top-right",
-          autoClose:3000,
+          autoClose:1000,
         })
         setInputEmail("");
         setInputPw("");

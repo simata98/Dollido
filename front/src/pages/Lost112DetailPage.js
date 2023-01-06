@@ -24,6 +24,7 @@ export default function DashboardAppPage() {
 
   const location = useLocation();
   const link = 'http://127.0.0.1:8000/'.concat(location.pathname.split('/').at(-1))
+  console.log(link)
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
