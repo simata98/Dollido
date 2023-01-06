@@ -9,6 +9,7 @@ import { Container, Typography, Box, Card, Link, Stack, Grid, Button } from '@mu
 import { styled } from '@mui/material/styles';
 import Iconify from '../components/iconify';
 import jwt_decode from "jwt-decode";
+import { toast, ToastContainer } from 'react-toastify';
 
 // ---------------------------------------s-------------------------------
 const StyledProductImg = styled('img')({
@@ -66,6 +67,15 @@ export default function DashboardAppPage() {
     };
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+    axios.defaults.withCredentials = true
+    axios
+      .post('http://localhost:8000/accounts/passmail/')
+      toast.success("돌리도 보관함 비밀번호 전송 완료!".concat("😍"), {
+        position: "top-right",
+        autoClose: 1000,
+      })
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
     axios
       .put(`http://localhost:8000/post/${tasks.id}/`, user)
       .then(response => {
@@ -107,6 +117,7 @@ export default function DashboardAppPage() {
 
   return (
     <>
+    <ToastContainer/>
       <Helmet>
         <title> Dashboard | Minimal UI </title>
       </Helmet>
@@ -147,7 +158,9 @@ export default function DashboardAppPage() {
                   삭제
                 </Button>
               </Stack>
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={() => {
+                  navigate(-1)
+                }}>
                 뒤로 가기
               </Button>
               <Button

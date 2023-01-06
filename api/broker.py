@@ -98,10 +98,10 @@ def count_rows():
         lost112_phone_cnt = lost112_phone.count()
         
         # 조건 수정해야함
-        dollido_wallet = DollidoLstId.objects.filter(lstYmd=day)
+        dollido_wallet = DollidoLstId.objects.filter(Q(lstYmd=day) & Q(lstPrdtNm__contains="지갑"))
         dollido_wallet_cnt = dollido_wallet.count()
         
-        dollido_phone = DollidoLstId.objects.filter(lstYmd=day)
+        dollido_phone = DollidoLstId.objects.filter(Q(lstYmd=day) & Q(lstPrdtNm__contains="스마트폰"))
         dollido_phone_cnt = dollido_phone.count()
         
         stat = Stat_info()
