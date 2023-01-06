@@ -57,7 +57,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
         </defs>
 
         <g fill={PRIMARY_MAIN} fillRule="evenodd" stroke="none" strokeWidth="1">
-        <path fill="#000000" opacity="1.000000" stroke="none" 
+        <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
 	d="
 M285.000000,501.000000 
 	C190.000015,501.000000 95.500046,501.000000 1.000051,501.000000 
