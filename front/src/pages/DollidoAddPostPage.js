@@ -67,21 +67,13 @@ const DollidoAddPostPage = () => {
       setLstYmd(response.data.lstYmd);
       setLstPlace(response.data.lstPlace);
       setClrNm(response.data.clrNm);
-      // setFind_status(response.data.find_status);
       setWriter(response.data.writer_id);
-      // toast.configure();
-      // toast.success("😎예측이 완료되었습니다😎", {
-      //   position: "top-center",
-      //   autoClose: 1000,
-      // })
-      // setTimeout(() =>  2000);
     
       toast.success("😎예측이 완료되었습니다😎", {
         position: "top-right",
         autoClose: 1000,
       })
-      setTimeout(() => 1000);
-      // window.alert("😎예측이 완료되었습니다😎");
+      setTimeout(() => 2000);
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
@@ -90,7 +82,6 @@ const DollidoAddPostPage = () => {
         position: "top-right",
         autoClose: 1000,
       })
-      // alert("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다" + "😭");
     } finally {
       setLoading(false);
     }
@@ -104,7 +95,7 @@ const DollidoAddPostPage = () => {
     formData2.append("lstPrdtNm", title);
     formData2.append("lstFilePathImg", image.image_file);
     formData2.append("lstcontent", content);
-    formData2.append("lstYmd", lstYmd);
+    formData2.append("lstYmd", lstYmd.slice(0, 10).replace(':', '-').replace(':', '-'));
     formData2.append("lstPlace", lstPlace);
     formData2.append("clrNm", clrNm);
     formData2.append("find_status", find_status);
